@@ -15,80 +15,78 @@ export function getUniqueID() {
   return ID.unique();
 }
 
-export function getOAuthProvider(provider: keyof typeof oAuthProviders) {
-  return oAuthProviders[provider];
-}
+export class AppWrite {
+  clientInstance;
 
-export function createClient() {
-  if (
-    !process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ||
-    !process.env.NEXT_APPWRITE_PROJECT
-  ) {
-    throw new Error("Appwrite endpoint or project not provided");
-  }
-
-  const client = new Client()
-    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
-    .setProject(process.env.NEXT_APPWRITE_PROJECT);
-
-  return {
-    get account() {
-      return new Account(client);
-    },
-    get client() {
-      return client;
-    },
+  oAuthProviders = {
+    Google: OAuthProvider.Google,
+    Github: OAuthProvider.Github,
   };
-}
 
-export async function createSessionClient() {
-  if (
-    !process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ||
-    !process.env.NEXT_APPWRITE_PROJECT
-  ) {
-    throw new Error("Appwrite endpoint or project not provided");
+  constructor() {
+    const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
+    const project = process.env.NEXT_APPWRITE_PROJECT;
+
+    if (!endpoint || !project) {
+      throw new Error("Appwrite endpoint, project not provided");
+    }
+
+    this.clientInstance = new Client()
+      .setEndpoint(endpoint)
+      .setProject(project)
+
   }
 
-  const sessionCookie = await getCookie(COOKIE_NAME);
-  if (!sessionCookie || !sessionCookie.value) {
-    throw new Error("No session");
+  async createSession() {
+    const sessionCookie = await getCookie(COOKIE_NAME);
+    if (!sessionCookie || !sessionCookie.value) {
+      throw new Error("No session");
+    }
+
+    let sessionClient = this.clientInstance.setSession(sessionCookie.value)
+
+    return {
+      get account() {
+        return new Account(sessionClient);
+      },
+      get client() {
+        return sessionClient;
+      },
+    }
   }
 
-  const client = new Client()
-    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
-    .setProject(process.env.NEXT_APPWRITE_PROJECT)
-    .setSession(sessionCookie.value);
+  createAdmin() {
+    const apiKey = process.env.NEXT_APPWRITE_KEY
+    if (
+      !apiKey
+    ) {
+      throw new Error("Appwrite key not provided");
+    }
 
-  return {
-    get account() {
-      return new Account(client);
-    },
-    get client() {
-      return client;
-    },
-  };
-}
+    let adminClient = this.clientInstance.setKey(apiKey);
 
-export async function createAdminClient() {
-  if (
-    !process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ||
-    !process.env.NEXT_APPWRITE_PROJECT ||
-    !process.env.NEXT_APPWRITE_KEY
-  ) {
-    throw new Error("Appwrite endpoint or project or key not provided");
+    return {
+      get account() {
+        return new Account(adminClient);
+      },
+      get client() {
+        return adminClient;
+      },
+    };
   }
 
-  const client = new Client()
-    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
-    .setProject(process.env.NEXT_APPWRITE_PROJECT)
-    .setKey(process.env.NEXT_APPWRITE_KEY);
+  getOAuthProvider(provider:keyof typeof this.oAuthProviders) {
 
-  return {
-    get account() {
-      return new Account(client);
-    },
-    get client() {
-      return client;
-    },
-  };
+    return this.oAuthProviders[provider];
+
+  }
+
+  get account() {
+    return new Account(this.clientInstance);
+  }
+
+  get client() {
+    return this.clientInstance;
+  }
 }
+
