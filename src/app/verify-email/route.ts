@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { routes } from "@/common/routes";
-import { createClient } from "@/server/services/appwrite";
+import { serviceClient } from "@/server/services";
 
 export async function GET(request: NextRequest) {
   const userId = request.nextUrl.searchParams.get("userId");
@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(routes.signIn);
   }
 
-  const { account } = createClient();
+  const account = serviceClient.account
   await account.updateVerification(userId, secret);
   return NextResponse.redirect(`${request.nextUrl.origin}${routes.profile}`);
 }
