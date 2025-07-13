@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { Link as Anchor, LinkProps } from "@radix-ui/themes";
+
+import Link from "next/link";
 
 interface Props {
   href?: string;
@@ -17,10 +18,10 @@ export function RadixNextLink({
   children,
 }: Props) {
   return (
-    <Link href={href} passHref legacyBehavior>
-      <Anchor size={size} weight={weight} target={target} color="grass">
+    <Anchor size={size} weight={weight} target={target} color="grass" asChild>
+      <Link href={href} passHref>
         {children}
-      </Anchor>
-    </Link>
+      </Link>
+    </Anchor>
   );
 }
