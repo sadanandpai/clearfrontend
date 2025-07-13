@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
-import { GlobalWrapper } from "./global.wrapper";
-import { DM_Sans, Bricolage_Grotesque } from "next/font/google";
-import "@/ui/styles/globals.scss";
+import "@/ui/styles/globals.css";
 import "@/ui/styles/styles.scss";
+
+import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+
+import { GlobalWrapper } from "./global.wrapper";
+import type { Metadata } from "next";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],

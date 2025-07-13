@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
 import { Flex } from "@radix-ui/themes";
-import { routes } from "@/common/routes";
-import classes from "./home-nav-bar.module.scss";
+import Image from "next/image";
+import Link from "next/link";
 import { MenuDropdown } from "./menu-dropdown";
+import classes from "./home-nav-bar.module.scss";
+import { routes } from "@/common/routes";
 
 export function HomeNavBar() {
   return (
@@ -26,7 +26,6 @@ export function HomeNavBar() {
           Contribute
         </Link>
       </Flex>
-
       <Flex align="center" gap="5" className="hidden lg:flex">
         <Link href={routes.signIn} className="secondary-link">
           LOGIN
@@ -43,7 +42,6 @@ export function HomeNavBar() {
           <Image src="/github.svg" alt="Github" width={32} height={32} />
         </Link>
       </Flex>
-
       <MenuDropdown />
     </nav>
   );

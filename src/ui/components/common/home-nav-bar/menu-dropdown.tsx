@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Menu } from "lucide-react";
-import { Flex } from "@radix-ui/themes";
-import { routes } from "@/common/routes";
 import {
   Collapsible,
-  CollapsibleTrigger,
   CollapsibleContent,
+  CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
+
+import { Flex } from "@radix-ui/themes";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu } from "lucide-react";
 import classes from "./home-nav-bar.module.scss";
+import { routes } from "@/common/routes";
+import { useState } from "react";
 
 export function MenuDropdown() {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,6 @@ export function MenuDropdown() {
           <Menu color="white" />
         </button>
       </CollapsibleTrigger>
-
       <CollapsibleContent className={classes.collapsibleContent}>
         <Flex direction="column" align="center" gap="5">
           <Link

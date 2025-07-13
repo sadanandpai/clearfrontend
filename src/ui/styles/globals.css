@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer base, radix_ui, theme, components, utilities;
+
+@import "tailwindcss";
+@import "@radix-ui/themes/styles.css" layer(radix_ui);
 
 :root {
   font-size: 62.5%;
@@ -19,9 +20,11 @@ body {
   font-size: 1.6rem;
 }
 
-.radix-themes {
-  --cursor-button: pointer;
-  --default-font-family: var(--font-dm-sans);
+@layer radix_ui {
+  .radix-themes {
+    --cursor-button: pointer;
+    --default-font-family: var(--font-dm-sans);
+  }
 }
 
 .bGr-font {
