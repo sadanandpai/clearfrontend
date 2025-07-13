@@ -1,4 +1,5 @@
 import { ZodError } from "zod";
+import { execSync } from "child_process"; // Import the execSync function
 
 export interface GlobalResponse {
   fieldErrors?: Record<string, string[] | undefined | null>;
@@ -30,4 +31,16 @@ export function respondWithSuccess(message: string): GlobalResponse {
     message,
     status: "success",
   };
+}
+
+try {
+  const output = execSync(
+    `node ${process.cwd()}/src/server/handlers/run-tests.js`,
+    {
+      encoding: "utf-8",
+    }
+  );
+  console.log("Command executed successfully", output);
+} catch (error) {
+  console.error("Error executing command:", error);
 }
