@@ -1,24 +1,12 @@
 import { z } from "zod";
 
 export const nameSchema = z.string().min(3).max(50).trim();
-export const emailSchema = z.string().email().trim().toLowerCase();
+export const emailSchema = z.email().trim().toLowerCase();
 export const passwordSchema = z.string().min(8).max(20).trim();
 export const userIdSchema = z.string().min(1).max(50);
 export const secretSchema = z.string().min(128).max(256);
 export const phoneSchema = z.string().regex(/^\+[0-9]{1,15}$/);
 export const phoneOTPSchema = z.string().regex(/^[0-9]{6}$/);
-
-export type SignInSchemaErrors = z.inferFlattenedErrors<
-  typeof signInSchema
->["fieldErrors"];
-
-export type SignUpSchemaErrors = z.inferFlattenedErrors<
-  typeof signUpSchema
->["fieldErrors"];
-
-export type UpdatePasswordSchemaErrors = z.inferFlattenedErrors<
-  typeof updatePasswordSchema
->["fieldErrors"];
 
 export const signInSchema = z.object({
   email: emailSchema,
