@@ -13,6 +13,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { setUserChallengeSolve } from "@/server/actions/user-challenge";
 import { useContext } from "react";
 import { appContext } from "@/ui/context/app.context";
+import { ErrorProps } from "@/ui/utils/test-results";
 
 export function Executor() {
   const { user } = useContext(appContext);
@@ -43,7 +44,12 @@ export function Executor() {
     const unsubscribe = getTestResult(listen, (result) => {
       setOutput({ isLoading: false, ...result });
       unsubscribe();
-    });
+    },
+    () => {
+      setOutput({ isLoading: false });
+      unsubscribe();
+    }
+  );
 
     dispatch({
       type: "run-tests",
@@ -53,7 +59,14 @@ export function Executor() {
 
   async function runAllTests() {
     setOutputs({ isLoading: true });
+
+    // Safety timeout to avoid infinite loader if no completion is emitted
+    const timeoutId = setTimeout(() => {
+      setOutputs({ isLoading: false, executionId: Date.now() });
+    }, 15000);
+
     const unsubscribe = getTestResults(listen, (result) => {
+      clearTimeout(timeoutId);
       if (user && result.status && !isPending) {
         markChallengeComplete();
       }
@@ -61,7 +74,13 @@ export function Executor() {
       incrementChallengeAttempts(challengeId);
       setOutputs({ isLoading: false, ...result, executionId: Date.now() });
       unsubscribe();
-    });
+    },
+    (error: ErrorProps) => {
+      clearTimeout(timeoutId);
+      setOutputs({ isLoading: false,  executionId: Date.now() });
+      unsubscribe();
+    }
+  );
 
     dispatch({
       type: "run-tests",
