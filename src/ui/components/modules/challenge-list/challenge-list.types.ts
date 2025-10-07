@@ -1,8 +1,6 @@
-
-
 export interface Challenges {
-      id: number;
-      name: string;
-      difficulty: string;
-      tags: string[];
-    }
+  id: number;
+  name: string;
+  difficulty: string;
+  tags: string[];
+}

@@ -9,11 +9,11 @@
     color: white;
     border-bottom: 1px solid lightgray;
 
-    &[data-status="pass"] {
+    &[data-status='pass'] {
       background-color: green;
     }
 
-    &[data-status="fail"] {
+    &[data-status='fail'] {
       background-color: brown;
     }
   }

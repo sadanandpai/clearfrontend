@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Fragment } from "react";
-import { Flex } from "@radix-ui/themes";
-import classes from "./feature-items.module.scss";
+import { Fragment } from 'react';
+import { Flex } from '@radix-ui/themes';
+import classes from './feature-items.module.scss';
 
 interface Props {
   listItems: string[];
@@ -10,19 +10,13 @@ interface Props {
   setActiveIndex: (index: number) => void;
 }
 
-export const FeatureItems = ({
-  listItems,
-  activeIndex,
-  setActiveIndex,
-}: Props) => {
+export const FeatureItems = ({ listItems, activeIndex, setActiveIndex }: Props) => {
   return (
     <Flex direction="column" gap="5">
       {listItems.map((item, index) => (
         <Fragment key={index}>
           <p
-            className={`${classes.contentTitle} ${
-              activeIndex === index ? classes.active : ""
-            }`}
+            className={`${classes.contentTitle} ${activeIndex === index ? classes.active : ''}`}
             role="button"
             key={index}
             onClick={() => setActiveIndex(index)}
@@ -31,7 +25,7 @@ export const FeatureItems = ({
           </p>
           <hr
             style={{
-              borderTop: "0.5px solid #C0D1CA80",
+              borderTop: '0.5px solid #C0D1CA80',
             }}
           />
         </Fragment>

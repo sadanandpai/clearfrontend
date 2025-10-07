@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Flex } from "@radix-ui/themes";
-import { routes } from "@/common/routes";
-import { InfoCard } from "@/ui/components/core/info-card/info-card";
-import classes from "./home.module.scss";
+import Link from 'next/link';
+import Image from 'next/image';
+import { Flex } from '@radix-ui/themes';
+import { routes } from '@/common/routes';
+import { InfoCard } from '@/ui/components/core/info-card/info-card';
+import classes from './home.module.scss';
 
 export function Practice() {
   return (
@@ -12,13 +12,7 @@ export function Practice() {
         <div className={classes.sectionTitle}>
           <Flex align="center" gap="4">
             Nail
-            <Image
-              src="target.svg"
-              alt="target"
-              width="64"
-              height="64"
-              className="inline"
-            />
+            <Image src="target.svg" alt="target" width="64" height="64" className="inline" />
           </Flex>
           <span>
             that next
@@ -27,10 +21,7 @@ export function Practice() {
 
           <br />
 
-          <Link
-            href={routes.challenges}
-            className="primary-link large inline-block mt-24"
-          >
+          <Link href={routes.challenges} className="primary-link large inline-block mt-24">
             PRACTICE NOW &gt;
           </Link>
         </div>

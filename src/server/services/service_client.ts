@@ -3,8 +3,8 @@ import {
   BaseClientAppWrite,
   DatabaseClientAppwrite,
   SessionClientAppwrite,
-} from "./appwrite";
-import { RedisClient } from "./redis";
+} from './appwrite';
+import { RedisClient } from './redis';
 
 export class ServiceClient {
   get user() {

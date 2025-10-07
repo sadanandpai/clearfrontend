@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { Fragment, useState } from "react";
-import { Flex } from "@radix-ui/themes";
-import { FeatureItems } from "@/ui/components/core/feature-items/feature-items";
-import { EmblaCarousel } from "@/ui/components/core/carousel/carousel";
-import classes from "./features.module.scss";
+import { Fragment, useState } from 'react';
+import { Flex } from '@radix-ui/themes';
+import { FeatureItems } from '@/ui/components/core/feature-items/feature-items';
+import { EmblaCarousel } from '@/ui/components/core/carousel/carousel';
+import classes from './features.module.scss';
 
 const listItems = [
-  { title: "Challenge", img: "https://via.placeholder.com/150" },
-  { title: "Code", img: "https://via.placeholder.com/150" },
-  { title: "Run or debug", img: "https://via.placeholder.com/150" },
-  { title: "Dark or light", img: "https://via.placeholder.com/150" },
+  { title: 'Challenge', img: 'https://via.placeholder.com/150' },
+  { title: 'Code', img: 'https://via.placeholder.com/150' },
+  { title: 'Run or debug', img: 'https://via.placeholder.com/150' },
+  { title: 'Dark or light', img: 'https://via.placeholder.com/150' },
 ];
 
 export function Features() {
@@ -35,10 +35,7 @@ export function Features() {
       </div>
 
       <div className="lg:hidden">
-        <EmblaCarousel
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        >
+        <EmblaCarousel activeIndex={activeIndex} setActiveIndex={setActiveIndex}>
           {listItems.map((item) => (
             <Fragment key={item.title}>
               <p className={classes.featureTitle}>{item.title}</p>

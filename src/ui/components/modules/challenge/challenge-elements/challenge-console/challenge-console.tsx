@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import { Button } from "@radix-ui/themes";
-import { SandpackConsole } from "@codesandbox/sandpack-react/unstyled";
+import { useRef } from 'react';
+import { Button } from '@radix-ui/themes';
+import { SandpackConsole } from '@codesandbox/sandpack-react/unstyled';
 
 interface SandpackConsoleRef {
   reset: () => void;

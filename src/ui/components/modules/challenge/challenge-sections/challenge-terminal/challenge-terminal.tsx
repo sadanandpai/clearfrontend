@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
-import { Box, ScrollArea, Tabs } from "@radix-ui/themes";
-import { ChallengeInput } from "@/ui/components/modules/challenge/challenge-elements/challenge-input/challenge-input";
-import { ChallengeConsole } from "@/ui/components/modules/challenge/challenge-elements/challenge-console/challenge-console";
-import { ChallengeOutput } from "@/ui/components/modules/challenge/challenge-elements/challenge-output/challenge-output";
-import { useChallengeStore } from "@/ui/store/challenge.store";
+import { useEffect, useState } from 'react';
+import { Box, ScrollArea, Tabs } from '@radix-ui/themes';
+import { ChallengeInput } from '@/ui/components/modules/challenge/challenge-elements/challenge-input/challenge-input';
+import { ChallengeConsole } from '@/ui/components/modules/challenge/challenge-elements/challenge-console/challenge-console';
+import { ChallengeOutput } from '@/ui/components/modules/challenge/challenge-elements/challenge-output/challenge-output';
+import { useChallengeStore } from '@/ui/store/challenge.store';
 
 interface Props {
   defaultInput: string;
 }
 
 export function ChallengeTerminal({ defaultInput }: Props) {
-  const [selectedTab, setSelectedTab] = useState("input");
+  const [selectedTab, setSelectedTab] = useState('input');
   const testOutput = useChallengeStore((state) => state.testOutput);
 
   useEffect(() => {
     if (testOutput?.status !== undefined) {
-      setSelectedTab("output");
+      setSelectedTab('output');
     }
   }, [testOutput]);
 
@@ -34,11 +34,7 @@ export function ChallengeTerminal({ defaultInput }: Props) {
 
         <ScrollArea type="auto">
           <Box p="3">
-            <Tabs.Content
-              value="input"
-              hidden={selectedTab !== "input"}
-              forceMount
-            >
+            <Tabs.Content value="input" hidden={selectedTab !== 'input'} forceMount>
               <ChallengeInput defaultInput={defaultInput} />
             </Tabs.Content>
 
@@ -49,7 +45,7 @@ export function ChallengeTerminal({ defaultInput }: Props) {
             <Tabs.Content
               value="console"
               className="static"
-              hidden={selectedTab !== "console"}
+              hidden={selectedTab !== 'console'}
               forceMount
             >
               <ChallengeConsole />

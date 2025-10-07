@@ -1,26 +1,26 @@
-import { useEffect, useRef, useState } from "react";
-import { ChallengeSolution } from "@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution";
-import { ChallengeResults } from "@/ui/components/modules/challenge/challenge-elements/challenge-results/challenge-results";
-import { ProblemStatement } from "@/ui/components/modules/challenge/challenge-elements/challenge-statement/challenge-statement";
-import { ChallengeSubmissions } from "@/ui/components/modules/challenge/challenge-elements/challenge-submissions/challenge-submissions";
-import { useChallengeStore } from "@/ui/store/challenge.store";
-import { ProblemProps } from "@/common/types/problem";
-import { Box, ScrollArea, Tabs } from "@radix-ui/themes";
-import { useActiveCode } from "@codesandbox/sandpack-react/unstyled";
+import { useEffect, useRef, useState } from 'react';
+import { ChallengeSolution } from '@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution';
+import { ChallengeResults } from '@/ui/components/modules/challenge/challenge-elements/challenge-results/challenge-results';
+import { ProblemStatement } from '@/ui/components/modules/challenge/challenge-elements/challenge-statement/challenge-statement';
+import { ChallengeSubmissions } from '@/ui/components/modules/challenge/challenge-elements/challenge-submissions/challenge-submissions';
+import { useChallengeStore } from '@/ui/store/challenge.store';
+import { ProblemProps } from '@/common/types/problem';
+import { Box, ScrollArea, Tabs } from '@radix-ui/themes';
+import { useActiveCode } from '@codesandbox/sandpack-react/unstyled';
 
 interface Props {
   problem: ProblemProps;
 }
 
 export function ChallengeDetails({ problem }: Props) {
-  const [selectedTab, setSelectedTab] = useState("question");
+  const [selectedTab, setSelectedTab] = useState('question');
   const testOutputs = useChallengeStore((state) => state.testOutputs);
   const { code } = useActiveCode();
-  const submittedCode = useRef<string>("");
+  const submittedCode = useRef<string>('');
 
   useEffect(() => {
     if (testOutputs?.isLoading) {
-      setSelectedTab("result");
+      setSelectedTab('result');
     }
 
     if (testOutputs?.outputs?.length) {

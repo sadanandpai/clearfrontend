@@ -1,5 +1,5 @@
-import Image from "next/image";
-import classes from "./info-card.module.scss";
+import Image from 'next/image';
+import classes from './info-card.module.scss';
 
 interface Props {
   title: string;

@@ -1,7 +1,7 @@
 @layer base, radix_ui, theme, components, utilities;
 
-@import "tailwindcss";
-@import "@radix-ui/themes/styles.css" layer(radix_ui);
+@import 'tailwindcss';
+@import '@radix-ui/themes/styles.css' layer(radix_ui);
 
 :root {
   font-size: 62.5%;
@@ -12,8 +12,8 @@
   --brand-bg-1: #00110a;
   --brand-bg-2: #f2fbf7;
   --brand-bg-3: #c0d1ca;
-  --font-dm-sans: "DM Sans";
-  --font-bGr: "Bricolage Grotesque";
+  --font-dm-sans: 'DM Sans';
+  --font-bGr: 'Bricolage Grotesque';
 }
 
 body {
@@ -28,7 +28,7 @@ body {
 }
 
 .bGr-font {
-  font-family: "Bricolage Grotesque";
+  font-family: 'Bricolage Grotesque';
   font-optical-sizing: auto;
 }
 

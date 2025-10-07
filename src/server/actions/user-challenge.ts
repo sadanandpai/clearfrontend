@@ -1,13 +1,13 @@
-"use server";
+'use server';
 
 import {
   createUserChallengeInfo,
   readUserChallengeInfo,
   updateUserChallengeInfo,
-} from "@/server/data-access/user-challenge";
-import { isValidChallengeId } from "@/server/utils/challenge";
-import { incrementSolves, updateLikes } from "@/server/data-access/activities";
-import { getLoggedInUser } from "./auth";
+} from '@/server/data-access/user-challenge';
+import { isValidChallengeId } from '@/server/utils/challenge';
+import { incrementSolves, updateLikes } from '@/server/data-access/activities';
+import { getLoggedInUser } from './auth';
 
 export async function getUserChallengeInfo(challengeId: number) {
   if ((await getLoggedInUser()) === null) {
@@ -15,7 +15,7 @@ export async function getUserChallengeInfo(challengeId: number) {
   }
 
   if (!isValidChallengeId(challengeId)) {
-    throw new Error("Invalid challenge ID");
+    throw new Error('Invalid challenge ID');
   }
 
   return await readUserChallengeInfo(challengeId);
@@ -23,7 +23,7 @@ export async function getUserChallengeInfo(challengeId: number) {
 
 export async function setUserChallengeLike(challengeId: number, like: boolean) {
   if (!isValidChallengeId(challengeId)) {
-    throw new Error("Invalid challenge ID");
+    throw new Error('Invalid challenge ID');
   }
 
   const document = await readUserChallengeInfo(challengeId);
@@ -51,7 +51,7 @@ export async function setUserChallengeLike(challengeId: number, like: boolean) {
 
 export async function setUserChallengeSolve(challengeId: number) {
   if (!isValidChallengeId(challengeId)) {
-    throw new Error("Invalid challenge ID");
+    throw new Error('Invalid challenge ID');
   }
 
   const document = await readUserChallengeInfo(challengeId);

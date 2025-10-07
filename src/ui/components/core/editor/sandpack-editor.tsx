@@ -1,4 +1,4 @@
-import { SandpackCodeEditor } from "@codesandbox/sandpack-react/unstyled";
+import { SandpackCodeEditor } from '@codesandbox/sandpack-react/unstyled';
 
 export function SandpackEditor() {
   return (
@@ -7,7 +7,7 @@ export function SandpackEditor() {
       showInlineErrors={true}
       showLineNumbers={true}
       showTabs={true}
-      style={{ height: "100%" }}
+      style={{ height: '100%' }}
     />
   );
 }

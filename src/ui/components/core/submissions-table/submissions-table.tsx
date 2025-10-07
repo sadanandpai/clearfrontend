@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChallengeSolution } from "@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution";
-import classes from "./submissions-table.module.scss";
-import { Trash } from "lucide-react";
-import { Code } from "lucide-react";
-import { Fragment, useState } from "react";
-import { Button } from "@radix-ui/themes";
+import { ChallengeSolution } from '@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution';
+import classes from './submissions-table.module.scss';
+import { Trash } from 'lucide-react';
+import { Code } from 'lucide-react';
+import { Fragment, useState } from 'react';
+import { Button } from '@radix-ui/themes';
 
 interface Props {
   records: any[];
@@ -12,14 +12,8 @@ interface Props {
   isLoading: boolean;
 }
 
-export function SubmissionsTable({
-  records,
-  deleteSubmission,
-  isLoading,
-}: Props) {
-  const [shouldDisplayCode, setShouldDisplayCode] = useState<string | null>(
-    null
-  );
+export function SubmissionsTable({ records, deleteSubmission, isLoading }: Props) {
+  const [shouldDisplayCode, setShouldDisplayCode] = useState<string | null>(null);
 
   return (
     <div className={classes.tableWrapper}>
@@ -37,13 +31,11 @@ export function SubmissionsTable({
               <tr>
                 <td>{new Date(record.$createdAt).toDateString()}</td>
                 <td>JS</td>
-                <td>{record.status ? "Pass" : "Fail"}</td>
+                <td>{record.status ? 'Pass' : 'Fail'}</td>
                 <td>
                   <Button
                     onClick={() => {
-                      setShouldDisplayCode(
-                        shouldDisplayCode === record.$id ? null : record.$id
-                      );
+                      setShouldDisplayCode(shouldDisplayCode === record.$id ? null : record.$id);
                     }}
                     variant="ghost"
                     title="code"

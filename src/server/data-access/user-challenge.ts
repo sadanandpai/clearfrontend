@@ -1,18 +1,14 @@
-import {
-  DB,
-  USER_CHALLENGE_INFO_COLLECTION,
-} from "@/server/config/appwrite.config";
-import {  getUniqueID } from "@/server/services/appwrite";
-import { serviceClient } from "../services/service_client";
+import { DB, USER_CHALLENGE_INFO_COLLECTION } from '@/server/config/appwrite.config';
+import { getUniqueID } from '@/server/services/appwrite';
+import { serviceClient } from '../services/service_client';
 
 export async function readUserChallengeInfo(challengeId: number) {
   const { databases, Query } = await serviceClient.database();
 
-  const result = await databases.listDocuments(
-    DB,
-    USER_CHALLENGE_INFO_COLLECTION,
-    [Query.equal("cId", challengeId), Query.limit(1)]
-  );
+  const result = await databases.listDocuments(DB, USER_CHALLENGE_INFO_COLLECTION, [
+    Query.equal('cId', challengeId),
+    Query.limit(1),
+  ]);
 
   const document = result.documents[0];
   return document
@@ -26,19 +22,14 @@ export async function readUserChallengeInfo(challengeId: number) {
 
 export async function createUserChallengeInfo(
   challengeId: number,
-  data: Partial<{ like: boolean; solve: boolean }>
+  data: Partial<{ like: boolean; solve: boolean }>,
 ) {
   const { databases } = await serviceClient.database();
 
-  const doc = await databases.createDocument(
-    DB,
-    USER_CHALLENGE_INFO_COLLECTION,
-    getUniqueID(),
-    {
-      cId: challengeId,
-      ...data,
-    }
-  );
+  const doc = await databases.createDocument(DB, USER_CHALLENGE_INFO_COLLECTION, getUniqueID(), {
+    cId: challengeId,
+    ...data,
+  });
 
   return {
     $id: doc.$id,
@@ -50,19 +41,14 @@ export async function createUserChallengeInfo(
 export async function updateUserChallengeInfo(
   documentId: string,
   challengeId: number,
-  data: Partial<{ like: boolean; solve: boolean }>
+  data: Partial<{ like: boolean; solve: boolean }>,
 ) {
   const { databases } = await serviceClient.database();
 
-  const doc = await databases.updateDocument(
-    DB,
-    USER_CHALLENGE_INFO_COLLECTION,
-    documentId,
-    {
-      cId: challengeId,
-      ...data,
-    }
-  );
+  const doc = await databases.updateDocument(DB, USER_CHALLENGE_INFO_COLLECTION, documentId, {
+    cId: challengeId,
+    ...data,
+  });
 
   return {
     $id: doc.$id,

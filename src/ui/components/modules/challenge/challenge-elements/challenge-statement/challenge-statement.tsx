@@ -1,19 +1,19 @@
-import { usePathname } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { ProblemProps } from "@/common/types/problem";
-import { Badge, Flex, Heading, Text } from "@radix-ui/themes";
-import { InfoBar } from "@/ui/components/modules/challenge/challenge-components/info-bar/info-bar";
-import { getChallengeActivity } from "@/server/actions/challenge";
+import { usePathname } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { ProblemProps } from '@/common/types/problem';
+import { Badge, Flex, Heading, Text } from '@radix-ui/themes';
+import { InfoBar } from '@/ui/components/modules/challenge/challenge-components/info-bar/info-bar';
+import { getChallengeActivity } from '@/server/actions/challenge';
 
 interface Props {
   problem: ProblemProps;
 }
 
 export function ProblemStatement({ problem }: Props) {
-  const challengeId = Number(usePathname().split("/").at(-1));
+  const challengeId = Number(usePathname().split('/').at(-1));
 
   const { data: activityData } = useQuery({
-    queryKey: ["activity", challengeId],
+    queryKey: ['activity', challengeId],
     queryFn: () => getChallengeActivity(challengeId),
     staleTime: Infinity,
   });
@@ -42,10 +42,7 @@ export function ProblemStatement({ problem }: Props) {
         ) : null}
       </Flex>
 
-      <InfoBar
-        difficulty={problem.difficulty}
-        totalLikes={activityData?.likes}
-      />
+      <InfoBar difficulty={problem.difficulty} totalLikes={activityData?.likes} />
 
       <Text dangerouslySetInnerHTML={{ __html: problem.statement }}></Text>
       <Text dangerouslySetInnerHTML={{ __html: problem.description }}></Text>
@@ -58,7 +55,7 @@ export function ProblemStatement({ problem }: Props) {
             <pre
               className="rounded-md p-4 mt-2 text-md flex flex-col gap-4"
               style={{
-                backgroundColor: "var(--gray-5)",
+                backgroundColor: 'var(--gray-5)',
               }}
             >
               <span>Input: {example.input}</span>

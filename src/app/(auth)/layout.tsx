@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { Flex } from "@radix-ui/themes";
-import { NavBar } from "@/ui/components/common/nav-bar/nav-bar";
-import classes from "./auth.module.scss";
+import Image from 'next/image';
+import { Flex } from '@radix-ui/themes';
+import { NavBar } from '@/ui/components/common/nav-bar/nav-bar';
+import classes from './auth.module.scss';
 
 export default function Layout({
   children,

@@ -1,19 +1,16 @@
-"use client";
+'use client';
 
-import { useActionState, useContext, useEffect, useState } from "react";
-import { toast } from "sonner";
-import { Label } from "@radix-ui/react-label";
-import { Button, Flex } from "@radix-ui/themes";
-import {
-  PasswordField,
-  PhoneField,
-} from "@/ui/components/common/form/input-fields";
-import { updatePhone } from "@/server/actions/user";
-import { appContext } from "@/ui/context/app.context";
-import { ErrorField } from "@/ui/components/common/form/error-field";
-import { OTPUpdate } from "@/ui/components/modules/auth/profile/otp-update/otp-update";
-import { VerificationBadge } from "@/ui/components/core/verification-badge/verification-badge";
-import classes from "../profile.module.scss";
+import { useActionState, useContext, useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import { Label } from '@radix-ui/react-label';
+import { Button, Flex } from '@radix-ui/themes';
+import { PasswordField, PhoneField } from '@/ui/components/common/form/input-fields';
+import { updatePhone } from '@/server/actions/user';
+import { appContext } from '@/ui/context/app.context';
+import { ErrorField } from '@/ui/components/common/form/error-field';
+import { OTPUpdate } from '@/ui/components/modules/auth/profile/otp-update/otp-update';
+import { VerificationBadge } from '@/ui/components/core/verification-badge/verification-badge';
+import classes from '../profile.module.scss';
 
 interface Props {
   phone: string;
@@ -28,7 +25,7 @@ export function PhoneUpdate({ phone, phoneVerification }: Props) {
   const [state, formAction, pending] = useActionState(updatePhone, {});
 
   useEffect(() => {
-    if (state.status === "success") {
+    if (state.status === 'success') {
       resetLoggedInUser();
       setUserPhone(inputPhone);
       setIsVerified(false);
@@ -54,24 +51,15 @@ export function PhoneUpdate({ phone, phoneVerification }: Props) {
       </div>
 
       <div>
-        <PasswordField
-          field="userPassword"
-          disabled={userPhone === inputPhone}
-        />
+        <PasswordField field="userPassword" disabled={userPhone === inputPhone} />
         <ErrorField error={state.fieldErrors?.password?.[0]} />
       </div>
 
       <div className={classes.submission}>
         <ErrorField error={state.error} />
         <Flex gap="2">
-          {!isVerified && userPhone && userPhone === inputPhone && (
-            <OTPUpdate />
-          )}
-          <Button
-            type="submit"
-            loading={pending}
-            disabled={userPhone === inputPhone}
-          >
+          {!isVerified && userPhone && userPhone === inputPhone && <OTPUpdate />}
+          <Button type="submit" loading={pending} disabled={userPhone === inputPhone}>
             Update Phone
           </Button>
         </Flex>

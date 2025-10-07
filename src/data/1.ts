@@ -1,26 +1,25 @@
 export const problem = {
   id: 1,
-  name: "Two Sum",
-  statement:
-    "Implement a function <strong>sum</strong>, that sums the given 2 numbers.",
-  description: "",
-  difficulty: "easy",
-  languages: ["javascript"],
+  name: 'Two Sum',
+  statement: 'Implement a function <strong>sum</strong>, that sums the given 2 numbers.',
+  description: '',
+  difficulty: 'easy',
+  languages: ['javascript'],
   examples: [
     {
-      input: "1, 2",
-      output: "3",
+      input: '1, 2',
+      output: '3',
     },
     {
-      input: "7, -5",
-      output: "2",
+      input: '7, -5',
+      output: '2',
     },
     {
-      input: "0, -10",
-      output: "-10",
+      input: '0, -10',
+      output: '-10',
     },
   ],
-  sampleInput: "1, 2",
+  sampleInput: '1, 2',
   code: `/**
 * @param {number} num1
 * @param {number} num2

@@ -1,26 +1,24 @@
-import { TestOutputProps } from "@/common/types/test";
-import { SandpackClientListen } from "@codesandbox/sandpack-react/unstyled";
-
+import { TestOutputProps } from '@/common/types/test';
+import { SandpackClientListen } from '@codesandbox/sandpack-react/unstyled';
 
 export interface ErrorProps {
   type: string;
   event: string;
-  codesandbox:boolean;
+  codesandbox: boolean;
 }
 export function getTestResult(
   listen: SandpackClientListen,
-  onComplete: (result: { status: boolean; output: TestOutputProps }) => void  ,
-  onError?: (error: ErrorProps) => void
+  onComplete: (result: { status: boolean; output: TestOutputProps }) => void,
+  onError?: (error: ErrorProps) => void,
 ) {
   return listen((data) => {
-    
-    if (data.type !== "test") {
+    if (data.type !== 'test') {
       return;
     }
 
-    if (data.event === "test_end" && (data )?.test?.path?.endsWith("/add.test.ts")) {
+    if (data.event === 'test_end' && data?.test?.path?.endsWith('/add.test.ts')) {
       onComplete({
-        status: (data).test.status === "pass",
+        status: data.test.status === 'pass',
         output: {
           name: data.test.name,
           status: data.test.status,
@@ -30,7 +28,7 @@ export function getTestResult(
       return;
     }
 
-    if (data.event === "file_error") {
+    if (data.event === 'file_error') {
       onError?.(data as ErrorProps);
     }
   });
@@ -39,26 +37,23 @@ export function getTestResult(
 export function getTestResults(
   listen: SandpackClientListen,
   onComplete: (result: { status: boolean; outputs: TestOutputProps[] }) => void,
-  onError: (error: ErrorProps) => void
+  onError: (error: ErrorProps) => void,
 ) {
   let status = true;
   let outputs: TestOutputProps[] = [];
   return listen((data) => {
-    if (data.type !== "test") {
+    if (data.type !== 'test') {
       return;
     }
 
-    if (data.event === "total_test_start") {
+    if (data.event === 'total_test_start') {
       status = true;
       outputs = [];
       return;
     }
 
-    if (
-      data.event === "test_end" &&
-      (data as any)?.test?.path?.endsWith("/test-cases.test.ts")
-    ) {
-      status &&= (data as any).test.status === "pass";
+    if (data.event === 'test_end' && (data as any)?.test?.path?.endsWith('/test-cases.test.ts')) {
+      status &&= (data as any).test.status === 'pass';
       outputs.push({
         name: (data as any).test.name,
         status: (data as any).test.status,
@@ -67,13 +62,13 @@ export function getTestResults(
       return;
     }
 
-    if (data.event === "total_test_end") {
+    if (data.event === 'total_test_end') {
       onComplete({ status, outputs });
       return;
     }
 
     // Forward only explicit error-like events to the error handler
-    if (data.event === "file_error") {
+    if (data.event === 'file_error') {
       onError(data as ErrorProps);
     }
   });

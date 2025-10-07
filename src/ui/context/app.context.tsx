@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import { Models } from "node-appwrite";
+import { createContext } from 'react';
+import { Models } from 'node-appwrite';
 
 interface AppContextType {
   user: Models.User<Models.Preferences> | null;

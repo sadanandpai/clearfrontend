@@ -1,9 +1,12 @@
-import { Challenges } from "./challenge-list.types";
+import { Challenges } from './challenge-list.types';
 
-export const filterChallenges = (challenges:Challenges[],searchQuery:string) => {
-    return challenges.filter((challenge) => {
-        return challenge.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            challenge.difficulty.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            challenge.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    });
+export const filterChallenges = (challenges:Challenges[],searchQuery:string) => {  
+  if (!searchQuery.trim()) return challenges;  
+  
+  const query = searchQuery.trim().toLowerCase();  
+      return challenges.filter((challenge) => {  
+          return challenge.name.toLowerCase().includes(query) ||  
+              challenge.difficulty.toLowerCase().includes(query) ||  
+              challenge.tags.some((tag) => tag.toLowerCase().includes(query));  
+      });  
 };

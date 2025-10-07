@@ -1,15 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { toast } from "sonner";
-import { Heart } from "lucide-react";
-import { Button, Text } from "@radix-ui/themes";
-import { usePathname } from "next/navigation";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { appContext } from "@/ui/context/app.context";
-import {
-  getUserChallengeInfo,
-  setUserChallengeLike,
-} from "@/server/actions/user-challenge";
-import { useTheme } from "next-themes";
+import { useContext, useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import { Heart } from 'lucide-react';
+import { Button, Text } from '@radix-ui/themes';
+import { usePathname } from 'next/navigation';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { appContext } from '@/ui/context/app.context';
+import { getUserChallengeInfo, setUserChallengeLike } from '@/server/actions/user-challenge';
+import { useTheme } from 'next-themes';
 
 interface Props {
   totalLikes?: number;
@@ -20,32 +17,29 @@ export function UserLikeStatus({ totalLikes }: Props) {
   const { user, isLoginChecked } = useContext(appContext);
   const queryClient = useQueryClient();
   const [challengeLikes, setChallengeLikes] = useState<number | undefined>();
-  const challengeId = Number(usePathname().split("/").at(-1));
+  const challengeId = Number(usePathname().split('/').at(-1));
 
   const { data: infoData, isLoading } = useQuery({
-    queryKey: ["userChallengeInfo", challengeId],
+    queryKey: ['userChallengeInfo', challengeId],
     queryFn: () => getUserChallengeInfo(challengeId),
     enabled: !!user,
     staleTime: Infinity,
   });
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ["userChallengeInfo", "like", challengeId],
+    mutationKey: ['userChallengeInfo', 'like', challengeId],
     mutationFn: () => setUserChallengeLike(challengeId, !infoData?.like),
     onSuccess: (data) => {
       // update the cache of query (this helps to update the UI without invoking the API again)
-      queryClient.setQueryData(
-        ["userChallengeInfo", challengeId],
-        (oldData: typeof infoData) => ({
-          ...oldData,
-          like: data.like,
-        })
-      );
+      queryClient.setQueryData(['userChallengeInfo', challengeId], (oldData: typeof infoData) => ({
+        ...oldData,
+        like: data.like,
+      }));
 
       if (data.like) {
-        toast.success("Challenge is liked");
+        toast.success('Challenge is liked');
       } else {
-        toast("Challenge is un-liked");
+        toast('Challenge is un-liked');
       }
 
       if (challengeLikes !== undefined) {
@@ -53,13 +47,13 @@ export function UserLikeStatus({ totalLikes }: Props) {
       }
     },
     onError: () => {
-      toast.error("Failed to like challenge");
+      toast.error('Failed to like challenge');
     },
   });
 
   function handleLike() {
     if (!user) {
-      toast("Please sign in to like the challenge");
+      toast('Please sign in to like the challenge');
       return;
     }
 
@@ -78,13 +72,8 @@ export function UserLikeStatus({ totalLikes }: Props) {
 
   if (!user) {
     return (
-      <Button
-        size="1"
-        variant="ghost"
-        onClick={handleLike}
-        loading={!isLoginChecked}
-      >
-        <Heart color={resolvedTheme === "dark" ? "white" : "black"} />
+      <Button size="1" variant="ghost" onClick={handleLike} loading={!isLoginChecked}>
+        <Heart color={resolvedTheme === 'dark' ? 'white' : 'black'} />
       </Button>
     );
   }
@@ -97,11 +86,9 @@ export function UserLikeStatus({ totalLikes }: Props) {
       onClick={handleLike}
     >
       <Heart
-        fill={infoData?.like ? "red" : "none"}
+        fill={infoData?.like ? 'red' : 'none'}
         size={24}
-        color={
-          infoData?.like ? "red" : resolvedTheme === "dark" ? "white" : "black"
-        }
+        color={infoData?.like ? 'red' : resolvedTheme === 'dark' ? 'white' : 'black'}
       />
       <Text size="2">{challengeLikes}</Text>
     </Button>
