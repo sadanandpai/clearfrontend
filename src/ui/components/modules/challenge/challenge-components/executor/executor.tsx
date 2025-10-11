@@ -76,7 +76,7 @@ export function Executor() {
         setOutputs({ isLoading: false, ...result, executionId: Date.now() });
         unsubscribe();
       },
-      (error: ErrorProps) => {
+      () => {
         clearTimeout(timeoutId);
         setOutputs({ isLoading: false, executionId: Date.now() });
         unsubscribe();
