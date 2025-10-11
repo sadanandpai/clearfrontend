@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import classes from './carousel.module.scss';
+import React, { useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import classes from "./carousel.module.scss";
 
 interface Props {
   children: React.ReactNode[];
@@ -18,7 +18,7 @@ export function EmblaCarousel({ children, activeIndex, setActiveIndex }: Props) 
 
   useEffect(() => {
     if (emblaApi) {
-      emblaApi.on('select', () => {
+      emblaApi.on("select", () => {
         setActiveIndex(emblaApi.selectedScrollSnap());
       });
     }
@@ -41,7 +41,7 @@ export function EmblaCarousel({ children, activeIndex, setActiveIndex }: Props) 
         {children.map((_, idx) => (
           <button
             key={idx}
-            className={`${classes.emblaDot} ${idx === activeIndex ? classes.isSelected : ''}`}
+            className={`${classes.emblaDot} ${idx === activeIndex ? classes.isSelected : ""}`}
             onClick={() => emblaApi?.scrollTo(idx)}
           />
         ))}

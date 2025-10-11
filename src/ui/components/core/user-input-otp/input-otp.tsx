@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { OTPInput, type SlotProps } from 'input-otp';
-import classes from './input-otp.module.scss';
+import { OTPInput, type SlotProps } from "input-otp";
+import classes from "./input-otp.module.scss";
 
 const FakeCaret = (
   <div className={classes.fakeCaret}>

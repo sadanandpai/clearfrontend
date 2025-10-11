@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useContext } from 'react';
-import { Models } from 'node-appwrite';
-import { signOut } from '@/server/actions/auth';
-import { Button, Flex } from '@radix-ui/themes';
-import { NameUpdate } from './name-update/name-update';
-import { EmailUpdate } from './email-update/email-update';
-import { PhoneUpdate } from './phone-update/phone-update';
-import { PasswordUpdate } from './password-update/password-update';
-import { EmailVerification } from '@/ui/components/modules/auth/profile/email-verification/email-verification';
-import { PhoneVerification } from '@/ui/components/modules/auth/profile/phone-verification/phone-verification';
-import { appContext } from '@/ui/context/app.context';
-import classes from './profile.module.scss';
+import { useContext } from "react";
+import { Models } from "node-appwrite";
+import { signOut } from "@/server/actions/auth";
+import { Button, Flex } from "@radix-ui/themes";
+import { NameUpdate } from "./name-update/name-update";
+import { EmailUpdate } from "./email-update/email-update";
+import { PhoneUpdate } from "./phone-update/phone-update";
+import { PasswordUpdate } from "./password-update/password-update";
+import { EmailVerification } from "@/ui/components/modules/auth/profile/email-verification/email-verification";
+import { PhoneVerification } from "@/ui/components/modules/auth/profile/phone-verification/phone-verification";
+import { appContext } from "@/ui/context/app.context";
+import classes from "./profile.module.scss";
 
 interface Props {
   user: Models.User<Models.Preferences>;

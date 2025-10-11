@@ -1,11 +1,11 @@
-import { useContext } from 'react';
-import { submitUserSubmission } from '@/server/actions/submissions';
-import { useMutation } from '@tanstack/react-query';
-import { appContext } from '@/ui/context/app.context';
-import { usePathname } from 'next/navigation';
-import { routes } from '@/common/routes';
-import { Button } from '@radix-ui/themes';
-import { RadixNextLink } from '@/ui/components/core/radix-next-link/radix-next-link';
+import { useContext } from "react";
+import { submitUserSubmission } from "@/server/actions/submissions";
+import { useMutation } from "@tanstack/react-query";
+import { appContext } from "@/ui/context/app.context";
+import { usePathname } from "next/navigation";
+import { routes } from "@/common/routes";
+import { Button } from "@radix-ui/themes";
+import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
 
 interface SubmissionMutationProps {
   challengeId: number;
@@ -22,7 +22,7 @@ interface Props {
 
 export function SaveSubmission({ status, onSubmit, disabled, submittedCode }: Props) {
   const { user } = useContext(appContext);
-  const challengeId = Number(usePathname().split('/').at(-1));
+  const challengeId = Number(usePathname().split("/").at(-1));
 
   const { mutate, isPending } = useMutation({
     mutationFn: ({ challengeId, code, status }: SubmissionMutationProps) =>

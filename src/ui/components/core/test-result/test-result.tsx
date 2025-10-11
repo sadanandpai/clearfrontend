@@ -1,4 +1,4 @@
-import classes from './test-result.module.scss';
+import classes from "./test-result.module.scss";
 
 interface Props {
   name: string;

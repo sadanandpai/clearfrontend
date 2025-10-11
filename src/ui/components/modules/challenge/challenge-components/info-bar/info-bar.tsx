@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import { Badge, Flex } from '@radix-ui/themes';
-import { UserLikeStatus } from '@/ui/components/modules/challenge/challenge-components/user-like-status/user-like-status';
-import { UserSolutionStatus } from '@/ui/components/modules/challenge/challenge-components/user-solution-status/user-solution-status';
+import Image from "next/image";
+import { Badge, Flex } from "@radix-ui/themes";
+import { UserLikeStatus } from "@/ui/components/modules/challenge/challenge-components/user-like-status/user-like-status";
+import { UserSolutionStatus } from "@/ui/components/modules/challenge/challenge-components/user-solution-status/user-solution-status";
 
 interface Props {
   difficulty: string;
@@ -10,7 +10,7 @@ interface Props {
 
 export function InfoBar({ difficulty, totalLikes }: Props) {
   const difficultyColor =
-    difficulty === 'easy' ? 'green' : difficulty === 'medium' ? 'yellow' : 'red';
+    difficulty === "easy" ? "green" : difficulty === "medium" ? "yellow" : "red";
 
   return (
     <Flex my="4" justify="between">
@@ -21,7 +21,7 @@ export function InfoBar({ difficulty, totalLikes }: Props) {
         </Badge>
       </Flex>
 
-      <Flex gap="4" align="center" mr={'2'}>
+      <Flex gap="4" align="center" mr={"2"}>
         <UserSolutionStatus />
         <UserLikeStatus totalLikes={totalLikes} />
       </Flex>

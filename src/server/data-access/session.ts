@@ -1,9 +1,9 @@
-import 'server-only';
+import "server-only";
 
-import { routes } from '@/common/routes';
-import { HOST_URL } from '@/server/config/server.config';
-import { getOAuthProvider, getUniqueID, oAuthProvidersType } from '@/server/services/appwrite';
-import { serviceClient } from '../services/service_client';
+import { routes } from "@/common/routes";
+import { HOST_URL } from "@/server/config/server.config";
+import { getOAuthProvider, getUniqueID, oAuthProvidersType } from "@/server/services/appwrite";
+import { serviceClient } from "../services/service_client";
 
 export async function getSession() {
   const { account } = await serviceClient.user.authenticated();
@@ -45,7 +45,7 @@ export async function sendVerificationEmail() {
 
 export async function destroySession() {
   const { account } = await serviceClient.user.authenticated();
-  await account.deleteSession('current');
+  await account.deleteSession("current");
 }
 
 export async function updateSessionPassword(password: string, oldPassword: string) {

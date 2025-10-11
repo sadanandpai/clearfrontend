@@ -1,10 +1,10 @@
-import { OutputsStateProps, TestOutputProps } from '@/common/types/test';
-import { TestResult } from '@/ui/components/core/test-result/test-result';
-import { SaveSubmission } from '@/ui/components/modules/challenge/challenge-components/save-submission/save-submission';
-import { useQueryClient } from '@tanstack/react-query';
-import { usePathname } from 'next/navigation';
-import { Spinner } from '@radix-ui/themes';
-import classes from './challenge-results.module.scss';
+import { OutputsStateProps, TestOutputProps } from "@/common/types/test";
+import { TestResult } from "@/ui/components/core/test-result/test-result";
+import { SaveSubmission } from "@/ui/components/modules/challenge/challenge-components/save-submission/save-submission";
+import { useQueryClient } from "@tanstack/react-query";
+import { usePathname } from "next/navigation";
+import { Spinner } from "@radix-ui/themes";
+import classes from "./challenge-results.module.scss";
 
 interface Props {
   testOutputs: OutputsStateProps | null;
@@ -16,12 +16,12 @@ let submittedExecutionId: number | undefined;
 
 export function ChallengeResults({ setSelectedTab, testOutputs, submittedCode }: Props) {
   const queryClient = useQueryClient();
-  const challengeId = Number(usePathname().split('/').at(-1));
+  const challengeId = Number(usePathname().split("/").at(-1));
 
   function onSubmit() {
     submittedExecutionId = testOutputs?.executionId;
-    queryClient.invalidateQueries({ queryKey: ['submissions', challengeId] });
-    setSelectedTab('submissions');
+    queryClient.invalidateQueries({ queryKey: ["submissions", challengeId] });
+    setSelectedTab("submissions");
   }
 
   if (!testOutputs) {

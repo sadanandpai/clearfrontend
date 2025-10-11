@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { routes } from '@/common/routes';
-import classes from './challenge-list.module.scss';
-import { RadixNextLink } from '@/ui/components/core/radix-next-link/radix-next-link';
-import { useMemo, useState } from 'react';
-import SearchBar from './search-bar';
-import { filterChallenges } from './challenge-list.utils';
-import { Challenges } from './challenge-list.types';
+import { routes } from "@/common/routes";
+import classes from "./challenge-list.module.scss";
+import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
+import { useMemo, useState } from "react";
+import SearchBar from "./search-bar";
+import { filterChallenges } from "./challenge-list.utils";
+import { Challenges } from "./challenge-list.types";
 
 export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredChallenges = useMemo(() => {
     return filterChallenges(challenges, searchQuery);
@@ -30,7 +30,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} style={{ textAlign: 'center', padding: '12px 0' }}>
+              <td colSpan={4} style={{ textAlign: "center", padding: "12px 0" }}>
                 No challenges found
               </td>
             </tr>
@@ -44,7 +44,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
                   </RadixNextLink>
                 </td>
                 <td>{challenge.difficulty}</td>
-                <td>{challenge.tags.join(', ')}</td>
+                <td>{challenge.tags.join(", ")}</td>
               </tr>
             ))
           )}

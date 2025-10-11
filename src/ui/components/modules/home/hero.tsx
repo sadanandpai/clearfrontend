@@ -1,6 +1,6 @@
-import { routes } from '@/common/routes';
-import Link from 'next/link';
-import classes from './home.module.scss';
+import { routes } from "@/common/routes";
+import Link from "next/link";
+import classes from "./home.module.scss";
 
 export function Hero() {
   return (
@@ -14,7 +14,7 @@ export function Hero() {
       </h1>
 
       <h2 className={`${classes.subTitle} mt-[44px] mb-[64px]`}>
-        Master your frontend skills with{' '}
+        Master your frontend skills with{" "}
         <span className="text-brand-1 font-bold">Clear Frontend</span>
       </h2>
 

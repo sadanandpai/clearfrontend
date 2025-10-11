@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@radix-ui/react-collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
 
-import { Flex } from '@radix-ui/themes';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Menu } from 'lucide-react';
-import classes from './home-nav-bar.module.scss';
-import { routes } from '@/common/routes';
-import { useState } from 'react';
+import { Flex } from "@radix-ui/themes";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu } from "lucide-react";
+import classes from "./home-nav-bar.module.scss";
+import { routes } from "@/common/routes";
+import { useState } from "react";
 
 export function MenuDropdown() {
   const [open, setOpen] = useState(false);

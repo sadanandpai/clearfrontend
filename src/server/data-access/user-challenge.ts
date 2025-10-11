@@ -1,12 +1,12 @@
-import { DB, USER_CHALLENGE_INFO_COLLECTION } from '@/server/config/appwrite.config';
-import { getUniqueID } from '@/server/services/appwrite';
-import { serviceClient } from '../services/service_client';
+import { DB, USER_CHALLENGE_INFO_COLLECTION } from "@/server/config/appwrite.config";
+import { getUniqueID } from "@/server/services/appwrite";
+import { serviceClient } from "../services/service_client";
 
 export async function readUserChallengeInfo(challengeId: number) {
   const { databases, Query } = await serviceClient.database();
 
   const result = await databases.listDocuments(DB, USER_CHALLENGE_INFO_COLLECTION, [
-    Query.equal('cId', challengeId),
+    Query.equal("cId", challengeId),
     Query.limit(1),
   ]);
 

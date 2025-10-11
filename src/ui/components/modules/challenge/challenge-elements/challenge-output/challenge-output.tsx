@@ -1,6 +1,6 @@
-import { OutputStateProps } from '@/common/types/test';
-import { TestResult } from '@/ui/components/core/test-result/test-result';
-import { Spinner } from '@radix-ui/themes';
+import { OutputStateProps } from "@/common/types/test";
+import { TestResult } from "@/ui/components/core/test-result/test-result";
+import { Spinner } from "@radix-ui/themes";
 
 interface Props {
   testOutput: OutputStateProps | null;

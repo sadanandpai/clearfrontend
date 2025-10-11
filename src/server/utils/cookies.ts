@@ -1,4 +1,4 @@
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 
 export async function getCookie(cookieName: string) {
   const cookieStore = await cookies();
@@ -8,9 +8,9 @@ export async function getCookie(cookieName: string) {
 export async function createCookie(cookieName: string, secret: string) {
   const cookieStore = await cookies();
   cookieStore.set(cookieName, secret, {
-    path: '/',
+    path: "/",
     httpOnly: true,
-    sameSite: 'strict',
+    sameSite: "strict",
     secure: true,
   });
 }

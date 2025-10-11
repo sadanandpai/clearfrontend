@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import ContentEditable from 'react-contenteditable';
-import { useSandpack } from '@codesandbox/sandpack-react/unstyled';
-import { testCode } from '@/ui/utils/test-code';
-import classes from './challenge-input.module.scss';
-import { Button } from '@radix-ui/themes';
-import { RotateCcw } from 'lucide-react';
+import { useEffect, useState } from "react";
+import ContentEditable from "react-contenteditable";
+import { useSandpack } from "@codesandbox/sandpack-react/unstyled";
+import { testCode } from "@/ui/utils/test-code";
+import classes from "./challenge-input.module.scss";
+import { Button } from "@radix-ui/themes";
+import { RotateCcw } from "lucide-react";
 
 interface Props {
   defaultInput: string;
@@ -19,7 +19,7 @@ export function ChallengeInput({ defaultInput }: Props) {
   }
 
   useEffect(() => {
-    sandpack.updateFile('/add.test.ts', testCode(userInput));
+    sandpack.updateFile("/add.test.ts", testCode(userInput));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInput]);
 

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { toast } from 'sonner';
-import { Button } from '@radix-ui/themes';
-import { useMutation } from '@tanstack/react-query';
-import { sendPhoneVerificationAction } from '@/server/actions/user';
+import { toast } from "sonner";
+import { Button } from "@radix-ui/themes";
+import { useMutation } from "@tanstack/react-query";
+import { sendPhoneVerificationAction } from "@/server/actions/user";
 
 interface Props {
   phone: string;
@@ -30,7 +30,7 @@ export function PhoneVerification({ phone, phoneVerification }: Props) {
       onClick={() => mutate()}
       loading={isPending}
       disabled={!!data?.message}
-      title={data?.message ? 'Verification SMS sent' : 'Click to send verification SMS'}
+      title={data?.message ? "Verification SMS sent" : "Click to send verification SMS"}
     >
       Send verification SMS
     </Button>

@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { produce } from 'immer';
-import { OutputsStateProps, OutputStateProps } from '@/common/types/test';
+import { create } from "zustand";
+import { produce } from "immer";
+import { OutputsStateProps, OutputStateProps } from "@/common/types/test";
 
 interface ChallengeState {
   testOutput: OutputStateProps | null;

@@ -1,5 +1,5 @@
-import { Highlight, PrismTheme } from 'prism-react-renderer';
-import classes from './code-snippet.module.scss';
+import { Highlight, PrismTheme } from "prism-react-renderer";
+import classes from "./code-snippet.module.scss";
 
 interface Props {
   code: string;

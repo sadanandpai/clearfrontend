@@ -1,8 +1,8 @@
-import { headers } from 'next/headers';
+import { headers } from "next/headers";
 
 export async function getParams(param: string) {
   const reqHeaders = await headers();
-  const referer = reqHeaders.get('referer');
+  const referer = reqHeaders.get("referer");
 
   if (!referer) {
     return null;

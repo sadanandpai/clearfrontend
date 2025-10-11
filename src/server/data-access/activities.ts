@@ -1,5 +1,5 @@
-import 'server-only';
-import { serviceClient } from '../services/service_client';
+import "server-only";
+import { serviceClient } from "../services/service_client";
 
 export async function getViews(challengeId: number) {
   return Number(await serviceClient.cache().get(`views:${challengeId}`));

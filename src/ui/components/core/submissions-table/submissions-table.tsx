@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChallengeSolution } from '@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution';
-import classes from './submissions-table.module.scss';
-import { Trash } from 'lucide-react';
-import { Code } from 'lucide-react';
-import { Fragment, useState } from 'react';
-import { Button } from '@radix-ui/themes';
+import { ChallengeSolution } from "@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution";
+import classes from "./submissions-table.module.scss";
+import { Trash } from "lucide-react";
+import { Code } from "lucide-react";
+import { Fragment, useState } from "react";
+import { Button } from "@radix-ui/themes";
 
 interface Props {
   records: any[];
@@ -31,7 +31,7 @@ export function SubmissionsTable({ records, deleteSubmission, isLoading }: Props
               <tr>
                 <td>{new Date(record.$createdAt).toDateString()}</td>
                 <td>JS</td>
-                <td>{record.status ? 'Pass' : 'Fail'}</td>
+                <td>{record.status ? "Pass" : "Fail"}</td>
                 <td>
                   <Button
                     onClick={() => {

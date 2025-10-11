@@ -1,5 +1,5 @@
-import { Redis } from 'ioredis';
-import { REDIS_HOST, REDIS_PORT } from '@/server/config/redis.config';
+import { Redis } from "ioredis";
+import { REDIS_HOST, REDIS_PORT } from "@/server/config/redis.config";
 
 export class RedisClient {
   private static instance: RedisClient | null = null;

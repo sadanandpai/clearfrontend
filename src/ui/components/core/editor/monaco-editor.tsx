@@ -1,14 +1,14 @@
-import { forwardRef, useEffect, useImperativeHandle } from 'react';
-import Editor from '@monaco-editor/react';
-import { useTheme } from 'next-themes';
+import { forwardRef, useEffect, useImperativeHandle } from "react";
+import Editor from "@monaco-editor/react";
+import { useTheme } from "next-themes";
 import {
   useSandpack,
   useActiveCode,
   useLoadingOverlayState,
   // FileTabs,
-} from '@codesandbox/sandpack-react/unstyled';
-import { getCodeFromLocalStorage, saveCodeToLocalStorage } from '@/ui/utils/code-editor';
-import { Spinner } from '@radix-ui/themes';
+} from "@codesandbox/sandpack-react/unstyled";
+import { getCodeFromLocalStorage, saveCodeToLocalStorage } from "@/ui/utils/code-editor";
+import { Spinner } from "@radix-ui/themes";
 // import classes from "./editor.module.scss";
 
 interface Props {
@@ -26,7 +26,7 @@ function MonacoEditorWithRef(
   const overlayState = useLoadingOverlayState();
 
   function onCodeChange(value?: string) {
-    const code = value || '';
+    const code = value || "";
     updateCode(code);
     saveCodeToLocalStorage(challengeId, code);
   }
@@ -39,7 +39,7 @@ function MonacoEditorWithRef(
   }
 
   useEffect(() => {
-    if (overlayState === 'HIDDEN') {
+    if (overlayState === "HIDDEN") {
       setLocalCode();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,7 +60,7 @@ function MonacoEditorWithRef(
       <Editor
         height="calc(100% - 8.5rem)"
         language="javascript"
-        theme={resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light'}
+        theme={resolvedTheme === "dark" ? "vs-dark" : "vs-light"}
         options={{
           fontSize,
           formatOnType: true,

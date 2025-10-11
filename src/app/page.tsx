@@ -1,10 +1,10 @@
-import { Flex } from '@radix-ui/themes';
-import { Hero } from '@/ui/components/modules/home/hero';
-import { Circles } from '@/ui/components/core/circles/circles';
-import { Practice } from '@/ui/components/modules/home/practice';
-import { Features } from '@/ui/components/modules/home/features/features';
-import { GetStarted } from '@/ui/components/modules/home/get-started';
-import { HomeNavBar } from '@/ui/components/common/home-nav-bar/home-nav-bar';
+import { Flex } from "@radix-ui/themes";
+import { Hero } from "@/ui/components/modules/home/hero";
+import { Circles } from "@/ui/components/core/circles/circles";
+import { Practice } from "@/ui/components/modules/home/practice";
+import { Features } from "@/ui/components/modules/home/features/features";
+import { GetStarted } from "@/ui/components/modules/home/get-started";
+import { HomeNavBar } from "@/ui/components/common/home-nav-bar/home-nav-bar";
 
 export default function Home() {
   return (

@@ -1,26 +1,26 @@
 export const problem = {
   id: 2,
-  name: 'Zip',
+  name: "Zip",
   statement:
-    'Implement a function <strong>zip</strong>, that takes 2 arrays and returns a new array with elements of both arrays interleaved.',
-  description: '',
-  difficulty: 'medium',
-  languages: ['javascript'],
+    "Implement a function <strong>zip</strong>, that takes 2 arrays and returns a new array with elements of both arrays interleaved.",
+  description: "",
+  difficulty: "medium",
+  languages: ["javascript"],
   examples: [
     {
-      input: '[1, 2], [3, 4]',
-      output: '[1, 3, 2, 4]',
+      input: "[1, 2], [3, 4]",
+      output: "[1, 3, 2, 4]",
     },
     {
-      input: '[1, 2], [4, 5, 6]',
-      output: '[1, 4, 2, 5, 6]',
+      input: "[1, 2], [4, 5, 6]",
+      output: "[1, 4, 2, 5, 6]",
     },
     {
-      input: '[1, 2, 3, 4], [5, 6]',
-      output: '[1, 5, 2, 6, 3, 4]',
+      input: "[1, 2, 3, 4], [5, 6]",
+      output: "[1, 5, 2, 6, 3, 4]",
     },
   ],
-  sampleInput: '[1, 2], [3, 4]',
+  sampleInput: "[1, 2], [3, 4]",
   code: `/**
 * @param {number[]} arr1
 * @param {number[]} arr2

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import { Button, Flex } from '@radix-ui/themes';
-import { useChallengeStore } from '@/ui/store/challenge.store';
-import { useLoadingOverlayState, useSandpack } from '@codesandbox/sandpack-react/unstyled';
-import { getTestResult, getTestResults } from '@/ui/utils/test-results';
-import { incrementChallengeAttempts } from '@/server/actions/challenge';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { setUserChallengeSolve } from '@/server/actions/user-challenge';
-import { useContext } from 'react';
-import { appContext } from '@/ui/context/app.context';
-import { ErrorProps } from '@/ui/utils/test-results';
+import { usePathname } from "next/navigation";
+import { Button, Flex } from "@radix-ui/themes";
+import { useChallengeStore } from "@/ui/store/challenge.store";
+import { useLoadingOverlayState, useSandpack } from "@codesandbox/sandpack-react/unstyled";
+import { getTestResult, getTestResults } from "@/ui/utils/test-results";
+import { incrementChallengeAttempts } from "@/server/actions/challenge";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { setUserChallengeSolve } from "@/server/actions/user-challenge";
+import { useContext } from "react";
+import { appContext } from "@/ui/context/app.context";
+import { ErrorProps } from "@/ui/utils/test-results";
 
 export function Executor() {
   const { user } = useContext(appContext);
-  const challengeId = Number(usePathname().split('/').at(-1));
+  const challengeId = Number(usePathname().split("/").at(-1));
   const { dispatch, listen } = useSandpack();
   const setOutput = useChallengeStore((state) => state.setOutput);
   const setOutputs = useChallengeStore((state) => state.setOutputs);
@@ -22,12 +22,12 @@ export function Executor() {
   const queryClient = useQueryClient();
 
   const { mutate: markChallengeComplete, isPending } = useMutation({
-    mutationKey: ['userChallengeInfo', 'solve', challengeId],
+    mutationKey: ["userChallengeInfo", "solve", challengeId],
     mutationFn: () => setUserChallengeSolve(challengeId),
     onSuccess: (data) => {
       // update the cache of query (this helps to update the UI without invoking the API again)
       queryClient.setQueryData(
-        ['userChallengeInfo', challengeId],
+        ["userChallengeInfo", challengeId],
         (oldData: { $id: string; like: boolean; solve: boolean }) => ({
           ...oldData,
           solve: data.solve,
@@ -51,8 +51,8 @@ export function Executor() {
     );
 
     dispatch({
-      type: 'run-tests',
-      path: '/add.test.ts',
+      type: "run-tests",
+      path: "/add.test.ts",
     });
   }
 
@@ -84,17 +84,17 @@ export function Executor() {
     );
 
     dispatch({
-      type: 'run-tests',
-      path: '/test-cases.test.ts',
+      type: "run-tests",
+      path: "/test-cases.test.ts",
     });
   }
 
   return (
     <Flex justify="end" align="center" gap="1" mt="2" mr="2">
-      <Button onClick={runUserTest} disabled={overlayState !== 'HIDDEN'}>
+      <Button onClick={runUserTest} disabled={overlayState !== "HIDDEN"}>
         Run
       </Button>
-      <Button onClick={runAllTests} disabled={overlayState !== 'HIDDEN'}>
+      <Button onClick={runAllTests} disabled={overlayState !== "HIDDEN"}>
         Run All
       </Button>
     </Flex>

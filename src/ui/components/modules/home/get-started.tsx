@@ -1,7 +1,7 @@
-import { Flex } from '@radix-ui/themes';
-import classes from './home.module.scss';
-import Link from 'next/link';
-import { routes } from '@/common/routes';
+import { Flex } from "@radix-ui/themes";
+import classes from "./home.module.scss";
+import Link from "next/link";
+import { routes } from "@/common/routes";
 
 export function GetStarted() {
   return (
@@ -23,8 +23,8 @@ export function GetStarted() {
             className="primary-link large inline-block text-bg-1"
             target="blank"
             style={{
-              backgroundColor: 'var(--brand-bg-2)',
-              color: 'var(--brand-main-1)',
+              backgroundColor: "var(--brand-bg-2)",
+              color: "var(--brand-main-1)",
             }}
           >
             CONTRIBUTE&nbsp;&gt;

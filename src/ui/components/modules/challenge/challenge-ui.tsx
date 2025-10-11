@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { testCode } from '@/ui/utils/test-code';
-import { ProblemProps } from '@/common/types/problem';
-import { useChallengeStore } from '@/ui/store/challenge.store';
-import { SandpackProvider } from '@codesandbox/sandpack-react/unstyled';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-import { ChallengeEditor } from './challenge-sections/challenge-editor/challenge-editor';
-import { ChallengeTerminal } from './challenge-sections/challenge-terminal/challenge-terminal';
-import { ChallengeDetails } from '@/ui/components/modules/challenge/challenge-sections/challenge-details/challenge-details';
+import { useEffect } from "react";
+import { testCode } from "@/ui/utils/test-code";
+import { ProblemProps } from "@/common/types/problem";
+import { useChallengeStore } from "@/ui/store/challenge.store";
+import { SandpackProvider } from "@codesandbox/sandpack-react/unstyled";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { ChallengeEditor } from "./challenge-sections/challenge-editor/challenge-editor";
+import { ChallengeTerminal } from "./challenge-sections/challenge-terminal/challenge-terminal";
+import { ChallengeDetails } from "@/ui/components/modules/challenge/challenge-sections/challenge-details/challenge-details";
 
 interface Props {
   problem: ProblemProps;
@@ -16,10 +16,10 @@ interface Props {
 
 export default function ChallengeUI({ problem }: Props) {
   const files = {
-    '/code.ts': problem.code,
-    '/add.test.ts': testCode(problem.sampleInput),
-    '/test-cases.test.ts': problem.testCases,
-    '/solution.ts': problem.solution,
+    "/code.ts": problem.code,
+    "/add.test.ts": testCode(problem.sampleInput),
+    "/test-cases.test.ts": problem.testCases,
+    "/solution.ts": problem.solution,
   };
   const resetOutput = useChallengeStore((state) => state.resetOutput);
   const resetOutputs = useChallengeStore((state) => state.resetOutputs);
@@ -37,9 +37,9 @@ export default function ChallengeUI({ problem }: Props) {
       files={files}
       template="test-ts"
       options={{
-        activeFile: '/code.ts',
-        visibleFiles: ['/code.ts'],
-        initMode: 'immediate',
+        activeFile: "/code.ts",
+        visibleFiles: ["/code.ts"],
+        initMode: "immediate",
         autorun: true,
       }}
       className="h-full"

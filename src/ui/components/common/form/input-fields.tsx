@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { TextField } from '@radix-ui/themes';
+import { TextField } from "@radix-ui/themes";
 
 interface Props {
   value?: string;
@@ -10,7 +10,7 @@ interface Props {
   disabled?: boolean;
 }
 
-export function FullNameField({ value = '', setValue, disabled }: Props) {
+export function FullNameField({ value = "", setValue, disabled }: Props) {
   return (
     <TextField.Root
       id="name"
@@ -27,7 +27,7 @@ export function FullNameField({ value = '', setValue, disabled }: Props) {
   );
 }
 
-export function EmailField({ value = '', setValue }: Props) {
+export function EmailField({ value = "", setValue }: Props) {
   return (
     <TextField.Root
       id="email"
@@ -42,8 +42,8 @@ export function EmailField({ value = '', setValue }: Props) {
 }
 
 export function PasswordField({
-  field = 'password',
-  placeHolder = 'Password',
+  field = "password",
+  placeHolder = "Password",
   disabled = false,
 }: Props) {
   return (
@@ -60,7 +60,7 @@ export function PasswordField({
   );
 }
 
-export function PhoneField({ value = '', setValue }: Props) {
+export function PhoneField({ value = "", setValue }: Props) {
   return (
     <TextField.Root
       id="phone"

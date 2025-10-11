@@ -1,9 +1,9 @@
-import { Flex } from '@radix-ui/themes';
-import Image from 'next/image';
-import Link from 'next/link';
-import { MenuDropdown } from './menu-dropdown';
-import classes from './home-nav-bar.module.scss';
-import { routes } from '@/common/routes';
+import { Flex } from "@radix-ui/themes";
+import Image from "next/image";
+import Link from "next/link";
+import { MenuDropdown } from "./menu-dropdown";
+import classes from "./home-nav-bar.module.scss";
+import { routes } from "@/common/routes";
 
 export function HomeNavBar() {
   return (

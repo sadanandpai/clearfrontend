@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const nameSchema = z.string().min(3).max(50).trim();
 export const emailSchema = z.email().trim().toLowerCase();

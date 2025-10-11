@@ -1,5 +1,5 @@
-import { Button, Flex, Select, Text } from '@radix-ui/themes';
-import { RotateCcw } from 'lucide-react';
+import { Button, Flex, Select, Text } from "@radix-ui/themes";
+import { RotateCcw } from "lucide-react";
 
 interface Props {
   fontSize: number;

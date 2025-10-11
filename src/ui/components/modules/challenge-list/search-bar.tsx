@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { TextField } from '@radix-ui/themes';
-import React, { useEffect, useState } from 'react';
+import { TextField } from "@radix-ui/themes";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   searchQuery: string;
@@ -17,7 +17,7 @@ const SearchBar: React.FC<Props> = ({
   setSearchQuery,
   className,
   style,
-  placeholder = 'Search challenges by name, tag, or difficulty',
+  placeholder = "Search challenges by name, tag, or difficulty",
   debounceMs = 300,
 }) => {
   const [localValue, setLocalValue] = useState(searchQuery);
@@ -38,10 +38,10 @@ const SearchBar: React.FC<Props> = ({
     <div
       className={className}
       style={{
-        width: '100%',
+        width: "100%",
         marginTop: 20,
-        display: 'flex',
-        justifyContent: 'flex-end',
+        display: "flex",
+        justifyContent: "flex-end",
         ...style,
       }}
     >
@@ -51,7 +51,7 @@ const SearchBar: React.FC<Props> = ({
         value={localValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalValue(e.target.value)}
         aria-label="Search challenges"
-        style={{ width: 400, marginRight: '5%' }}
+        style={{ width: 400, marginRight: "5%" }}
       />
     </div>
   );

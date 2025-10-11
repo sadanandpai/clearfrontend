@@ -1,9 +1,9 @@
-import 'server-only';
+import "server-only";
 
-import { Client, Account, ID, OAuthProvider, Databases, Query } from 'node-appwrite';
-import { COOKIE_NAME } from '@/server/config/server.config';
-import { getCookie } from '@/server/utils/cookies';
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { Client, Account, ID, OAuthProvider, Databases, Query } from "node-appwrite";
+import { COOKIE_NAME } from "@/server/config/server.config";
+import { getCookie } from "@/server/utils/cookies";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 export const OAuthProviders = {
   Google: OAuthProvider.Google,
@@ -21,16 +21,16 @@ export function getUniqueID() {
 }
 
 export class BaseClientAppWrite {
-  endpoint: string = '';
-  project: string = '';
+  endpoint: string = "";
+  project: string = "";
   protected static instance: BaseClientAppWrite | null = null;
 
   constructor() {
-    this.endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ?? '';
-    this.project = process.env.NEXT_APPWRITE_PROJECT ?? '';
+    this.endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ?? "";
+    this.project = process.env.NEXT_APPWRITE_PROJECT ?? "";
 
     if (!this.endpoint || !this.project) {
-      throw new Error('Appwrite endpoint, project not provided');
+      throw new Error("Appwrite endpoint, project not provided");
     }
   }
 
@@ -57,7 +57,7 @@ export class SessionClientAppwrite extends BaseClientAppWrite {
   constructor(session: RequestCookie | undefined) {
     super();
     if (!session?.value) {
-      throw new Error('No session');
+      throw new Error("No session");
     }
     this.session = session;
   }
@@ -101,14 +101,14 @@ export class DatabaseClientAppwrite extends SessionClientAppwrite {
 }
 
 export class AdminClientAppwrite extends BaseClientAppWrite {
-  apiKey: string = '';
+  apiKey: string = "";
   protected static instance: AdminClientAppwrite | null = null;
 
   constructor() {
     super();
-    this.apiKey = process.env.NEXT_APPWRITE_KEY ?? '';
+    this.apiKey = process.env.NEXT_APPWRITE_KEY ?? "";
     if (!this.apiKey) {
-      throw new Error('Appwrite key not provided');
+      throw new Error("Appwrite key not provided");
     }
   }
 

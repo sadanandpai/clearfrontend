@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { routes } from '@/common/routes';
+import { routes } from "@/common/routes";
 
-const localStorageKey = 'redirect';
+const localStorageKey = "redirect";
 let isRedirecting = false;
 
 export default function OAuthPage() {
   // Redirect to the profile after user is redirected back from the OAuth provider
   // The client side redirection is mandatory else cookies won't be set properly
-  if (typeof window !== 'undefined' && !isRedirecting) {
+  if (typeof window !== "undefined" && !isRedirecting) {
     const redirectURL = localStorage.getItem(localStorageKey);
 
     if (redirectURL) {

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Models } from 'node-appwrite';
-import { useSearchParams } from 'next/navigation';
-import { appContext } from '@/ui/context/app.context';
-import { getLoggedInUser } from '@/server/actions/auth';
+import { useEffect, useState } from "react";
+import { Models } from "node-appwrite";
+import { useSearchParams } from "next/navigation";
+import { appContext } from "@/ui/context/app.context";
+import { getLoggedInUser } from "@/server/actions/auth";
 
 interface Props {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export function AppProvider({ children }: Props) {
   const [userDataLoading, setUserDataLoading] = useState(false);
 
   const searchParams = useSearchParams();
-  const authParam = searchParams.get('auth');
+  const authParam = searchParams.get("auth");
 
   async function resetLoggedInUser() {
     setUserDataLoading(true);
@@ -38,9 +38,9 @@ export function AppProvider({ children }: Props) {
   }, []);
 
   useEffect(() => {
-    if (authParam === 'true' && user === null) {
+    if (authParam === "true" && user === null) {
       resetLoggedInUser();
-    } else if (authParam === 'false' && user !== null) {
+    } else if (authParam === "false" && user !== null) {
       setUser(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

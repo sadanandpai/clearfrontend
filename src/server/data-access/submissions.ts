@@ -1,14 +1,14 @@
-import 'server-only';
+import "server-only";
 
-import { getUniqueID } from '@/server/services/appwrite';
-import { DB, SUBMISSIONS_COLLECTION } from '@/server/config/appwrite.config';
-import { serviceClient } from '../services/service_client';
+import { getUniqueID } from "@/server/services/appwrite";
+import { DB, SUBMISSIONS_COLLECTION } from "@/server/config/appwrite.config";
+import { serviceClient } from "../services/service_client";
 
 export async function getSubmissionsRecords(challengeId: number) {
   const { databases, Query } = await serviceClient.database();
 
   return await databases.listDocuments(DB, SUBMISSIONS_COLLECTION, [
-    Query.equal('cId', challengeId),
+    Query.equal("cId", challengeId),
   ]);
 }
 

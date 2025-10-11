@@ -1,16 +1,16 @@
-import { useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import { MonacoEditor } from '@/ui/components/core/editor/monaco-editor';
-import { TestRunner } from '@/ui/components/core/test-runner/test-runner';
-import { Executor } from '@/ui/components/modules/challenge/challenge-components/executor/executor';
-import { EditorControls } from '@/ui/components/modules/challenge/challenge-components/editor-controls/editor-controls';
+import { useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { MonacoEditor } from "@/ui/components/core/editor/monaco-editor";
+import { TestRunner } from "@/ui/components/core/test-runner/test-runner";
+import { Executor } from "@/ui/components/modules/challenge/challenge-components/executor/executor";
+import { EditorControls } from "@/ui/components/modules/challenge/challenge-components/editor-controls/editor-controls";
 
 interface Props {
   defaultCode: string;
 }
 
 export function ChallengeEditor({ defaultCode }: Props) {
-  const challengeId = Number(usePathname().split('/').at(-1));
+  const challengeId = Number(usePathname().split("/").at(-1));
 
   const [fontSize, setFontSize] = useState(16);
   const editorRef = useRef<{

@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Flex } from '@radix-ui/themes';
-import { routes } from '@/common/routes';
-import { InfoCard } from '@/ui/components/core/info-card/info-card';
-import classes from './home.module.scss';
+import Link from "next/link";
+import Image from "next/image";
+import { Flex } from "@radix-ui/themes";
+import { routes } from "@/common/routes";
+import { InfoCard } from "@/ui/components/core/info-card/info-card";
+import classes from "./home.module.scss";
 
 export function Practice() {
   return (

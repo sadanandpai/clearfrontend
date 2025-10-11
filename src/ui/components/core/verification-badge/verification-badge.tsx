@@ -1,4 +1,4 @@
-import { Badge } from '@radix-ui/themes';
+import { Badge } from "@radix-ui/themes";
 
 interface Props {
   isVerified: boolean;

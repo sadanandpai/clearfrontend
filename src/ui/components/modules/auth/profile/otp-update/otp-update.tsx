@@ -1,17 +1,17 @@
-import { useContext, useState } from 'react';
-import { toast } from 'sonner';
-import { useMutation } from '@tanstack/react-query';
-import { verifyPhone } from '@/server/actions/user';
-import { Button, Dialog, Flex, Text } from '@radix-ui/themes';
-import { ErrorField } from '@/ui/components/common/form/error-field';
-import { UserOTPInput } from '@/ui/components/core/user-input-otp/input-otp';
-import { appContext } from '@/ui/context/app.context';
+import { useContext, useState } from "react";
+import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import { verifyPhone } from "@/server/actions/user";
+import { Button, Dialog, Flex, Text } from "@radix-ui/themes";
+import { ErrorField } from "@/ui/components/common/form/error-field";
+import { UserOTPInput } from "@/ui/components/core/user-input-otp/input-otp";
+import { appContext } from "@/ui/context/app.context";
 
 export function OTPUpdate() {
   const { resetLoggedInUser } = useContext(appContext);
-  const [otp, setOTP] = useState('');
+  const [otp, setOTP] = useState("");
   const [open, setOpen] = useState(false);
-  const [validationError, setValidationError] = useState('');
+  const [validationError, setValidationError] = useState("");
 
   const { mutate, error, isPending } = useMutation({
     mutationFn: () => verifyPhone(otp),
@@ -24,14 +24,14 @@ export function OTPUpdate() {
 
   function onOpenChange(isOpen: boolean) {
     if (isOpen) {
-      setValidationError('');
+      setValidationError("");
     }
     setOpen(isOpen);
   }
 
   function onOTPChange(otp: string) {
     if (/^[0-9]+$/.test(otp)) {
-      setValidationError('');
+      setValidationError("");
     }
 
     setOTP(otp);
@@ -41,7 +41,7 @@ export function OTPUpdate() {
     if (otp.length === 6 && /^[0-9]+$/.test(otp) && !isPending) {
       mutate();
     } else {
-      setValidationError('OTP should contain only numbers with 6 digits');
+      setValidationError("OTP should contain only numbers with 6 digits");
     }
   }
 

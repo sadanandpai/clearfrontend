@@ -1,5 +1,5 @@
-import { Text } from '@radix-ui/themes';
-import { useFormStatus } from 'react-dom';
+import { Text } from "@radix-ui/themes";
+import { useFormStatus } from "react-dom";
 
 interface Props {
   error?: string;

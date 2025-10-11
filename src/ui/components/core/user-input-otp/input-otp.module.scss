@@ -9,7 +9,7 @@
   transition: all 0.1s;
   position: relative;
 
-  &[data-active='true'] {
+  &[data-active="true"] {
     background: var(--gray-6);
   }
 }
