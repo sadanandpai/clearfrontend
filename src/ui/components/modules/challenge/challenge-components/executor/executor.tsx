@@ -10,7 +10,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { setUserChallengeSolve } from "@/server/actions/user-challenge";
 import { useContext } from "react";
 import { appContext } from "@/ui/context/app.context";
-import { ErrorProps } from "@/ui/utils/test-results";
 
 export function Executor() {
   const { user } = useContext(appContext);
