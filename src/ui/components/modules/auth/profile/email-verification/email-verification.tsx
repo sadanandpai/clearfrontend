@@ -29,11 +29,7 @@ export function EmailVerification({ emailVerification }: Props) {
       onClick={() => mutate()}
       loading={isPending}
       disabled={!!data?.message}
-      title={
-        data?.message
-          ? "Verification email sent"
-          : "Click to send verification email"
-      }
+      title={data?.message ? "Verification email sent" : "Click to send verification email"}
     >
       Send verification email
     </Button>

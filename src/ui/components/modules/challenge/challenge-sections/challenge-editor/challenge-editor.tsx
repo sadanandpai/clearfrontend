@@ -24,11 +24,7 @@ export function ChallengeEditor({ defaultCode }: Props) {
         setFontSize={setFontSize}
         onReset={() => editorRef.current?.updateCode(defaultCode)}
       />
-      <MonacoEditor
-        fontSize={fontSize}
-        challengeId={challengeId}
-        ref={editorRef}
-      />
+      <MonacoEditor fontSize={fontSize} challengeId={challengeId} ref={editorRef} />
       <TestRunner />
       <Executor />
     </div>

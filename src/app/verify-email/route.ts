@@ -11,6 +11,6 @@ export async function GET(request: NextRequest) {
   }
   const { account } = await serviceClient.user.guest();
 
-  await account.updateVerification(userId, secret)
+  await account.updateVerification(userId, secret);
   return NextResponse.redirect(`${request.nextUrl.origin}${routes.profile}`);
 }

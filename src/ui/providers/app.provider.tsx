@@ -9,9 +9,7 @@ interface Props {
 }
 
 export function AppProvider({ children }: Props) {
-  const [user, setUser] = useState<null | Models.User<Models.Preferences>>(
-    null
-  );
+  const [user, setUser] = useState<null | Models.User<Models.Preferences>>(null);
   const [isLoginChecked, setIsLoginChecked] = useState(false);
   const [userDataLoading, setUserDataLoading] = useState(false);
 
@@ -49,9 +47,7 @@ export function AppProvider({ children }: Props) {
   }, [authParam]);
 
   return (
-    <appContext.Provider
-      value={{ user, userDataLoading, isLoginChecked, resetLoggedInUser }}
-    >
+    <appContext.Provider value={{ user, userDataLoading, isLoginChecked, resetLoggedInUser }}>
       {children}
     </appContext.Provider>
   );

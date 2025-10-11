@@ -42,10 +42,7 @@ export function ProblemStatement({ problem }: Props) {
         ) : null}
       </Flex>
 
-      <InfoBar
-        difficulty={problem.difficulty}
-        totalLikes={activityData?.likes}
-      />
+      <InfoBar difficulty={problem.difficulty} totalLikes={activityData?.likes} />
 
       <Text dangerouslySetInnerHTML={{ __html: problem.statement }}></Text>
       <Text dangerouslySetInnerHTML={{ __html: problem.description }}></Text>

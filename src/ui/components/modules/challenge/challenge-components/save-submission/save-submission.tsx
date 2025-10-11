@@ -20,12 +20,7 @@ interface Props {
   submittedCode: string;
 }
 
-export function SaveSubmission({
-  status,
-  onSubmit,
-  disabled,
-  submittedCode,
-}: Props) {
+export function SaveSubmission({ status, onSubmit, disabled, submittedCode }: Props) {
   const { user } = useContext(appContext);
   const challengeId = Number(usePathname().split("/").at(-1));
 
@@ -47,9 +42,7 @@ export function SaveSubmission({
     return (
       <p>
         Please&nbsp;
-        <RadixNextLink
-          href={`${routes.signIn}?redirect=${routes.challenges}/${challengeId}`}
-        >
+        <RadixNextLink href={`${routes.signIn}?redirect=${routes.challenges}/${challengeId}`}>
           Sign in
         </RadixNextLink>
         &nbsp;to save your submission
@@ -68,11 +61,7 @@ export function SaveSubmission({
   }
 
   return (
-    <Button
-      onClick={saveSubmission}
-      disabled={disabled || isPending}
-      loading={isPending}
-    >
+    <Button onClick={saveSubmission} disabled={disabled || isPending} loading={isPending}>
       Save Submission
     </Button>
   );

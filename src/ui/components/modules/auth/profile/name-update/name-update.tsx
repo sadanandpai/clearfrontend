@@ -30,21 +30,13 @@ export function NameUpdate({ name }: Props) {
     <form action={formAction} className={classes.updateForm}>
       <Label htmlFor="name">Full name</Label>
       <div>
-        <FullNameField
-          value={inputName}
-          setValue={setInputName}
-          disabled={pending}
-        />
+        <FullNameField value={inputName} setValue={setInputName} disabled={pending} />
         <ErrorField error={state.fieldErrors?.name?.[0]} />
       </div>
 
       <div className={classes.submission}>
         <ErrorField error={state.error} />
-        <Button
-          type="submit"
-          loading={pending}
-          disabled={pending || inputName === userName}
-        >
+        <Button type="submit" loading={pending} disabled={pending || inputName === userName}>
           Update Name
         </Button>
       </div>

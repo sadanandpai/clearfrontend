@@ -16,15 +16,9 @@ export function PasswordUpdate() {
 
   function checkPassword() {
     if (formRef.current) {
-      const password = formRef.current?.elements.namedItem(
-        "currentPassword"
-      ) as HTMLInputElement;
-      const newPassword = formRef.current?.elements.namedItem(
-        "newPassword"
-      ) as HTMLInputElement;
-      setIsPasswordFilled(
-        password.value.length > 0 && newPassword.value.length > 0
-      );
+      const password = formRef.current?.elements.namedItem("currentPassword") as HTMLInputElement;
+      const newPassword = formRef.current?.elements.namedItem("newPassword") as HTMLInputElement;
+      setIsPasswordFilled(password.value.length > 0 && newPassword.value.length > 0);
     }
   }
 
@@ -38,12 +32,7 @@ export function PasswordUpdate() {
   }, [state]);
 
   return (
-    <form
-      action={formAction}
-      className={classes.updateForm}
-      onChange={checkPassword}
-      ref={formRef}
-    >
+    <form action={formAction} className={classes.updateForm} onChange={checkPassword} ref={formRef}>
       <Label htmlFor="password">Password</Label>
       <div>
         <PasswordField field="currentPassword" placeHolder="Current password" />
@@ -57,11 +46,7 @@ export function PasswordUpdate() {
 
       <div className={classes.submission}>
         <ErrorField error={state.error} />
-        <Button
-          type="submit"
-          loading={pending}
-          disabled={!isPasswordFilled || pending}
-        >
+        <Button type="submit" loading={pending} disabled={!isPasswordFilled || pending}>
           Update Password
         </Button>
       </div>

@@ -14,11 +14,7 @@ interface Props {
 
 let submittedExecutionId: number | undefined;
 
-export function ChallengeResults({
-  setSelectedTab,
-  testOutputs,
-  submittedCode,
-}: Props) {
+export function ChallengeResults({ setSelectedTab, testOutputs, submittedCode }: Props) {
   const queryClient = useQueryClient();
   const challengeId = Number(usePathname().split("/").at(-1));
 

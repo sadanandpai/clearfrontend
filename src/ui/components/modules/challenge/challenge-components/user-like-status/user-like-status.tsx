@@ -5,10 +5,7 @@ import { Button, Text } from "@radix-ui/themes";
 import { usePathname } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { appContext } from "@/ui/context/app.context";
-import {
-  getUserChallengeInfo,
-  setUserChallengeLike,
-} from "@/server/actions/user-challenge";
+import { getUserChallengeInfo, setUserChallengeLike } from "@/server/actions/user-challenge";
 import { useTheme } from "next-themes";
 
 interface Props {
@@ -34,13 +31,10 @@ export function UserLikeStatus({ totalLikes }: Props) {
     mutationFn: () => setUserChallengeLike(challengeId, !infoData?.like),
     onSuccess: (data) => {
       // update the cache of query (this helps to update the UI without invoking the API again)
-      queryClient.setQueryData(
-        ["userChallengeInfo", challengeId],
-        (oldData: typeof infoData) => ({
-          ...oldData,
-          like: data.like,
-        })
-      );
+      queryClient.setQueryData(["userChallengeInfo", challengeId], (oldData: typeof infoData) => ({
+        ...oldData,
+        like: data.like,
+      }));
 
       if (data.like) {
         toast.success("Challenge is liked");
@@ -78,12 +72,7 @@ export function UserLikeStatus({ totalLikes }: Props) {
 
   if (!user) {
     return (
-      <Button
-        size="1"
-        variant="ghost"
-        onClick={handleLike}
-        loading={!isLoginChecked}
-      >
+      <Button size="1" variant="ghost" onClick={handleLike} loading={!isLoginChecked}>
         <Heart color={resolvedTheme === "dark" ? "white" : "black"} />
       </Button>
     );
@@ -99,9 +88,7 @@ export function UserLikeStatus({ totalLikes }: Props) {
       <Heart
         fill={infoData?.like ? "red" : "none"}
         size={24}
-        color={
-          infoData?.like ? "red" : resolvedTheme === "dark" ? "white" : "black"
-        }
+        color={infoData?.like ? "red" : resolvedTheme === "dark" ? "white" : "black"}
       />
       <Text size="2">{challengeLikes}</Text>
     </Button>

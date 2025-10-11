@@ -1,8 +1,7 @@
 export const problem = {
   id: 1,
   name: "Two Sum",
-  statement:
-    "Implement a function <strong>sum</strong>, that sums the given 2 numbers.",
+  statement: "Implement a function <strong>sum</strong>, that sums the given 2 numbers.",
   description: "",
   difficulty: "easy",
   languages: ["javascript"],

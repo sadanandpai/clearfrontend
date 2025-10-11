@@ -20,17 +20,10 @@ import {
   validatePhone,
   validatePhoneOTP,
 } from "@/server/utils/parser";
-import {
-  GlobalResponse,
-  respondWithError,
-  respondWithSuccess,
-} from "@/server/handlers/action";
+import { GlobalResponse, respondWithError, respondWithSuccess } from "@/server/handlers/action";
 import { getLoggedInUser } from "./auth";
 
-export async function updatePassword(
-  _prev: GlobalResponse,
-  formData: FormData
-) {
+export async function updatePassword(_prev: GlobalResponse, formData: FormData) {
   try {
     const { currentPassword, newPassword } = validatePassword(formData);
     await updateSessionPassword(newPassword, currentPassword);
@@ -78,10 +71,7 @@ export async function updateEmail(_prev: GlobalResponse, formData: FormData) {
   }
 }
 
-export async function forgotPassword(
-  _prev: GlobalResponse,
-  formData: FormData
-) {
+export async function forgotPassword(_prev: GlobalResponse, formData: FormData) {
   try {
     const { email } = validateEmail(formData);
     await sendPasswordRecoveryEmail(email);
@@ -91,13 +81,9 @@ export async function forgotPassword(
   }
 }
 
-export async function resetForgotPassword(
-  _prev: GlobalResponse,
-  formData: FormData
-) {
+export async function resetForgotPassword(_prev: GlobalResponse, formData: FormData) {
   try {
-    const { userId, secret, newPassword, confirmPassword } =
-      validateResetPassword(formData);
+    const { userId, secret, newPassword, confirmPassword } = validateResetPassword(formData);
     if (newPassword !== confirmPassword) {
       return respondWithError(Error("Passwords do not match"));
     }

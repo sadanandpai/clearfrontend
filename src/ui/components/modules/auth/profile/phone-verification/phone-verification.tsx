@@ -30,11 +30,7 @@ export function PhoneVerification({ phone, phoneVerification }: Props) {
       onClick={() => mutate()}
       loading={isPending}
       disabled={!!data?.message}
-      title={
-        data?.message
-          ? "Verification SMS sent"
-          : "Click to send verification SMS"
-      }
+      title={data?.message ? "Verification SMS sent" : "Click to send verification SMS"}
     >
       Send verification SMS
     </Button>

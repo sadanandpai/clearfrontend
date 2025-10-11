@@ -11,10 +11,7 @@ export function HomeNavBar() {
       <Flex align="center" gap="5">
         <Image src="/cfe-logo.svg" alt="Github" width={36} height={36} />
 
-        <Link
-          href={routes.challenges}
-          className="text-brand-1 font-bold hidden md:flex"
-        >
+        <Link href={routes.challenges} className="text-brand-1 font-bold hidden md:flex">
           Challenges
         </Link>
 
@@ -35,10 +32,7 @@ export function HomeNavBar() {
           SIGN UP
         </Link>
 
-        <Link
-          href="https://github.com/sadanandpai/clearfrontend"
-          target="blank"
-        >
+        <Link href="https://github.com/sadanandpai/clearfrontend" target="blank">
           <Image src="/github.svg" alt="Github" width={32} height={32} />
         </Link>
       </Flex>

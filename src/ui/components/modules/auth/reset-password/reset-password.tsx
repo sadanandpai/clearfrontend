@@ -48,11 +48,7 @@ export function ResetPassword() {
 
   return (
     <div className={classes.authFormWrapper}>
-      <form
-        action={formAction}
-        className={classes.authForm}
-        onSubmit={onSubmit}
-      >
+      <form action={formAction} className={classes.authForm} onSubmit={onSubmit}>
         <input type="hidden" name="userId" value={userId} />
         <input type="hidden" name="secret" value={secret} />
 
@@ -62,10 +58,7 @@ export function ResetPassword() {
         </div>
 
         <div className="form-field">
-          <PasswordField
-            field="confirmPassword"
-            placeHolder="Confirm Password"
-          />
+          <PasswordField field="confirmPassword" placeHolder="Confirm Password" />
           <ErrorField error={state.fieldErrors?.confirmPassword?.[0]} />
         </div>
 

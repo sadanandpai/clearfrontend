@@ -11,9 +11,6 @@ export function ChallengeSolution({ code }: Props) {
   const { resolvedTheme } = useTheme();
 
   return (
-    <CodeSnippet
-      code={code}
-      theme={resolvedTheme === "dark" ? themes.vsDark : themes.vsLight}
-    />
+    <CodeSnippet code={code} theme={resolvedTheme === "dark" ? themes.vsDark : themes.vsLight} />
   );
 }

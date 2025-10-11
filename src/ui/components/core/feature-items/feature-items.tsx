@@ -10,19 +10,13 @@ interface Props {
   setActiveIndex: (index: number) => void;
 }
 
-export const FeatureItems = ({
-  listItems,
-  activeIndex,
-  setActiveIndex,
-}: Props) => {
+export const FeatureItems = ({ listItems, activeIndex, setActiveIndex }: Props) => {
   return (
     <Flex direction="column" gap="5">
       {listItems.map((item, index) => (
         <Fragment key={index}>
           <p
-            className={`${classes.contentTitle} ${
-              activeIndex === index ? classes.active : ""
-            }`}
+            className={`${classes.contentTitle} ${activeIndex === index ? classes.active : ""}`}
             role="button"
             key={index}
             onClick={() => setActiveIndex(index)}

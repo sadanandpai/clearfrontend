@@ -55,20 +55,14 @@ export function OTPUpdate() {
         <Dialog.Title>Enter OTP code received on your phone</Dialog.Title>
         <Dialog.Description size="2" mb="4">
           <Text>
-            We have sent a 6-digit code to your phone number. Please enter the
-            code below.
+            We have sent a 6-digit code to your phone number. Please enter the code below.
           </Text>
         </Dialog.Description>
 
         <Flex justify="center" align="center" direction="column" gap="4">
           <UserOTPInput maxLength={6} onChange={onOTPChange} />
           <ErrorField error={error?.message || validationError} />
-          <Button
-            type="submit"
-            loading={isPending}
-            onClick={handleSubmit}
-            className="mt-8"
-          >
+          <Button type="submit" loading={isPending} onClick={handleSubmit} className="mt-8">
             Verify
           </Button>
         </Flex>

@@ -13,16 +13,9 @@ import {
   initiateSessionWithEmail,
   sendVerificationEmail,
 } from "@/server/data-access/session";
-import {
-  GlobalResponse,
-  respondWithError,
-  respondWithSuccess,
-} from "@/server/handlers/action";
+import { GlobalResponse, respondWithError, respondWithSuccess } from "@/server/handlers/action";
 
-export async function signInWithEmail(
-  _prev: GlobalResponse,
-  formData: FormData
-) {
+export async function signInWithEmail(_prev: GlobalResponse, formData: FormData) {
   try {
     const { email, password } = validateEmailPassword(formData);
     const secret = await createSessionWithEmail(email, password);
@@ -40,10 +33,7 @@ export async function signInWithOAuth(provider: "Google" | "Github") {
   redirect(`${redirectUrl}&val=something`);
 }
 
-export async function signUpWithEmail(
-  _prev: GlobalResponse,
-  formData: FormData
-) {
+export async function signUpWithEmail(_prev: GlobalResponse, formData: FormData) {
   try {
     const { name, email, password } = validateSignUp(formData);
     const secret = await initiateSessionWithEmail(name, email, password);

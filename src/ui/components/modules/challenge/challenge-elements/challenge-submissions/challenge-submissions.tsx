@@ -5,10 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { routes } from "@/common/routes";
 import { appContext } from "@/ui/context/app.context";
 import { SubmissionsTable } from "@/ui/components/core/submissions-table/submissions-table";
-import {
-  deleteUserSubmission,
-  getUserSubmissions,
-} from "@/server/actions/submissions";
+import { deleteUserSubmission, getUserSubmissions } from "@/server/actions/submissions";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
 import classes from "./challenge-submissions.module.scss";
 import { Spinner } from "@radix-ui/themes";
@@ -34,8 +31,7 @@ export function ChallengeSubmissions() {
   });
 
   const { mutate, isPending: isDeletionPending } = useMutation({
-    mutationFn: ({ submissionId }: SubmissionMutationProp) =>
-      deleteUserSubmission(submissionId),
+    mutationFn: ({ submissionId }: SubmissionMutationProp) => deleteUserSubmission(submissionId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["submissions", challengeId] });
       toast.success("Submission deleted successfully");
@@ -55,9 +51,7 @@ export function ChallengeSubmissions() {
     return (
       <p className={classes.verticalCenter}>
         Please&nbsp;
-        <RadixNextLink
-          href={`${routes.signIn}?redirect=${routes.challenges}/${challengeId}`}
-        >
+        <RadixNextLink href={`${routes.signIn}?redirect=${routes.challenges}/${challengeId}`}>
           Sign in
         </RadixNextLink>
         &nbsp;to view your submissions

@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@radix-ui/react-collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
 
 import { Flex } from "@radix-ui/themes";
 import Image from "next/image";
@@ -26,10 +22,7 @@ export function MenuDropdown() {
       </CollapsibleTrigger>
       <CollapsibleContent className={classes.collapsibleContent}>
         <Flex direction="column" align="center" gap="5">
-          <Link
-            href={routes.challenges}
-            className="text-brand-1 font-bold md:hidden"
-          >
+          <Link href={routes.challenges} className="text-brand-1 font-bold md:hidden">
             Challenges
           </Link>
 
@@ -49,10 +42,7 @@ export function MenuDropdown() {
             SIGN UP
           </Link>
 
-          <Link
-            href="https://github.com/sadanandpai/clearfrontend"
-            target="blank"
-          >
+          <Link href="https://github.com/sadanandpai/clearfrontend" target="blank">
             <Image src="/github.svg" alt="Github" width={32} height={32} />
           </Link>
         </Flex>

@@ -25,21 +25,12 @@ export function Profile({ user: serverUser }: Props) {
     <main className={classes.main}>
       <NameUpdate name={user.name} />
       <PasswordUpdate />
-      <EmailUpdate
-        email={user.email}
-        emailVerification={user.emailVerification}
-      />
-      <PhoneUpdate
-        phone={user.phone}
-        phoneVerification={user.phoneVerification}
-      />
+      <EmailUpdate email={user.email} emailVerification={user.emailVerification} />
+      <PhoneUpdate phone={user.phone} phoneVerification={user.phoneVerification} />
 
       <Flex gap="2">
         <EmailVerification emailVerification={user.emailVerification} />
-        <PhoneVerification
-          phone={user.phone}
-          phoneVerification={user.phoneVerification}
-        />
+        <PhoneVerification phone={user.phone} phoneVerification={user.phoneVerification} />
 
         <form action={signOut}>
           <Button type="submit" color="tomato">

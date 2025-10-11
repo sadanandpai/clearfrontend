@@ -12,14 +12,8 @@ interface Props {
   isLoading: boolean;
 }
 
-export function SubmissionsTable({
-  records,
-  deleteSubmission,
-  isLoading,
-}: Props) {
-  const [shouldDisplayCode, setShouldDisplayCode] = useState<string | null>(
-    null
-  );
+export function SubmissionsTable({ records, deleteSubmission, isLoading }: Props) {
+  const [shouldDisplayCode, setShouldDisplayCode] = useState<string | null>(null);
 
   return (
     <div className={classes.tableWrapper}>
@@ -41,9 +35,7 @@ export function SubmissionsTable({
                 <td>
                   <Button
                     onClick={() => {
-                      setShouldDisplayCode(
-                        shouldDisplayCode === record.$id ? null : record.$id
-                      );
+                      setShouldDisplayCode(shouldDisplayCode === record.$id ? null : record.$id);
                     }}
                     variant="ghost"
                     title="code"

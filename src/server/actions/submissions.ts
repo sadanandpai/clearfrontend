@@ -16,11 +16,7 @@ export async function getUserSubmissions(challengeId: number) {
   return await getSubmissionsRecords(challengeId);
 }
 
-export async function submitUserSubmission(
-  challengeId: number,
-  code: string,
-  status: boolean
-) {
+export async function submitUserSubmission(challengeId: number, code: string, status: boolean) {
   if (!isValidChallengeId(challengeId)) {
     throw new Error("Invalid challenge ID");
   }

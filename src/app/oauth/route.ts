@@ -14,7 +14,5 @@ export async function GET(request: NextRequest) {
 
   const sessionSecret = await createSessionWithSecret(userId, secret);
   await createCookie(COOKIE_NAME, sessionSecret);
-  return NextResponse.redirect(
-    `${request.nextUrl.origin}${routes.oauthRedirection}`
-  );
+  return NextResponse.redirect(`${request.nextUrl.origin}${routes.oauthRedirection}`);
 }

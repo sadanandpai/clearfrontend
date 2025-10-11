@@ -17,7 +17,7 @@ export default async function Challenge({ params }: Props) {
   }
 
   const problem: ProblemProps = await import(`@/data/${challengeId}`).then(
-    (module) => module.problem
+    (module) => module.problem,
   );
 
   // don't await to avoid blocking the response

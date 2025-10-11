@@ -23,12 +23,7 @@ export function UserSolutionStatus() {
   if (infoData?.solve) {
     return (
       <span title="Solved">
-        <CircleCheckBig
-          size={24}
-          color="green"
-          aria-label="Solved"
-          role="img"
-        />
+        <CircleCheckBig size={24} color="green" aria-label="Solved" role="img" />
       </span>
     );
   }

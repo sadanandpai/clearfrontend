@@ -10,11 +10,7 @@ interface Props {
   setActiveIndex: (index: number) => void;
 }
 
-export function EmblaCarousel({
-  children,
-  activeIndex,
-  setActiveIndex,
-}: Props) {
+export function EmblaCarousel({ children, activeIndex, setActiveIndex }: Props) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     startIndex: activeIndex,
@@ -45,9 +41,7 @@ export function EmblaCarousel({
         {children.map((_, idx) => (
           <button
             key={idx}
-            className={`${classes.emblaDot} ${
-              idx === activeIndex ? classes.isSelected : ""
-            }`}
+            className={`${classes.emblaDot} ${idx === activeIndex ? classes.isSelected : ""}`}
             onClick={() => emblaApi?.scrollTo(idx)}
           />
         ))}

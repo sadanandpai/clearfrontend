@@ -10,13 +10,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export function RadixNextLink({
-  href = "#",
-  size,
-  weight,
-  target,
-  children,
-}: Props) {
+export function RadixNextLink({ href = "#", size, weight, target, children }: Props) {
   return (
     <Anchor size={size} weight={weight} target={target} color="grass" asChild>
       <Link href={href} passHref>

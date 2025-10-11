@@ -34,11 +34,7 @@ export function ChallengeTerminal({ defaultInput }: Props) {
 
         <ScrollArea type="auto">
           <Box p="3">
-            <Tabs.Content
-              value="input"
-              hidden={selectedTab !== "input"}
-              forceMount
-            >
+            <Tabs.Content value="input" hidden={selectedTab !== "input"} forceMount>
               <ChallengeInput defaultInput={defaultInput} />
             </Tabs.Content>
 

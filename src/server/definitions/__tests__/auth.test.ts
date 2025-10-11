@@ -1,10 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  emailSchema,
-  nameSchema,
-  passwordSchema,
-  signInSchema,
-} from "@/server/definitions/auth";
+import { emailSchema, nameSchema, passwordSchema, signInSchema } from "@/server/definitions/auth";
 
 describe("auth basic schemas", () => {
   it("nameSchema success", () => {
@@ -13,10 +8,10 @@ describe("auth basic schemas", () => {
 
   it("nameSchema error", () => {
     expect(() => nameSchema.parse("")).toThrowError(
-      "Too small: expected string to have >=3 characters"
+      "Too small: expected string to have >=3 characters",
     );
     expect(() => nameSchema.parse("a".repeat(51))).toThrowError(
-      "Too big: expected string to have <=50 characters"
+      "Too big: expected string to have <=50 characters",
     );
   });
 
@@ -25,9 +20,7 @@ describe("auth basic schemas", () => {
   });
 
   it("emailSchema error", () => {
-    expect(() => emailSchema.parse("test")).toThrowError(
-      "Invalid email address"
-    );
+    expect(() => emailSchema.parse("test")).toThrowError("Invalid email address");
   });
 
   it("passwordSchema success", () => {
@@ -36,10 +29,10 @@ describe("auth basic schemas", () => {
 
   it("passwordSchema error", () => {
     expect(() => passwordSchema.parse("test")).toThrowError(
-      "Too small: expected string to have >=8 characters"
+      "Too small: expected string to have >=8 characters",
     );
     expect(() => passwordSchema.parse("a".repeat(21))).toThrowError(
-      "Too big: expected string to have <=20 characters"
+      "Too big: expected string to have <=20 characters",
     );
   });
 });
@@ -58,7 +51,7 @@ describe("auth", () => {
     expect(() =>
       signInSchema.parse({
         password: "password123",
-      })
+      }),
     ).toThrowErrorMatchingInlineSnapshot(`
       [ZodError: [
         {
@@ -77,7 +70,7 @@ describe("auth", () => {
     expect(() =>
       signInSchema.parse({
         email: "test@example.com",
-      })
+      }),
     ).toThrowErrorMatchingInlineSnapshot(`
       [ZodError: [
         {

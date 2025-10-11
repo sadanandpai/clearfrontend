@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest --watch=false"
+    "test": "vitest --watch=false",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check ."
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.20.0",
@@ -46,6 +48,7 @@
     "eslint-config-next": "^15.3.5",
     "jsdom": "^26.1.0",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
     "sass": "^1.89.2",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",

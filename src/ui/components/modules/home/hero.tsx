@@ -18,10 +18,7 @@ export function Hero() {
         <span className="text-brand-1 font-bold">Clear Frontend</span>
       </h2>
 
-      <Link
-        href={routes.challenges}
-        className="primary-link large inline-block"
-      >
+      <Link href={routes.challenges} className="primary-link large inline-block">
         CHALLENGES &gt;
       </Link>
     </section>

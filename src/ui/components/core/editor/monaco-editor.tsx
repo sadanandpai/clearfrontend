@@ -7,10 +7,7 @@ import {
   useLoadingOverlayState,
   // FileTabs,
 } from "@codesandbox/sandpack-react/unstyled";
-import {
-  getCodeFromLocalStorage,
-  saveCodeToLocalStorage,
-} from "@/ui/utils/code-editor";
+import { getCodeFromLocalStorage, saveCodeToLocalStorage } from "@/ui/utils/code-editor";
 import { Spinner } from "@radix-ui/themes";
 // import classes from "./editor.module.scss";
 
@@ -21,7 +18,7 @@ interface Props {
 
 function MonacoEditorWithRef(
   { fontSize, challengeId }: Props,
-  ref: React.Ref<{ updateCode: (code: string) => void }>
+  ref: React.Ref<{ updateCode: (code: string) => void }>,
 ) {
   const { resolvedTheme } = useTheme();
   const { sandpack } = useSandpack();
@@ -54,7 +51,7 @@ function MonacoEditorWithRef(
       updateCode,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   return (

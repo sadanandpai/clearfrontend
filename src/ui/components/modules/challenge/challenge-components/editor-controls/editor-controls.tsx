@@ -32,12 +32,7 @@ export function EditorControls({ fontSize, setFontSize, onReset }: Props) {
           </Select.Root>
         </Flex>
 
-        <Button
-          onClick={onReset}
-          aria-label="Reset code"
-          size="1"
-          variant="ghost"
-        >
+        <Button onClick={onReset} aria-label="Reset code" size="1" variant="ghost">
           <RotateCcw size="20" />
         </Button>
       </Flex>

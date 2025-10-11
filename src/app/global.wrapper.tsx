@@ -22,9 +22,7 @@ export function GlobalWrapper({ children }: { children: React.ReactNode }) {
       <Suspense fallback="loading">
         <AppProvider>
           <ThemeProvider>
-            <QueryClientProvider client={queryClient}>
-              {children}
-            </QueryClientProvider>
+            <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
           </ThemeProvider>
         </AppProvider>
       </Suspense>

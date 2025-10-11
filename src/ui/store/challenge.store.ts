@@ -22,7 +22,7 @@ export const useChallengeStore = create<ChallengeState>()((set) => ({
           status: status ?? state.testOutput?.status,
           output: output ?? state.testOutput?.output,
         };
-      })
+      }),
     ),
   setOutputs: ({ isLoading, status, outputs, executionId }) =>
     set(
@@ -33,7 +33,7 @@ export const useChallengeStore = create<ChallengeState>()((set) => ({
           outputs: outputs ?? state.testOutputs?.outputs,
           executionId: executionId ?? state.testOutputs?.executionId,
         };
-      })
+      }),
     ),
   resetOutput: () => set({ testOutput: null }),
   resetOutputs: () => set({ testOutputs: null }),

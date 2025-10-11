@@ -1,13 +1,6 @@
 import "server-only";
 
-import {
-  Client,
-  Account,
-  ID,
-  OAuthProvider,
-  Databases,
-  Query,
-} from "node-appwrite";
+import { Client, Account, ID, OAuthProvider, Databases, Query } from "node-appwrite";
 import { COOKIE_NAME } from "@/server/config/server.config";
 import { getCookie } from "@/server/utils/cookies";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
@@ -79,9 +72,7 @@ export class SessionClientAppwrite extends BaseClientAppWrite {
 
   public static async getInstance() {
     if (!SessionClientAppwrite.instance) {
-      const sessionCookie: RequestCookie | undefined = await getCookie(
-        COOKIE_NAME
-      );
+      const sessionCookie: RequestCookie | undefined = await getCookie(COOKIE_NAME);
 
       SessionClientAppwrite.instance = new SessionClientAppwrite(sessionCookie);
     }
@@ -95,9 +86,7 @@ export class DatabaseClientAppwrite extends SessionClientAppwrite {
   public static async getInstance() {
     if (!DatabaseClientAppwrite.instance) {
       const sessionInstance = await SessionClientAppwrite.getInstance();
-      DatabaseClientAppwrite.instance = new DatabaseClientAppwrite(
-        sessionInstance.session
-      );
+      DatabaseClientAppwrite.instance = new DatabaseClientAppwrite(sessionInstance.session);
     }
     return DatabaseClientAppwrite.instance;
   }

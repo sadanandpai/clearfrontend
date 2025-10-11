@@ -10,22 +10,13 @@ interface Props {
 
 export function InfoBar({ difficulty, totalLikes }: Props) {
   const difficultyColor =
-    difficulty === "easy"
-      ? "green"
-      : difficulty === "medium"
-      ? "yellow"
-      : "red";
+    difficulty === "easy" ? "green" : difficulty === "medium" ? "yellow" : "red";
 
   return (
     <Flex my="4" justify="between">
       <Flex gap="4" align="center">
         <Image src="/js.svg" height={24} width={24} alt="JavaScript" />
-        <Badge
-          color={difficultyColor}
-          variant="solid"
-          size="3"
-          className="capitalize"
-        >
+        <Badge color={difficultyColor} variant="solid" size="3" className="capitalize">
           {difficulty}
         </Badge>
       </Flex>

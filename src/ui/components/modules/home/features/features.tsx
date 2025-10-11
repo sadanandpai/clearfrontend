@@ -35,10 +35,7 @@ export function Features() {
       </div>
 
       <div className="lg:hidden">
-        <EmblaCarousel
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        >
+        <EmblaCarousel activeIndex={activeIndex} setActiveIndex={setActiveIndex}>
           {listItems.map((item) => (
             <Fragment key={item.title}>
               <p className={classes.featureTitle}>{item.title}</p>

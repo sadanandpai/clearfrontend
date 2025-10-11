@@ -12,31 +12,18 @@ export async function getSubmissionsRecords(challengeId: number) {
   ]);
 }
 
-export async function createSubmissionsRecord(
-  challengeId: number,
-  code: string,
-  status: boolean
-) {
+export async function createSubmissionsRecord(challengeId: number, code: string, status: boolean) {
   const { databases } = await serviceClient.database();
 
-  return await databases.createDocument(
-    DB,
-    SUBMISSIONS_COLLECTION,
-    getUniqueID(),
-    {
-      cId: challengeId,
-      code,
-      status,
-    }
-  );
+  return await databases.createDocument(DB, SUBMISSIONS_COLLECTION, getUniqueID(), {
+    cId: challengeId,
+    code,
+    status,
+  });
 }
 
 export async function deleteSubmissionsRecord(submissionId: string) {
   const { databases } = await serviceClient.database();
 
-  return await databases.deleteDocument(
-    DB,
-    SUBMISSIONS_COLLECTION,
-    submissionId
-  );
+  return await databases.deleteDocument(DB, SUBMISSIONS_COLLECTION, submissionId);
 }

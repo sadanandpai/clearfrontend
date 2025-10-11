@@ -6,11 +6,7 @@ import { Button } from "@radix-ui/themes";
 import { signUpWithEmail } from "@/server/actions/auth";
 import { OAuth } from "@/ui/components/modules/auth/oauth/oauth";
 import { ErrorField } from "@/ui/components/common/form/error-field";
-import {
-  EmailField,
-  FullNameField,
-  PasswordField,
-} from "@/ui/components/common/form/input-fields";
+import { EmailField, FullNameField, PasswordField } from "@/ui/components/common/form/input-fields";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
 import classes from "./sign-in-up.module.scss";
 import { useSearchParams } from "next/navigation";
@@ -49,9 +45,7 @@ export function SignUp() {
       </form>
 
       <div className={classes.authFormLinks}>
-        <RadixNextLink href={`${routes.signIn}${redirectQuery}`}>
-          Sign in
-        </RadixNextLink>
+        <RadixNextLink href={`${routes.signIn}${redirectQuery}`}>Sign in</RadixNextLink>
       </div>
 
       <OAuth />

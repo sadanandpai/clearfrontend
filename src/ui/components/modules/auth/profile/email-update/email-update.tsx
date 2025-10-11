@@ -2,10 +2,7 @@
 
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
-import {
-  EmailField,
-  PasswordField,
-} from "@/ui/components/common/form/input-fields";
+import { EmailField, PasswordField } from "@/ui/components/common/form/input-fields";
 import { Button, Flex } from "@radix-ui/themes";
 import { Label } from "@radix-ui/react-label";
 import { updateEmail } from "@/server/actions/user";
@@ -52,11 +49,7 @@ export function EmailUpdate({ email, emailVerification }: Props) {
 
       <div className={classes.submission}>
         <ErrorField error={state.error} />
-        <Button
-          type="submit"
-          loading={pending}
-          disabled={pending || inputEmail === userEmail}
-        >
+        <Button type="submit" loading={pending} disabled={pending || inputEmail === userEmail}>
           Update Email
         </Button>
       </div>
