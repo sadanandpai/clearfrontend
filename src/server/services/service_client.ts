@@ -1,3 +1,4 @@
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import {
   AdminClientAppwrite,
   BaseClientAppWrite,
@@ -5,24 +6,28 @@ import {
   SessionClientAppwrite,
 } from "./appwrite";
 import { RedisClient } from "./redis";
+import { COOKIE_NAME } from "../config/server.config";
+import { getCookie } from "../utils/cookies";
 
 export class ServiceClient {
   get user() {
     return {
       authenticated: async () => {
-        return await SessionClientAppwrite.getInstance();
+        const sessionCookie: RequestCookie | undefined = await getCookie(COOKIE_NAME);
+        return new SessionClientAppwrite(sessionCookie);
       },
       admin: async () => {
-        return await AdminClientAppwrite.getInstance();
+        return new AdminClientAppwrite();
       },
       guest: async () => {
-        return await BaseClientAppWrite.getInstance();
+        return new BaseClientAppWrite();
       },
     };
   }
 
   async database() {
-    return await DatabaseClientAppwrite.getInstance();
+    const sessionCookie: RequestCookie | undefined = await getCookie(COOKIE_NAME);
+    return new DatabaseClientAppwrite(sessionCookie);
   }
 
   cache() {
