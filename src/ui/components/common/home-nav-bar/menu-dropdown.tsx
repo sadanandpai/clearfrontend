@@ -10,7 +10,11 @@ import classes from "./home-nav-bar.module.scss";
 import { routes } from "@/common/routes";
 import { useState } from "react";
 
-export function MenuDropdown() {
+interface MenuDropdownProps {
+  isAuthenticated?: boolean;
+}
+
+export function MenuDropdown({ isAuthenticated = false }: MenuDropdownProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -34,13 +38,17 @@ export function MenuDropdown() {
             Contribute
           </Link>
 
-          <Link href={routes.signIn} className="secondary-link">
-            LOGIN
-          </Link>
+          {!isAuthenticated && (
+            <>
+              <Link href={routes.signIn} className="secondary-link">
+                LOGIN
+              </Link>
 
-          <Link href={routes.signUp} className="primary-link">
-            SIGN UP
-          </Link>
+              <Link href={routes.signUp} className="primary-link">
+                SIGN UP
+              </Link>
+            </>
+          )}
 
           <Link href="https://github.com/sadanandpai/clearfrontend" target="blank">
             <Image src="/github.svg" alt="Github" width={32} height={32} />
