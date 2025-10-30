@@ -38,7 +38,11 @@ export function MenuDropdown({ isAuthenticated = false }: MenuDropdownProps) {
             Contribute
           </Link>
 
-          {!isAuthenticated && (
+          {isAuthenticated ? (
+            <Link href={routes.profile} className="primary-link">
+              Profile
+            </Link>
+          ) : (
             <>
               <Link href={routes.signIn} className="secondary-link">
                 LOGIN
