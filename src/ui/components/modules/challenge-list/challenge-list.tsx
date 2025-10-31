@@ -3,21 +3,69 @@
 import { routes } from "@/common/routes";
 import classes from "./challenge-list.module.scss";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import SearchBar from "./search-bar";
-import { filterChallenges } from "./challenge-list.utils";
+import { filterAndSortChallenges, getAllUniqueTags } from "./challenge-list.utils";
 import { Challenges } from "./challenge-list.types";
+import { useChallengeFilters } from "./use-challenge-filters";
+import { DifficultyFilter } from "./difficulty-filter";
+import { TagFilter } from "./tag-filter";
+import { SortDropdown } from "./sort-dropdown";
+import { Flex, Button } from "@radix-ui/themes";
 
 export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const { filters, updateFilters, resetFilters } = useChallengeFilters();
+
+  const availableTags = useMemo(() => getAllUniqueTags(challenges), [challenges]);
 
   const filteredChallenges = useMemo(() => {
-    return filterChallenges(challenges, searchQuery);
-  }, [challenges, searchQuery]);
+    return filterAndSortChallenges(challenges, filters);
+  }, [challenges, filters]);
+
+  const hasActiveFilters =
+    filters.difficulty !== "All" ||
+    filters.tags.length > 0 ||
+    filters.sortBy !== "newest" ||
+    filters.search.trim() !== "";
 
   return (
     <div>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      {/* Search Bar */}
+      <SearchBar
+        searchQuery={filters.search}
+        setSearchQuery={(search: string) => updateFilters({ search })}
+      />
+
+      {/* Filters Section */}
+      <Flex direction="column" gap="4" style={{ marginTop: 24, marginBottom: 24, padding: "0 5%" }}>
+        <Flex justify="between" align="center" wrap="wrap" gap="3">
+          <DifficultyFilter
+            selected={filters.difficulty}
+            onChange={(difficulty) => updateFilters({ difficulty })}
+          />
+          <Flex gap="2" align="center">
+            <SortDropdown value={filters.sortBy} onChange={(sortBy) => updateFilters({ sortBy })} />
+            {hasActiveFilters && (
+              <Button variant="soft" onClick={resetFilters}>
+                Clear Filters
+              </Button>
+            )}
+          </Flex>
+        </Flex>
+
+        <TagFilter
+          availableTags={availableTags}
+          selectedTags={filters.tags}
+          onChange={(tags) => updateFilters({ tags })}
+        />
+      </Flex>
+
+      {/* Results Count */}
+      <div style={{ padding: "0 5%", marginBottom: 12, color: "gray" }}>
+        Showing {filteredChallenges.length} of {challenges.length} challenges
+      </div>
+
+      {/* Table */}
       <table className={classes.challengesTable}>
         <thead>
           <tr>
