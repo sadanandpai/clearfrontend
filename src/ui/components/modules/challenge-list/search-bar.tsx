@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 interface Props {
   searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  setSearchQuery: ((value: string) => void) | React.Dispatch<React.SetStateAction<string>>;
   className?: string;
   style?: React.CSSProperties;
   placeholder?: string;
