@@ -11,7 +11,7 @@ import { useChallengeFilters } from "./use-challenge-filters";
 import { DifficultyFilter } from "./difficulty-filter";
 import { TagFilter } from "./tag-filter";
 import { SortDropdown } from "./sort-dropdown";
-import { Flex, Button } from "@radix-ui/themes";
+import { Flex, Button, Badge } from "@radix-ui/themes";
 
 export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
   const { filters, updateFilters, resetFilters } = useChallengeFilters();
@@ -94,7 +94,20 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
                     {challenge.name}
                   </RadixNextLink>
                 </td>
-                <td>{challenge.difficulty}</td>
+                <td>
+                  <Badge
+                    color={
+                      challenge.difficulty === "Easy"
+                      ? "green"
+                      : challenge.difficulty === "Medium"
+                      ? "yellow"
+                      : "red"
+                    }
+                    variant="soft"
+                    >
+                  {challenge.difficulty}
+                  </Badge>
+                  </td>
                 <td>{challenge.tags.join(", ")}</td>
               </tr>
             ))
