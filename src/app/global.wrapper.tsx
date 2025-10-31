@@ -26,7 +26,6 @@ export function GlobalWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      gopal
       <Toaster richColors />
       <Suspense fallback="loading">
         <AppProvider>
