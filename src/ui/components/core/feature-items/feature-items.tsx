@@ -16,7 +16,7 @@ export const FeatureItems = ({ listItems, activeIndex, setActiveIndex }: Props) 
       {listItems.map((item, index) => (
         <Fragment key={index}>
           <p
-            className={`${classes.contentTitle} ${activeIndex === index ? classes.active : ""}`}
+            className={`${classes.contentTitle} cursor-pointer ${activeIndex === index ? classes.active : ""}`}
             role="button"
             key={index}
             onClick={() => setActiveIndex(index)}
