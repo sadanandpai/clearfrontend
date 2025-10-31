@@ -5,7 +5,7 @@ import classes from "./challenge-list.module.scss";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
 import { useMemo } from "react";
 import SearchBar from "./search-bar";
-import { filterAndSortChallenges, getAllUniqueTags } from "./challenge-list.utils";
+import { filterAndSortChallenges, getAllUniqueTags, getDfifficultyCounts } from "./challenge-list.utils";
 import { Challenges } from "./challenge-list.types";
 import { useChallengeFilters } from "./use-challenge-filters";
 import { DifficultyFilter } from "./difficulty-filter";
@@ -21,6 +21,8 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
   const filteredChallenges = useMemo(() => {
     return filterAndSortChallenges(challenges, filters);
   }, [challenges, filters]);
+
+  const difficultyCounts = useMemo(() => getDfifficultyCounts(challenges), [challenges]);
 
   const hasActiveFilters =
     filters.difficulty !== "All" ||
@@ -42,6 +44,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
           <DifficultyFilter
             selected={filters.difficulty}
             onChange={(difficulty) => updateFilters({ difficulty })}
+            counts={difficultyCounts}
           />
           <Flex gap="2" align="center">
             <SortDropdown value={filters.sortBy} onChange={(sortBy) => updateFilters({ sortBy })} />

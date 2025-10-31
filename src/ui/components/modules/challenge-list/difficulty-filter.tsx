@@ -6,11 +6,17 @@ import { DifficultyFilter as DifficultyFilterType } from "./challenge-list.types
 interface Props {
   selected: DifficultyFilterType;
   onChange: (difficulty: DifficultyFilterType) => void;
+  counts?: {
+    All: number;
+    Easy: number;
+    Medium: number;
+    Hard: number;
+  }
 }
 
 const difficulties: DifficultyFilterType[] = ["All", "Easy", "Medium", "Hard"];
 
-export const DifficultyFilter = ({ selected, onChange }: Props) => {
+export const DifficultyFilter = ({ selected, onChange, counts }: Props) => {
   return (
     <Flex gap="2" wrap="wrap">
       <span style={{ fontWeight: 600, marginRight: 8 }}>Difficulty:</span>
@@ -23,6 +29,7 @@ export const DifficultyFilter = ({ selected, onChange }: Props) => {
           style={{ cursor: "pointer" }}
         >
           {diff}
+          {counts && <span style={{ marginLeft: 4, opacity: 0.7 }}>({counts[diff]})</span>}
         </Button>
       ))}
     </Flex>

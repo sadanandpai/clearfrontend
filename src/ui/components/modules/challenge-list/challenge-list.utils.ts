@@ -87,3 +87,20 @@ const difficultyWeight = (difficulty: string): number => {
       return 0;
   }
 };
+
+export const getDfifficultyCounts = (challenges: Challenges[]) => {
+  const counts = {
+    All: challenges.length,
+    Easy: 0,
+    Medium: 0,
+    Hard: 0
+  };
+
+  challenges.forEach((challenge) => {
+    if(challenge.difficulty === "Easy") counts.Easy++;
+    else if(challenge.difficulty === "Medium") counts.Medium++;
+    else if(challenge.difficulty === "Hard") counts.Hard++;
+  });
+
+  return counts;
+}
