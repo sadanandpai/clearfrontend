@@ -50,6 +50,9 @@ export const filterAndSortChallenges = (
 
   //4. Sort
   switch (filters.sortBy) {
+    case "none":
+      // Keep original order (no sorting)
+      break;
     case "name-asc":
       result.sort((a, b) => a.name.localeCompare(b.name));
       break;

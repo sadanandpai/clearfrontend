@@ -25,7 +25,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
   const hasActiveFilters =
     filters.difficulty !== "All" ||
     filters.tags.length > 0 ||
-    filters.sortBy !== "newest" ||
+    filters.sortBy !== "none" ||
     filters.search.trim() !== "";
 
   return (

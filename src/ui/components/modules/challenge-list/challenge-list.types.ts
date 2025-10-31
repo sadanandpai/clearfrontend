@@ -7,6 +7,7 @@ export interface Challenges {
 
 export type DifficultyFilter = "All" | "Easy" | "Medium" | "Hard";
 export type SortOption =
+  | "none"
   | "newest"
   | "oldest"
   | "name-asc"
