@@ -40,7 +40,7 @@ export function MenuDropdown({ isAuthenticated = false }: MenuDropdownProps) {
 
           {isAuthenticated ? (
             <Link href={routes.profile} className="primary-link">
-              Profile
+              My profile
             </Link>
           ) : (
             <>

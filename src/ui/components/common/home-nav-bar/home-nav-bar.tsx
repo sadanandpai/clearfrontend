@@ -5,7 +5,6 @@ import { MenuDropdown } from "./menu-dropdown";
 import classes from "./home-nav-bar.module.scss";
 import { routes } from "@/common/routes";
 import { getSession } from "@/server/data-access/session";
-import { CircleUser } from "lucide-react";
 
 export async function HomeNavBar() {
   let user: Awaited<ReturnType<typeof getSession>> | null = null;
@@ -34,8 +33,8 @@ export async function HomeNavBar() {
       </Flex>
       <Flex align="center" gap="5" className="hidden lg:flex">
         {user ? (
-          <Link href={routes.profile}>
-            <CircleUser size={32} className="text-brand-1" />
+          <Link href={routes.profile} className="primary-link">
+            My profile
           </Link>
         ) : (
           <>
