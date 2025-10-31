@@ -13,7 +13,7 @@ export const useChallengeFilters = () => {
   const filters: ChallengeFilters = useMemo(() => {
     const difficulty = (searchParams.get("difficulty") || "All") as DifficultyFilter;
     const tags = searchParams.get("tags")?.split(",").filter(Boolean) || [];
-    const sortBy = (searchParams.get("sort") || "newest") as SortOption;
+    const sortBy = (searchParams.get("sort") || "none") as SortOption;
     const search = searchParams.get("search") || "";
 
     return { difficulty, tags, sortBy, search };
@@ -39,7 +39,7 @@ export const useChallengeFilters = () => {
         params.delete("tags");
       }
 
-      if (merged.sortBy !== "newest") {
+      if (merged.sortBy !== "none") {
         params.set("sort", merged.sortBy);
       } else {
         params.delete("sort");

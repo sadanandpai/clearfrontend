@@ -15,6 +15,7 @@ export const SortDropdown = ({ value, onChange }: Props) => {
       <Select.Content>
         <Select.Group>
           <Select.Label>Sort by</Select.Label>
+          <Select.Item value="none">Default Order</Select.Item>
           <Select.Item value="newest">Newest First</Select.Item>
           <Select.Item value="oldest">Oldest First</Select.Item>
           <Select.Item value="name-asc">Name (A-Z)</Select.Item>
