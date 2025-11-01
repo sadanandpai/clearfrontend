@@ -4,8 +4,16 @@ import Link from "next/link";
 import { MenuDropdown } from "./menu-dropdown";
 import classes from "./home-nav-bar.module.scss";
 import { routes } from "@/common/routes";
+import { getSession } from "@/server/data-access/session";
 
-export function HomeNavBar() {
+export async function HomeNavBar() {
+  let user: Awaited<ReturnType<typeof getSession>> | null = null;
+  try {
+    user = await getSession();
+  } catch {
+    user = null;
+  }
+
   return (
     <nav className={classes.navbar} role="navigation">
       <Flex align="center" gap="5">
@@ -24,19 +32,27 @@ export function HomeNavBar() {
         </Link>
       </Flex>
       <Flex align="center" gap="5" className="hidden lg:flex">
-        <Link href={routes.signIn} className="secondary-link">
-          LOGIN
-        </Link>
+        {user ? (
+          <Link href={routes.profile} className="primary-link">
+            My profile
+          </Link>
+        ) : (
+          <>
+            <Link href={routes.signIn} className="secondary-link">
+              LOGIN
+            </Link>
 
-        <Link href={routes.signUp} className="primary-link">
-          SIGN UP
-        </Link>
+            <Link href={routes.signUp} className="primary-link">
+              SIGN UP
+            </Link>
+          </>
+        )}
 
         <Link href="https://github.com/sadanandpai/clearfrontend" target="blank">
           <Image src="/github.svg" alt="Github" width={32} height={32} />
         </Link>
       </Flex>
-      <MenuDropdown />
+      <MenuDropdown isAuthenticated={!!user} />
     </nav>
   );
 }
