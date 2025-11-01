@@ -76,3 +76,18 @@ export async function setUserChallengeSolve(challengeId: number) {
     solve: updatedDoc.solve,
   };
 }
+
+export async function getUserSolvedChallenges(): Promise<number[]> {
+  const user = await getLoggedInUser();
+  if(!user) {
+    return[];
+  }
+
+  try{
+    const { getAllUserSolvedChallenges } = await import("@/server/data-access/user-challenge");
+    const solvedChallengeIds = await getAllUserSolvedChallenges();
+    return solvedChallengeIds;
+  } catch {
+    return [];
+  }
+}
