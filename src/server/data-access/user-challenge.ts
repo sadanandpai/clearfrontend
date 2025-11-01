@@ -13,10 +13,10 @@ export async function readUserChallengeInfo(challengeId: number) {
   const document = result.documents[0];
   return document
     ? {
-        $id: document.$id,
-        like: document.like,
-        solve: document.solve,
-      }
+      $id: document.$id,
+      like: document.like,
+      solve: document.solve,
+    }
     : null;
 }
 
