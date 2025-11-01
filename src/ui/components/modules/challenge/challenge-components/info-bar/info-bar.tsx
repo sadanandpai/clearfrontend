@@ -1,7 +1,15 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Badge, Flex } from "@radix-ui/themes";
-import { UserLikeStatus } from "@/ui/components/modules/challenge/challenge-components/user-like-status/user-like-status";
 import { UserSolutionStatus } from "@/ui/components/modules/challenge/challenge-components/user-solution-status/user-solution-status";
+
+const UserLikeStatus = dynamic(
+  () =>
+    import(
+      "@/ui/components/modules/challenge/challenge-components/user-like-status/user-like-status"
+    ).then((mod) => ({ default: mod.UserLikeStatus })),
+  { ssr: false }
+);
 
 interface Props {
   difficulty: string;

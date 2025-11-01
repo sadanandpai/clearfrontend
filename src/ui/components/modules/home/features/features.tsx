@@ -5,12 +5,13 @@ import { Flex } from "@radix-ui/themes";
 import { FeatureItems } from "@/ui/components/core/feature-items/feature-items";
 import { EmblaCarousel } from "@/ui/components/core/carousel/carousel";
 import classes from "./features.module.scss";
+import Image from "next/image";
 
 const listItems = [
-  { title: "Challenge", img: "https://via.placeholder.com/150" },
-  { title: "Code", img: "https://via.placeholder.com/150" },
-  { title: "Run or debug", img: "https://via.placeholder.com/150" },
-  { title: "Dark or light", img: "https://via.placeholder.com/150" },
+  { title: "Challenge", img: "/challenge.svg" },
+  { title: "Code", img: "/code.svg" },
+  { title: "Run or debug", img: "/run-or-debug.svg" },
+  { title: "Dark or light", img: "/dark-or-light.svg" },
 ];
 
 export function Features() {
@@ -30,7 +31,15 @@ export function Features() {
             />
           </div>
 
-          <div className={classes.featureCard}></div>
+          <div className={classes.featureCard}>
+            <Image
+              src={listItems[activeIndex].img}
+              alt={listItems[activeIndex].title}
+              fill
+              sizes="(max-width: 1024px) 0px, 618px"
+              className="object-contain"
+            />
+          </div>
         </Flex>
       </div>
 
@@ -39,7 +48,15 @@ export function Features() {
           {listItems.map((item) => (
             <Fragment key={item.title}>
               <p className={classes.featureTitle}>{item.title}</p>
-              <div className={classes.featureCard}></div>
+              <div className={classes.featureCard}>
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 0px"
+                  className="object-contain"
+                />
+              </div>
             </Fragment>
           ))}
         </EmblaCarousel>
