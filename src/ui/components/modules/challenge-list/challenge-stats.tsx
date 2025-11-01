@@ -6,7 +6,7 @@ import { DifficultyStatCard } from "./difficulty-stat-card";
 
 interface Props {
   challenges: Challenges[];
-  solvedChallengeIds?: number[]
+  solvedChallengeIds?: number[];
 }
 
 export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) => {
