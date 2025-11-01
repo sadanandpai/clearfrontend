@@ -81,10 +81,22 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} style={{ textAlign: "center", padding: "12px 0" }}>
-                No challenges found
-              </td>
-            </tr>
+              <td colSpan={4} style={{ textAlign: "center", padding: "40px 20px" }}>
+                <div style={{ display:"flex", flexDirection: "column", alignItems:"center", gap:"12px"}}>
+                  <span style={{ fontSize: "48px" }}>🔍</span>
+                    <span style={{ fontSize: "18px", fontWeight: 600 }}>No challenges found</span>
+                    <span style={{ fontSize: "14px", opacity: 0.7 }}>
+                      Try adjusting your filters or search terms
+                    </span>
+                    {
+                      hasActiveFilters && (
+                        <Button variant="soft" onClick={resetFilters} style={{ marginTop: "8px" }}>
+                        Clear All Filters
+                      </Button>
+                    )}
+                  </div>
+                </td>
+              </tr>
           ) : (
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
