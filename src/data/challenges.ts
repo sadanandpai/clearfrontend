@@ -1,4 +1,6 @@
-export const challenges = [
+import { Challenges } from "@/ui/components/modules/challenge-list/challenge-list.types";
+
+export const challenges: Challenges[] = [
   {
     id: 1,
     name: "Two Sum",

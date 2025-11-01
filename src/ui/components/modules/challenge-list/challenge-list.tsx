@@ -3,21 +3,85 @@
 import { routes } from "@/common/routes";
 import classes from "./challenge-list.module.scss";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import SearchBar from "./search-bar";
-import { filterChallenges } from "./challenge-list.utils";
+import { filterAndSortChallenges, getAllUniqueTags, getDfifficultyCounts } from "./challenge-list.utils";
 import { Challenges } from "./challenge-list.types";
+import { useChallengeFilters } from "./use-challenge-filters";
+import { DifficultyFilter } from "./difficulty-filter";
+import { TagFilter } from "./tag-filter";
+import { SortDropdown } from "./sort-dropdown";
+import { Flex, Button, Badge } from "@radix-ui/themes";
+import { ActiveFilters } from "./active-filters";
+import { ChallengeStats } from "./challenge-stats";
 
 export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const { filters, updateFilters, resetFilters } = useChallengeFilters();
+
+  const availableTags = useMemo(() => getAllUniqueTags(challenges), [challenges]);
 
   const filteredChallenges = useMemo(() => {
-    return filterChallenges(challenges, searchQuery);
-  }, [challenges, searchQuery]);
+    return filterAndSortChallenges(challenges, filters);
+  }, [challenges, filters]);
+
+  const difficultyCounts = useMemo(() => getDfifficultyCounts(challenges), [challenges]);
+
+  const hasActiveFilters =
+    filters.difficulty !== "All" ||
+    filters.tags.length > 0 ||
+    filters.sortBy !== "none" ||
+    filters.search.trim() !== "";
 
   return (
     <div>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      {/* Challenge stats Dashboard */}
+      <ChallengeStats 
+      challenges={challenges}
+      />
+      {/* Search Bar */}
+      <SearchBar
+        searchQuery={filters.search}
+        setSearchQuery={(search: string) => updateFilters({ search })}
+      />
+      
+      {/* Filters Section */}
+      <Flex direction="column" gap="4" style={{ marginTop: 24, marginBottom: 24, padding: "0 5%" }}>
+        <Flex justify="between" align="center" wrap="wrap" gap="3">
+          <DifficultyFilter
+            selected={filters.difficulty}
+            onChange={(difficulty) => updateFilters({ difficulty })}
+            counts={difficultyCounts}
+          />
+          <Flex gap="2" align="center">
+            <SortDropdown value={filters.sortBy} onChange={(sortBy) => updateFilters({ sortBy })} />
+            {hasActiveFilters && (
+              <Button variant="soft" onClick={resetFilters}>
+                Clear Filters
+              </Button>
+            )}
+          </Flex>
+        </Flex>
+
+        <TagFilter
+          availableTags={availableTags}
+          selectedTags={filters.tags}
+          onChange={(tags) => updateFilters({ tags })}
+        />
+      </Flex>
+
+      {/* Results Count */}
+      <div style={{ padding: "0 5%", marginBottom: 12, color: "gray" }}>
+        Showing {filteredChallenges.length} of {challenges.length} challenges
+      </div>
+
+      {/* Table */}
+      <ActiveFilters
+        filters={filters}
+        onRemoveDifficulty={() => updateFilters({ difficulty: "All" })}
+        onRemoveTag={(tag) => updateFilters({ tags: filters.tags.filter((t) => t !== tag) })}
+        onRemoveSort={() => updateFilters({ sortBy: "none" })}
+        onRemoveSearch={() => updateFilters({ search: "" })}
+      />
       <table className={classes.challengesTable}>
         <thead>
           <tr>
@@ -30,10 +94,22 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} style={{ textAlign: "center", padding: "12px 0" }}>
-                No challenges found
-              </td>
-            </tr>
+              <td colSpan={4} style={{ textAlign: "center", padding: "40px 20px" }}>
+                <div style={{ display:"flex", flexDirection: "column", alignItems:"center", gap:"12px"}}>
+                  <span style={{ fontSize: "48px" }}>🔍</span>
+                    <span style={{ fontSize: "18px", fontWeight: 600 }}>No challenges found</span>
+                    <span style={{ fontSize: "14px", opacity: 0.7 }}>
+                      Try adjusting your filters or search terms
+                    </span>
+                    {
+                      hasActiveFilters && (
+                        <Button variant="soft" onClick={resetFilters} style={{ marginTop: "8px" }}>
+                        Clear All Filters
+                      </Button>
+                    )}
+                  </div>
+                </td>
+              </tr>
           ) : (
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
@@ -43,7 +119,20 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
                     {challenge.name}
                   </RadixNextLink>
                 </td>
-                <td>{challenge.difficulty}</td>
+                <td>
+                  <Badge
+                    color={
+                      challenge.difficulty === "Easy"
+                      ? "green"
+                      : challenge.difficulty === "Medium"
+                      ? "yellow"
+                      : "red"
+                    }
+                    variant="soft"
+                    >
+                  {challenge.difficulty}
+                  </Badge>
+                  </td>
                 <td>{challenge.tags.join(", ")}</td>
               </tr>
             ))
