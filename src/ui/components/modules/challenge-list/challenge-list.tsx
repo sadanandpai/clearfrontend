@@ -12,6 +12,7 @@ import { DifficultyFilter } from "./difficulty-filter";
 import { TagFilter } from "./tag-filter";
 import { SortDropdown } from "./sort-dropdown";
 import { Flex, Button, Badge } from "@radix-ui/themes";
+import { ActiveFilters } from "./active-filters";
 
 export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
   const { filters, updateFilters, resetFilters } = useChallengeFilters();
@@ -69,6 +70,13 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
       </div>
 
       {/* Table */}
+      <ActiveFilters
+        filters={filters}
+        onRemoveDifficulty={() => updateFilters({ difficulty: "All" })}
+        onRemoveTag={(tag) => updateFilters({ tags: filters.tags.filter((t) => t !== tag) })}
+        onRemoveSort={() => updateFilters({ sortBy: "none" })}
+        onRemoveSearch={() => updateFilters({ search: "" })}
+      />
       <table className={classes.challengesTable}>
         <thead>
           <tr>
