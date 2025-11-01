@@ -13,6 +13,7 @@ import { TagFilter } from "./tag-filter";
 import { SortDropdown } from "./sort-dropdown";
 import { Flex, Button, Badge } from "@radix-ui/themes";
 import { ActiveFilters } from "./active-filters";
+import { ChallengeStats } from "./challenge-stats";
 
 export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
   const { filters, updateFilters, resetFilters } = useChallengeFilters();
@@ -33,12 +34,16 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
 
   return (
     <div>
+      {/* Challenge stats Dashboard */}
+      <ChallengeStats 
+      challenges={challenges}
+      />
       {/* Search Bar */}
       <SearchBar
         searchQuery={filters.search}
         setSearchQuery={(search: string) => updateFilters({ search })}
       />
-
+      
       {/* Filters Section */}
       <Flex direction="column" gap="4" style={{ marginTop: 24, marginBottom: 24, padding: "0 5%" }}>
         <Flex justify="between" align="center" wrap="wrap" gap="3">
