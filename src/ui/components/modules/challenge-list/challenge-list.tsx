@@ -14,9 +14,13 @@ import { SortDropdown } from "./sort-dropdown";
 import { Flex, Button, Badge } from "@radix-ui/themes";
 import { ActiveFilters } from "./active-filters";
 import { ChallengeStats } from "./challenge-stats";
+import { getUserSolvedChallenges } from "@/server/actions/user-challenge";
+import {useEffect, useState} from "react";
+import { CheckCircle2, Circle } from "lucide-react";
 
 export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
   const { filters, updateFilters, resetFilters } = useChallengeFilters();
+  const [solvedChallengeIds, setSolvedChallengeIds] = useState<number[]>([]);
 
   const availableTags = useMemo(() => getAllUniqueTags(challenges), [challenges]);
 
@@ -32,11 +36,16 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
     filters.sortBy !== "none" ||
     filters.search.trim() !== "";
 
+  useEffect(() => {
+    getUserSolvedChallenges().then(setSolvedChallengeIds);
+  }, []);
+  
   return (
     <div>
       {/* Challenge stats Dashboard */}
       <ChallengeStats 
       challenges={challenges}
+      solvedChallengeIds={solvedChallengeIds}
       />
       {/* Search Bar */}
       <SearchBar
@@ -86,6 +95,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
         <thead>
           <tr>
             <th>#</th>
+            <th style={{ width: "80px", textAlign: "center", paddingLeft: "16px" }}>Status</th>
             <th>Name</th>
             <th>Difficulty</th>
             <th>Tags</th>
@@ -114,6 +124,13 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
                 <td>{index + 1}</td>
+                <td style={{ textAlign: "center", paddingLeft: "16px" }}>
+                  {solvedChallengeIds.includes(challenge.id) ? (
+                    <CheckCircle2 size={20} color="green" />
+                  ) : (
+                    <Circle size={20} color="gray" style={{ opacity: 0.3 }} />
+                  )}
+                </td>
                 <td>
                   <RadixNextLink href={`${routes.challenges}/${challenge.id}`}>
                     {challenge.name}
