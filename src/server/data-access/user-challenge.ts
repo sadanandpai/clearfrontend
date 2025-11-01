@@ -56,3 +56,18 @@ export async function updateUserChallengeInfo(
     solve: doc.solve,
   };
 }
+
+export async function getAllUserSolvedChallenges(): Promise<number[]> {
+  const { databases, Query } = await serviceClient.database();
+
+  try {
+    const result = await databases.listDocuments(DB, USER_CHALLENGE_INFO_COLLECTION, [
+      Query.equal("solve", true),
+    ]);
+
+    return result.documents.map((doc) => (doc as unknown as { cId: number }).cId);
+  
+  } catch {
+    return [];
+  }
+}
