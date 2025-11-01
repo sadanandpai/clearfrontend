@@ -17,6 +17,8 @@ export function Executor() {
   const { dispatch, listen } = useSandpack();
   const setOutput = useChallengeStore((state) => state.setOutput);
   const setOutputs = useChallengeStore((state) => state.setOutputs);
+  const testOutput = useChallengeStore((state) => state.testOutput);
+  const testOutputs = useChallengeStore((state) => state.testOutputs);
   const overlayState = useLoadingOverlayState();
   const queryClient = useQueryClient();
 
@@ -90,10 +92,18 @@ export function Executor() {
 
   return (
     <Flex justify="end" align="center" gap="1" mt="2" mr="2">
-      <Button onClick={runUserTest} disabled={overlayState !== "HIDDEN"}>
+      <Button
+        onClick={runUserTest}
+        disabled={overlayState !== "HIDDEN"}
+        loading={testOutput?.isLoading ?? false}
+      >
         Run
       </Button>
-      <Button onClick={runAllTests} disabled={overlayState !== "HIDDEN"}>
+      <Button
+        onClick={runAllTests}
+        disabled={overlayState !== "HIDDEN"}
+        loading={testOutputs?.isLoading ?? false}
+      >
         Run All
       </Button>
     </Flex>
