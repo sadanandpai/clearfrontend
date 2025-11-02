@@ -1,9 +1,9 @@
 @use "src/ui/styles/variables" as *;
 @use "src/ui/styles/mixins" as *;
+@use "src/ui/styles/utilities";
 
 .verticalCenter {
-  @include flex-center;
-  margin-top: 2rem;
+  @extend .vertical-center;
 }
 
 .testResultsWrapper {
