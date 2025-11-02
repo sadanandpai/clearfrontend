@@ -1,36 +1,36 @@
+@use './mixins' as *;
+
 .title {
-  font-size: 60px;
-  line-height: 72px;
+  font-size: 6rem;  
+  line-height: 7.2rem;
   font-family: var(--font-bGr);
+
+  @include respond-to(md) {
+    font-size: 7.2rem;
+    line-height: 8.6rem;
+  }
 }
 
 .subTitle {
-  font-size: 30px;
-  line-height: 42px;
+  font-size: 3rem;
+  line-height: 4.2rem;
   font-weight: 200;
   color: var(--brand-bg-2);
+
+  @include respond-to(md) {
+    font-size: 3.6rem;
+    line-height: 4.8rem;
+  }
 }
 
 .sectionTitle {
-  font-size: 52px;
-  line-height: 66px;
+  font-size: 5.2rem;
+  line-height: 6.6rem;
   font-family: var(--font-bGr);
   color: var(--brand-main-1);
-}
 
-@media (width >= 768px) {
-  .title {
-    font-size: 72px;
-    line-height: 86px;
-  }
-
-  .subTitle {
-    font-size: 36px;
-    line-height: 48px;
-  }
-
-  .sectionTitle {
-    font-size: 64px;
-    line-height: 78px;
+  @include respond-to(md) {
+    font-size: 6.4rem;
+    line-height: 7.8rem;
   }
 }

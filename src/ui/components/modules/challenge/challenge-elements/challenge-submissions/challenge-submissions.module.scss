@@ -1,6 +1,6 @@
+@use "src/ui/styles/mixins" as *;
+
 .verticalCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   margin-top: 2rem;
 }

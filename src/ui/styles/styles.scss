@@ -1,72 +1,69 @@
+@use './variables' as *;
+@use './mixins' as *;
+
 .home-bg {
   background-color: var(--brand-bg-1);
   min-height: 100vh;
-  padding: 32px 20px;
+  padding: $spacing-xl 2rem;
   overflow-x: hidden;
-}
 
-@media (width >= 768px) {
-  .home-bg {
-    padding: 32px;
+  @include respond-to(md) {
+    padding: $spacing-xl;
   }
 }
 
 .container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
+  @include container;
 }
 
 .primary-link {
   border: none;
   background-color: var(--brand-main-1);
   color: var(--brand-bg-2);
-  padding: 8px 24px;
-  border-radius: 32px;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
   font-weight: bold;
-  line-height: 20px;
-  font-size: 16px;
+  line-height: 2rem;
+  font-size: 1.6rem;
 
   &.large {
-    font-size: 24px;
-    padding: 16px 32px;
+    font-size: 2.4rem;
+    padding: $spacing-md $spacing-xl;
   }
 }
 
 .secondary-link {
-  border: none;
   border: 1px solid var(--brand-main-1);
   color: var(--brand-main-1);
-  padding: 8px 24px;
-  border-radius: 32px;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
   font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1.6rem;
+  line-height: 2rem;
 }
 
 .panel {
-  padding: 8px;
+  padding: $spacing-sm;
 
   &.left {
-    padding-right: 4px;
+    padding-right: $spacing-xs;
   }
 
   &.right {
-    padding-left: 4px;
+    padding-left: $spacing-xs;
   }
 
   &.top {
-    padding-bottom: 4px;
+    padding-bottom: $spacing-xs;
   }
 
   &.bottom {
-    padding-top: 4px;
+    padding-top: $spacing-xs;
   }
 }
 
 .panel-layout {
   height: 100%;
-  border-radius: 6px;
+  border-radius: $radius-md;
   background-color: var(--gray-1);
 }
