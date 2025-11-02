@@ -1,7 +1,7 @@
+@use "src/ui/styles/mixins" as *;
+
 .navBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-between;
   gap: 1rem;
   padding: 0.5rem 1rem;
   box-shadow: var(--shadow-3);

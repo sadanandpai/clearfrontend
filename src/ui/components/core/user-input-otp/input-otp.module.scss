@@ -1,7 +1,7 @@
+@use "src/ui/styles/mixins" as *;
+
 .slot {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   width: 3rem;
   height: 5rem;
   border: 1px solid var(--gray-8);
@@ -15,9 +15,7 @@
 }
 
 .fakeCaret {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   position: absolute;
   pointer-events: none;
   inset: 0;
