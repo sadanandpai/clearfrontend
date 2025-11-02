@@ -2,12 +2,12 @@
 
 import { TextField } from "@radix-ui/themes";
 import React, { useEffect, useState } from "react";
+import styles from "./search-bar.module.scss";
 
 interface Props {
   searchQuery: string;
   setSearchQuery: ((value: string) => void) | React.Dispatch<React.SetStateAction<string>>;
   className?: string;
-  style?: React.CSSProperties;
   placeholder?: string;
   debounceMs?: number;
 }
@@ -16,7 +16,6 @@ const SearchBar: React.FC<Props> = ({
   searchQuery,
   setSearchQuery,
   className,
-  style,
   placeholder = "Search challenges by name, tag, or difficulty",
   debounceMs = 300,
 }) => {
@@ -35,23 +34,14 @@ const SearchBar: React.FC<Props> = ({
   }, [localValue, debounceMs, setSearchQuery]);
 
   return (
-    <div
-      className={className}
-      style={{
-        width: "100%",
-        marginTop: 20,
-        display: "flex",
-        justifyContent: "flex-end",
-        ...style,
-      }}
-    >
+    <div className={`${styles.searchBarWrapper} ${className || ''}`}>
       <TextField.Root
         placeholder={placeholder}
         size="2"
         value={localValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalValue(e.target.value)}
         aria-label="Search challenges"
-        style={{ width: 400, marginRight: "5%" }}
+        className={styles.searchInput}
       />
     </div>
   );
