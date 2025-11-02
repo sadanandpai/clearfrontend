@@ -1,6 +1,8 @@
+@use "src/ui/styles/variables" as *;
+
 .fileTabs {
   background-color: var(--gray-7);
-  border-radius: 6px 6px 0 0;
+  border-radius: $radius-md $radius-md 0 0;
 
   [role="tablist"] {
     display: flex;
@@ -9,7 +11,7 @@
     [role="tab"] {
       padding: 0.5rem;
       display: flex;
-      border-radius: 6px 6px 0 0;
+      border-radius: $radius-md $radius-md 0 0;
       background-color: var(--gray-1);
     }
 

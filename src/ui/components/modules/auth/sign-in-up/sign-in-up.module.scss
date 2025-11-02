@@ -1,21 +1,5 @@
+@use "src/ui/styles/utilities";
+
 .authFormWrapper {
-  text-align: center;
-  margin: 1rem auto;
-
-  .authForm {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .authFormLinks {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    margin-top: 2rem;
-
-    :only-child {
-      margin-left: auto;
-    }
-  }
+  @extend .form-base;
 }

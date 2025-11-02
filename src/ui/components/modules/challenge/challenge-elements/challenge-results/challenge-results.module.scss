@@ -1,15 +1,16 @@
+@use "src/ui/styles/variables" as *;
+@use "src/ui/styles/mixins" as *;
+@use "src/ui/styles/utilities";
+
 .verticalCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
+  @extend .vertical-center;
 }
 
 .testResultsWrapper {
   .testResults {
     display: flex;
     flex-direction: column;
-    gap: 2.4rem;
-    margin-bottom: 2.4rem;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
   }
 }

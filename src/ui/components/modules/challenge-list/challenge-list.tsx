@@ -30,7 +30,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} style={{ textAlign: "center", padding: "12px 0" }}>
+              <td colSpan={4} className={classes.emptyStateCell}>
                 No challenges found
               </td>
             </tr>

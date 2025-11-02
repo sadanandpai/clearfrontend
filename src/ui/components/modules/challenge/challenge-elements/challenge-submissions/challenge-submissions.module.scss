@@ -1,6 +1,5 @@
+@use "src/ui/styles/utilities";
+
 .verticalCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
+  @extend .vertical-center;
 }

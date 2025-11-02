@@ -1,15 +1,17 @@
+@use "src/ui/styles/variables" as *;
+
 .infoCard {
-  border-radius: 24px;
-  padding: 24px;
-  width: 296px;
+  border-radius: $spacing-lg;
+  padding: $spacing-lg;
+  width: 29.6rem;
   color: white;
   background: linear-gradient(180deg, rgba(213, 213, 213, 0.2) 0%, rgba(3, 174, 102, 0.05) 100%);
   border: 1px solid linear-gradient(180deg, #d5d5d5 0%, rgba(3, 174, 102, 0.25) 100%);
 }
 
 .imageContainer {
-  width: 48px;
-  height: 48px;
+  width: $spacing-2xl;
+  height: $spacing-2xl;
 
   img {
     width: 100%;
