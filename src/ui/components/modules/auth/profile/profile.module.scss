@@ -1,25 +1,21 @@
 @use "src/ui/styles/mixins" as *;
+@use "src/ui/styles/utilities";
 
 .main {
   width: min(76.8rem, 90%);
   margin: 2rem auto;
 
   .updateForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    @extend .form-field;
+    gap: $spacing-md;
     margin-bottom: 2rem;
 
     label {
-      font-weight: 500;
+      @extend .form-field-label;
     }
 
     .submission {
-      @include flex-between;
-
-      > :last-child {
-        margin-left: auto;
-      }
+      @extend .form-submission-row;
     }
   }
 }
