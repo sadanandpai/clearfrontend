@@ -1,3 +1,6 @@
+@use "src/ui/styles/variables" as *;
+@use "src/ui/styles/mixins" as *;
+
 .embla {
   overflow: hidden;
 }
@@ -12,15 +15,14 @@
 }
 
 .emblaDots {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 16px;
+  @include flex-center;
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
 }
 
 .emblaDot {
-  height: 12px;
-  width: 12px;
+  height: 1.2rem;
+  width: 1.2rem;
   border-radius: 50%;
   border: 1px solid var(--brand-bg-2);
 

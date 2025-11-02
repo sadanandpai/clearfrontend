@@ -1,14 +1,16 @@
+@use "src/ui/styles/variables" as *;
+
 .circles {
   display: block;
-  width: 330px;
-  height: 350px;
+  width: 33rem;
+  height: 35rem;
   position: absolute;
   right: 0;
   transform: translate(-65%, -40%);
   border-radius: 9999px;
   background-color: #0075bf;
   box-shadow:
-    0 0 0 128px #024e7f,
-    0 0 0 256px #003658,
-    0 0 0 384px #021e31;
+    0 0 0 12.8rem #024e7f,
+    0 0 0 25.6rem #003658,
+    0 0 0 38.4rem #021e31;
 }
