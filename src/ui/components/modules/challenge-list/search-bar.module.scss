@@ -1,0 +1,25 @@
+@use "src/ui/styles/variables" as *;
+
+.searchBarWrapper {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searchInput {
+  width: 40rem;
+  margin-right: 5%;
+}
+
+// Responsive variant for smaller screens
+@media (max-width: 768px) {
+  .searchInput {
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .searchBarWrapper {
+    margin-top: $spacing-md;
+  }
+}
