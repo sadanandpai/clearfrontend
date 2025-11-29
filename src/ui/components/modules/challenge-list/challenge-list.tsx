@@ -14,7 +14,7 @@ import { SortDropdown } from "./sort-dropdown";
 import { Flex, Button, Badge } from "@radix-ui/themes";
 import { ActiveFilters } from "./active-filters";
 import { ChallengeStats } from "./challenge-stats";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle2, Circle } from "lucide-react";
 import { ProgressCircle } from "./progress-circle";
 import { getUserSolvedChallenges } from "@/server/actions/user-challenge";
@@ -40,19 +40,19 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
   useEffect(() => {
     getUserSolvedChallenges().then(setSolvedChallengeIds);
   }, []);
-  
+
   return (
     <div>
       {/* Challenge stats Dashboard */}
       <Flex gap="3" style={{ margin: "1.5rem 0", padding: "0 5%" }} align="stretch">
-      <ProgressCircle
-        solved={solvedChallengeIds.length}
-        total={challenges.length}
-      />
-      <ChallengeStats
-        challenges={challenges}
-        solvedChallengeIds={solvedChallengeIds}
-      />
+        <ProgressCircle
+          solved={solvedChallengeIds.length}
+          total={challenges.length}
+        />
+        <ChallengeStats
+          challenges={challenges}
+          solvedChallengeIds={solvedChallengeIds}
+        />
       </Flex>
 
       {/* Filters Section */}
@@ -119,21 +119,21 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
           {filteredChallenges.length === 0 ? (
             <tr>
               <td colSpan={4} style={{ textAlign: "center", padding: "2.5rem 1.25rem" }}>
-                <div style={{ display:"flex", flexDirection: "column", alignItems:"center", gap:"0.75rem"}}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
                   <span style={{ fontSize: "3rem" }}>🔍</span>
-                    <span style={{ fontSize: "1.125rem", fontWeight: 600 }}>No challenges found</span>
-                    <span style={{ fontSize: "0.875rem", opacity: 0.7 }}>
-                      Try adjusting your filters or search terms
-                    </span>
-                    {
-                      hasActiveFilters && (
-                        <Button variant="soft" onClick={resetFilters} style={{ marginTop: "0.5rem" }}>
+                  <span style={{ fontSize: "1.125rem", fontWeight: 600 }}>No challenges found</span>
+                  <span style={{ fontSize: "0.875rem", opacity: 0.7 }}>
+                    Try adjusting your filters or search terms
+                  </span>
+                  {
+                    hasActiveFilters && (
+                      <Button variant="soft" onClick={resetFilters} style={{ marginTop: "0.5rem" }}>
                         Clear All Filters
                       </Button>
                     )}
-                  </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
           ) : (
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
@@ -154,16 +154,16 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
                   <Badge
                     color={
                       challenge.difficulty === "Easy"
-                      ? "green"
-                      : challenge.difficulty === "Medium"
-                      ? "yellow"
-                      : "red"
+                        ? "green"
+                        : challenge.difficulty === "Medium"
+                          ? "yellow"
+                          : "red"
                     }
                     variant="soft"
-                    >
-                  {challenge.difficulty}
+                  >
+                    {challenge.difficulty}
                   </Badge>
-                  </td>
+                </td>
                 <td>{challenge.tags.join(", ")}</td>
               </tr>
             ))

@@ -15,7 +15,12 @@ export const CircularProgressSvg = ({
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      style={{ transform: "rotate(-90deg)", display: "block" }}
+    >
       {/* Background circle */}
       <circle
         cx={center}
