@@ -18,7 +18,16 @@ export const ProgressCircle = ({ solved, total }: Props) => {
           Overall Progress
         </Text>
 
-        <div style={{ position: "relative", width: "6rem", height: "6rem" }}>
+        <div
+          style={{
+            position: "relative",
+            width: "96px",
+            height: "96px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <CircularProgressSvg percentage={percentage} size={96} strokeWidth={8} />
 
           {/* Center text */}
