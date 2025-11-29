@@ -54,7 +54,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
       />
       
       {/* Filters Section */}
-      <Flex direction="column" gap="4" style={{ marginTop: 24, marginBottom: 24, padding: "0 5%" }}>
+      <Flex direction="column" gap="4" style={{ marginTop: "1.5rem", marginBottom: "1.5rem", padding: "0 5%" }}>
         <Flex justify="between" align="center" wrap="wrap" gap="3">
           <DifficultyFilter
             selected={filters.difficulty}
@@ -79,7 +79,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
       </Flex>
 
       {/* Results Count */}
-      <div style={{ padding: "0 5%", marginBottom: 12, color: "gray" }}>
+      <div style={{ padding: "0 5%", marginBottom: "0.75rem", color: "gray" }}>
         Showing {filteredChallenges.length} of {challenges.length} challenges
       </div>
 
@@ -95,7 +95,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
         <thead>
           <tr>
             <th>#</th>
-            <th style={{ width: "80px", textAlign: "center", paddingLeft: "16px" }}>Status</th>
+            <th style={{ width: "5rem", textAlign: "center", paddingLeft: "1rem" }}>Status</th>
             <th>Name</th>
             <th>Difficulty</th>
             <th>Tags</th>
@@ -104,16 +104,16 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} style={{ textAlign: "center", padding: "40px 20px" }}>
-                <div style={{ display:"flex", flexDirection: "column", alignItems:"center", gap:"12px"}}>
-                  <span style={{ fontSize: "48px" }}>🔍</span>
-                    <span style={{ fontSize: "18px", fontWeight: 600 }}>No challenges found</span>
-                    <span style={{ fontSize: "14px", opacity: 0.7 }}>
+              <td colSpan={4} style={{ textAlign: "center", padding: "2.5rem 1.25rem" }}>
+                <div style={{ display:"flex", flexDirection: "column", alignItems:"center", gap:"0.75rem"}}>
+                  <span style={{ fontSize: "3rem" }}>🔍</span>
+                    <span style={{ fontSize: "1.125rem", fontWeight: 600 }}>No challenges found</span>
+                    <span style={{ fontSize: "0.875rem", opacity: 0.7 }}>
                       Try adjusting your filters or search terms
                     </span>
                     {
                       hasActiveFilters && (
-                        <Button variant="soft" onClick={resetFilters} style={{ marginTop: "8px" }}>
+                        <Button variant="soft" onClick={resetFilters} style={{ marginTop: "0.5rem" }}>
                         Clear All Filters
                       </Button>
                     )}
@@ -124,7 +124,7 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
                 <td>{index + 1}</td>
-                <td style={{ textAlign: "center", paddingLeft: "16px" }}>
+                <td style={{ textAlign: "center", paddingLeft: "1rem" }}>
                   {solvedChallengeIds.includes(challenge.id) ? (
                     <CheckCircle2 size={20} color="green" />
                   ) : (

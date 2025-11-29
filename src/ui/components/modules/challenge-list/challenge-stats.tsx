@@ -11,10 +11,18 @@ interface Props {
 
 export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) => {
   const getDifficultyStats = (difficulty: "Easy" | "Medium" | "Hard") => {
-    const total = challenges.filter((c) => c.difficulty === difficulty).length;
-    const solved = challenges
-      .filter((c) => c.difficulty === difficulty && solvedChallengeIds.includes(c.id))
-      .length;
+    const { total, solved } = challenges.reduce(
+      (acc, challenge) => {
+        if (challenge.difficulty === difficulty) {
+          acc.total += 1;
+          if (solvedChallengeIds.includes(challenge.id)) {
+            acc.solved += 1;
+          }
+        }
+        return acc;
+      },
+      { total: 0, solved: 0 }
+    );
     return { solved, total, percentage: total > 0 ? (solved / total) * 100 : 0 };
   };
 
