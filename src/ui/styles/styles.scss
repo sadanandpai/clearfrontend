@@ -5,10 +5,12 @@
   background-color: var(--brand-bg-1);
   min-height: 100vh;
   padding: $spacing-xl 2rem;
+  padding-bottom: 0;
   overflow-x: hidden;
 
   @include respond-to(md) {
     padding: $spacing-xl;
+    padding-bottom: 0;
   }
 }
 
