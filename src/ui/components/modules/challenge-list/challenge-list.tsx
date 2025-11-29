@@ -45,14 +45,14 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
     <div>
       {/* Challenge stats Dashboard */}
       <Flex gap="3" style={{ margin: "1.5rem 0", padding: "0 5%" }} align="stretch">
-        <ProgressCircle
-          solved={solvedChallengeIds.length}
-          total={challenges.length}
-        />
-        <ChallengeStats
-          challenges={challenges}
-          solvedChallengeIds={solvedChallengeIds}
-        />
+      <ProgressCircle
+        solved={solvedChallengeIds.length}
+        total={challenges.length}
+      />
+      <ChallengeStats
+        challenges={challenges}
+        solvedChallengeIds={solvedChallengeIds}
+      />
       </Flex>
 
       {/* Filters Section */}

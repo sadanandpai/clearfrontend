@@ -12,14 +12,14 @@ export const ProgressCircle = ({ solved, total }: Props) => {
   const percentage = total > 0 ? Math.round((solved / total) * 100) : 0;
 
   return (
-    <Card style={{ padding: "24px 20px", minWidth: 200 }}>
-      <Flex direction="column" align="center" gap="2">
-        <Text size="2" weight="medium" color="gray" style={{ marginBottom: 4 }}>
+    <Card style={{ padding: "1rem", minWidth: "12.5rem", height: "100%" }}>
+      <Flex direction="column" align="center" justify="center" gap="2" style={{ height: "100%" }}>
+        <Text size="2" weight="medium" color="gray">
           Overall Progress
         </Text>
 
-        <div style={{ position: "relative", width: 140, height: 140 }}>
-          <CircularProgressSvg percentage={percentage} />
+        <div style={{ position: "relative", width: "6rem", height: "6rem" }}>
+          <CircularProgressSvg percentage={percentage} size={96} strokeWidth={8} />
 
           {/* Center text */}
           <div
@@ -31,23 +31,20 @@ export const ProgressCircle = ({ solved, total }: Props) => {
               textAlign: "center",
             }}
           >
-            <Text size="8" weight="bold" style={{ fontSize: 42, lineHeight: 1 }}>
+            <Text size="6" weight="bold" style={{ lineHeight: 1 }}>
               {percentage}%
-            </Text>
-            <Text size="2" color="gray" style={{ display: "block", marginTop: 4 }}>
-              Complete
             </Text>
           </div>
         </div>
 
         {/* Stats text */}
-        <Text size="2" color="gray" style={{ marginTop: 4 }}>
-          {solved} / {total} challenges
+        <Text size="2" color="gray">
+          {solved} / {total}
         </Text>
-        
+
         {percentage === 100 && (
-          <Text size="2" weight="bold" style={{ color: "#22c55e", marginTop: 4 }}>
-            🎉 All Complete!
+          <Text size="2" weight="bold" style={{ color: "#22c55e" }}>
+            🎉 Complete!
           </Text>
         )}
       </Flex>
