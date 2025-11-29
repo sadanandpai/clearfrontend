@@ -1,3 +1,5 @@
+// import { defaultTestCode } from "@/common/test-codes";
+
 export const problem = {
   id: 2,
   name: "Zip",
@@ -78,4 +80,5 @@ describe('inputTest', () => {
     expect(userSolution([1, 2, 3], [])).toEqual(systemSolution([1, 2, 3], []));
   });
 });`,
+  // testCode: defaultTestCode,
 };

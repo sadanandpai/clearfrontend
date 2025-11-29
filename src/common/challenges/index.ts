@@ -13,4 +13,10 @@ export const challenges: Challenges[] = [
     difficulty: "Medium",
     tags: ["Array", "Loop"],
   },
+  {
+    id: 3,
+    name: "Random Number",
+    difficulty: "Easy",
+    tags: ["Math", "Number"],
+  },
 ];

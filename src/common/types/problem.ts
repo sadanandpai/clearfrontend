@@ -10,5 +10,6 @@ export interface ProblemProps {
   sampleInput: string;
   code: string;
   solution: string;
+  testCode: (arg: string) => string;
   testCases: string;
 }
