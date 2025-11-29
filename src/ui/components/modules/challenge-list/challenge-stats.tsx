@@ -6,12 +6,23 @@ import { DifficultyStatCard } from "./difficulty-stat-card";
 
 interface Props {
   challenges: Challenges[];
+  solvedChallengeIds?: number[]
 }
 
-export const ChallengeStats = ({ challenges }: Props) => {
+export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) => {
   const getDifficultyStats = (difficulty: "Easy" | "Medium" | "Hard") => {
-    const total = challenges.filter((c) => c.difficulty === difficulty).length;
-    const solved = 0; // TODO: Replace with actual solved count when user progress tracking is implemented
+    const { total, solved } = challenges.reduce(
+      (acc, challenge) => {
+        if (challenge.difficulty === difficulty) {
+          acc.total += 1;
+          if (solvedChallengeIds.includes(challenge.id)) {
+            acc.solved += 1;
+          }
+        }
+        return acc;
+      },
+      { total: 0, solved: 0 }
+    );
     return { solved, total, percentage: total > 0 ? (solved / total) * 100 : 0 };
   };
 
