@@ -1,25 +1,23 @@
 @use "src/ui/styles/variables" as *;
+@use "src/ui/styles/mixins" as *;
 
 .searchBarWrapper {
   width: 100%;
-  margin-top: 2rem;
+  margin-top: $spacing-md;
   display: flex;
   justify-content: flex-end;
+
+  @include respond-to(md) {
+    margin-top: 2rem;
+  }
 }
 
 .searchInput {
-  width: 40rem;
-  margin-right: 5%;
-}
+  width: 100%;
+  margin-right: 0;
 
-// Responsive variant for smaller screens
-@media (max-width: 768px) {
-  .searchInput {
-    width: 100%;
-    margin-right: 0;
-  }
-  
-  .searchBarWrapper {
-    margin-top: $spacing-md;
+  @include respond-to(md) {
+    width: 40rem;
+    margin-right: 5%;
   }
 }
