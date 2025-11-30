@@ -1,17 +1,17 @@
-@use "src/ui/styles/mixins" as *;
-
 .authFormWrapper {
   text-align: center;
   margin: 1rem auto;
 
   .authForm {
-    @include flex-column-center;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
   }
 
   .authFormLinks {
-    @include flex-between;
+    display: flex;
     gap: 1rem;
+    justify-content: space-between;
     margin-top: 2rem;
 
     :only-child {
