@@ -43,15 +43,6 @@ export default function randomNumber(num1, num2) {
   return Math.floor(Math.random() * (num2 - num1 + 1)) + num1;
 }
 `,
-  testCase: (arg: string) => `import userSolution from './code';
-import systemSolution from './solution';
-
-describe('inputTest', () => {
-  test('should check if program runs correctly for the user input', () => {
-    expect(userSolution(${arg})).toEqual(systemSolution(${arg}));
-  });
-}); `,
-
   testCases: `import userSolution from './code';
 import systemSolution from './solution';
 

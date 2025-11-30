@@ -1,5 +1,5 @@
-import { TestOutputProps } from "@/common/types/test";
 import { SandpackClientListen } from "@codesandbox/sandpack-react/unstyled";
+import { TestOutputProps } from "@/common/types/test";
 
 export interface ErrorProps {
   type: string;

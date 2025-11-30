@@ -68,15 +68,6 @@ export default function isValid(s) {
   return stack.length === 0;
 }
 `,
-  testCase: (arg: string) => `import userSolution from './code';
-import systemSolution from './solution';
-
-describe('isValid', () => {
-  test('should validate the input string', () => {
-    expect(userSolution(${arg})).toEqual(systemSolution(${arg}));
-  });
-});`,
-
   testCases: `import userSolution from './code';
 import systemSolution from './solution';
 

@@ -51,15 +51,6 @@ export default function isPalindrome(str) {
   return cleanStr === cleanStr.split('').reverse().join('');
 }
 `,
-  testCase: (arg: string) => `import userSolution from './code';
-import systemSolution from './solution';
-
-describe('isPalindrome', () => {
-  test('should check if the input string is a palindrome', () => {
-    expect(userSolution(${arg})).toEqual(systemSolution(${arg}));
-  });
-});`,
-
   testCases: `import userSolution from './code';
 import systemSolution from './solution';
 
