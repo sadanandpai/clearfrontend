@@ -12,7 +12,7 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-export const bGr = Bricolage_Grotesque({
+const _bGr = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-bgr",
