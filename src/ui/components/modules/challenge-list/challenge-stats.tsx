@@ -6,7 +6,7 @@ import { DifficultyStatCard } from "./difficulty-stat-card";
 
 interface Props {
   challenges: Challenges[];
-  solvedChallengeIds?: number[]
+  solvedChallengeIds?: number[];
 }
 
 export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) => {
@@ -33,7 +33,7 @@ export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) =
   ];
 
   return (
-    <Flex gap="3" style={{ margin: "24px 0", padding: "0 16px" }}>
+    <Flex gap="3" style={{ flex: 1 }}>
       {difficultyStats.map((stat) => (
         <DifficultyStatCard
           key={stat.difficulty}
