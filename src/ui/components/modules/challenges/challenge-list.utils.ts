@@ -1,6 +1,6 @@
-import { Challenges, ChallengeFilters } from "./challenge-list.types";
+import { Challenge, ChallengeFilters } from "@/common/types/challenge.types";
 
-export const filterChallenges = (challenges: Challenges[], searchQuery: string) => {
+export const filterChallenges = (challenges: Challenge[], searchQuery: string) => {
   if (!searchQuery.trim()) return challenges;
   const query = searchQuery.trim().toLowerCase();
   return challenges.filter((challenge) => {
@@ -12,7 +12,7 @@ export const filterChallenges = (challenges: Challenges[], searchQuery: string) 
   });
 };
 
-export const getAllUniqueTags = (challenges: Challenges[]): string[] => {
+export const getAllUniqueTags = (challenges: Challenge[]): string[] => {
   const tagsSet = new Set<string>();
   challenges.forEach((challenge) => {
     challenge.tags.forEach((tag) => tagsSet.add(tag));
@@ -21,9 +21,9 @@ export const getAllUniqueTags = (challenges: Challenges[]): string[] => {
 };
 
 export const filterAndSortChallenges = (
-  challenges: Challenges[],
+  challenges: Challenge[],
   filters: ChallengeFilters,
-): Challenges[] => {
+): Challenge[] => {
   let result = [...challenges];
 
   //1. Filter by search query
@@ -88,19 +88,19 @@ const difficultyWeight = (difficulty: string): number => {
   }
 };
 
-export const getDfifficultyCounts = (challenges: Challenges[]) => {
+export const getDifficultyCounts = (challenges: Challenge[]) => {
   const counts = {
     All: challenges.length,
     Easy: 0,
     Medium: 0,
-    Hard: 0
+    Hard: 0,
   };
 
   challenges.forEach((challenge) => {
-    if(challenge.difficulty === "Easy") counts.Easy++;
-    else if(challenge.difficulty === "Medium") counts.Medium++;
-    else if(challenge.difficulty === "Hard") counts.Hard++;
+    if (challenge.difficulty === "Easy") counts.Easy++;
+    else if (challenge.difficulty === "Medium") counts.Medium++;
+    else if (challenge.difficulty === "Hard") counts.Hard++;
   });
 
   return counts;
-}
+};

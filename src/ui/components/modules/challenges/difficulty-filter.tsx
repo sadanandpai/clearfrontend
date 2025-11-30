@@ -1,7 +1,10 @@
 "use client";
 
 import { Button, Flex } from "@radix-ui/themes";
-import { DifficultyFilter as DifficultyFilterType } from "./challenge-list.types";
+import {
+  Difficulty,
+  DifficultyFilter as DifficultyFilterType,
+} from "@/common/types/challenge.types";
 
 interface Props {
   selected: DifficultyFilterType;
@@ -11,10 +14,15 @@ interface Props {
     Easy: number;
     Medium: number;
     Hard: number;
-  }
+  };
 }
 
-const difficulties: DifficultyFilterType[] = ["All", "Easy", "Medium", "Hard"];
+const difficulties: DifficultyFilterType[] = [
+  "All",
+  Difficulty.Easy,
+  Difficulty.Medium,
+  Difficulty.Hard,
+];
 
 export const DifficultyFilter = ({ selected, onChange, counts }: Props) => {
   return (

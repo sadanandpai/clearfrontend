@@ -1,7 +1,7 @@
 "use client";
 
 import { Select } from "@radix-ui/themes";
-import { SortOption } from "./challenge-list.types";
+import { SortOption } from "@/common/types/challenge.types";
 
 interface Props {
   value: SortOption;

@@ -1,8 +1,10 @@
-import { Card, Flex, Text, Progress } from "@radix-ui/themes";
+import { Card, Flex, Progress, Text } from "@radix-ui/themes";
+
+import { Difficulty } from "@/common/types/challenge.types";
 import { getDifficultyColor } from "@/ui/utils/challenge";
 
 interface Props {
-  difficulty: "Easy" | "Medium" | "Hard";
+  difficulty: Difficulty;
   solved: number;
   total: number;
   percentage: number;

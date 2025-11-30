@@ -1,34 +1,42 @@
 "use client";
 
-import { routes } from "@/common/routes";
-import classes from "./challenge-list.module.scss";
-import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
-import { useMemo } from "react";
-import SearchBar from "./search-bar";
-import { filterAndSortChallenges, getAllUniqueTags, getDfifficultyCounts } from "./challenge-list.utils";
-import { Challenges } from "./challenge-list.types";
-import { useChallengeFilters } from "./use-challenge-filters";
-import { DifficultyFilter } from "./difficulty-filter";
-import { TagFilter } from "./tag-filter";
-import { SortDropdown } from "./sort-dropdown";
-import { Flex, Button, Badge } from "@radix-ui/themes";
-import { ActiveFilters } from "./active-filters";
-import { ChallengeStats } from "./challenge-stats";
-import { getUserSolvedChallenges } from "@/server/actions/user-challenge";
-import {useEffect, useState} from "react";
+import { Button, Flex } from "@radix-ui/themes";
 import { CheckCircle2, Circle } from "lucide-react";
+import {
+  filterAndSortChallenges,
+  getAllUniqueTags,
+  getDifficultyCounts,
+} from "./challenge-list.utils";
 
-export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
+import { ActiveFilters } from "./active-filters";
+import { Challenge } from "@/common/types/challenge.types";
+import { ChallengeStats } from "./challenges-stats/challenge-stats";
+import { DifficultyBadge } from "@/ui/components/core/difficulty-badge/difficulty-badge";
+import { DifficultyFilter } from "./difficulty-filter";
+import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
+import SearchBar from "./search-bar";
+import { SortDropdown } from "./sort-dropdown";
+import { TagFilter } from "./tag-filter";
+import classes from "./challenge-list.module.scss";
+import { routes } from "@/common/routes";
+import { useChallengeFilters } from "./use-challenge-filters";
+import { useMemo } from "react";
+
+export function ChallengeList({
+  challenges,
+  solvedChallengeIds,
+}: {
+  challenges: Challenge[];
+  solvedChallengeIds: number[];
+}) {
   const { filters, updateFilters, resetFilters } = useChallengeFilters();
-  const [solvedChallengeIds, setSolvedChallengeIds] = useState<number[]>([]);
-
   const availableTags = useMemo(() => getAllUniqueTags(challenges), [challenges]);
 
   const filteredChallenges = useMemo(() => {
     return filterAndSortChallenges(challenges, filters);
   }, [challenges, filters]);
 
-  const difficultyCounts = useMemo(() => getDfifficultyCounts(challenges), [challenges]);
+  const difficultyCounts = useMemo(() => getDifficultyCounts(challenges), [challenges]);
 
   const hasActiveFilters =
     filters.difficulty !== "All" ||
@@ -36,25 +44,21 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
     filters.sortBy !== "none" ||
     filters.search.trim() !== "";
 
-  useEffect(() => {
-    getUserSolvedChallenges().then(setSolvedChallengeIds);
-  }, []);
-  
   return (
     <div>
-      {/* Challenge stats Dashboard */}
-      <ChallengeStats 
-      challenges={challenges}
-      solvedChallengeIds={solvedChallengeIds}
-      />
-      {/* Search Bar */}
+      <ChallengeStats challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
+
       <SearchBar
         searchQuery={filters.search}
         setSearchQuery={(search: string) => updateFilters({ search })}
       />
-      
+
       {/* Filters Section */}
-      <Flex direction="column" gap="4" style={{ marginTop: "1.5rem", marginBottom: "1.5rem", padding: "0 5%" }}>
+      <Flex
+        direction="column"
+        gap="4"
+        style={{ marginTop: "1.5rem", marginBottom: "1.5rem", padding: "0 5%" }}
+      >
         <Flex justify="between" align="center" wrap="wrap" gap="3">
           <DifficultyFilter
             selected={filters.difficulty}
@@ -105,21 +109,27 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
           {filteredChallenges.length === 0 ? (
             <tr>
               <td colSpan={4} style={{ textAlign: "center", padding: "2.5rem 1.25rem" }}>
-                <div style={{ display:"flex", flexDirection: "column", alignItems:"center", gap:"0.75rem"}}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "0.75rem",
+                  }}
+                >
                   <span style={{ fontSize: "3rem" }}>🔍</span>
-                    <span style={{ fontSize: "1.125rem", fontWeight: 600 }}>No challenges found</span>
-                    <span style={{ fontSize: "0.875rem", opacity: 0.7 }}>
-                      Try adjusting your filters or search terms
-                    </span>
-                    {
-                      hasActiveFilters && (
-                        <Button variant="soft" onClick={resetFilters} style={{ marginTop: "0.5rem" }}>
-                        Clear All Filters
-                      </Button>
-                    )}
-                  </div>
-                </td>
-              </tr>
+                  <span style={{ fontSize: "1.125rem", fontWeight: 600 }}>No challenges found</span>
+                  <span style={{ fontSize: "0.875rem", opacity: 0.7 }}>
+                    Try adjusting your filters or search terms
+                  </span>
+                  {hasActiveFilters && (
+                    <Button variant="soft" onClick={resetFilters} style={{ marginTop: "0.5rem" }}>
+                      Clear All Filters
+                    </Button>
+                  )}
+                </div>
+              </td>
+            </tr>
           ) : (
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
@@ -137,19 +147,8 @@ export function ChallengeList({ challenges }: { challenges: Challenges[] }) {
                   </RadixNextLink>
                 </td>
                 <td>
-                  <Badge
-                    color={
-                      challenge.difficulty === "Easy"
-                      ? "green"
-                      : challenge.difficulty === "Medium"
-                      ? "yellow"
-                      : "red"
-                    }
-                    variant="soft"
-                    >
-                  {challenge.difficulty}
-                  </Badge>
-                  </td>
+                  <DifficultyBadge difficulty={challenge.difficulty} />
+                </td>
                 <td>{challenge.tags.join(", ")}</td>
               </tr>
             ))

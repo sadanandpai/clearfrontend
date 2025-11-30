@@ -23,7 +23,7 @@ export const problem = {
       output: "-10",
     },
   ],
-  sampleInput: "1, 2",
+  sampleInput: "3, 12",
   code: `/**
 * @param {number} num1
 * @param {number} num2

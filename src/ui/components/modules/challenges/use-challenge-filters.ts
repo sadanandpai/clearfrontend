@@ -1,8 +1,8 @@
 "use client";
 
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { ChallengeFilters, DifficultyFilter, SortOption } from "@/common/types/challenge.types";
 import { useCallback, useMemo } from "react";
-import { ChallengeFilters, DifficultyFilter, SortOption } from "./challenge-list.types";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const useChallengeFilters = () => {
   const router = useRouter();

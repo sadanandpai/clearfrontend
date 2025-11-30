@@ -1,22 +1,22 @@
-import { Challenges } from "@/ui/components/modules/challenge-list/challenge-list.types";
+import { Challenge, Difficulty } from "@/common/types/challenge.types";
 
-export const challenges: Challenges[] = [
+export const challenges: Challenge[] = [
   {
     id: 1,
     name: "Two Sum",
-    difficulty: "Easy",
+    difficulty: Difficulty.Easy,
     tags: ["Math", "Number"],
   },
   {
     id: 2,
     name: "Zip",
-    difficulty: "Medium",
+    difficulty: Difficulty.Medium,
     tags: ["Array", "Loop"],
   },
   {
     id: 3,
     name: "Random Number",
-    difficulty: "Easy",
+    difficulty: Difficulty.Hard,
     tags: ["Math", "Number"],
   },
 ];

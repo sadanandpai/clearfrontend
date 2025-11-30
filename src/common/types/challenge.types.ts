@@ -1,11 +1,18 @@
-export interface Challenges {
+export interface Challenge {
   id: number;
   name: string;
-  difficulty: "Easy" | "Medium" | "Hard";
+  difficulty: Difficulty;
   tags: string[];
 }
 
-export type DifficultyFilter = "All" | "Easy" | "Medium" | "Hard";
+export enum Difficulty {
+  Easy = "Easy",
+  Medium = "Medium",
+  Hard = "Hard",
+}
+
+export type DifficultyFilter = "All" | Difficulty.Easy | Difficulty.Medium | Difficulty.Hard;
+
 export type SortOption =
   | "none"
   | "newest"
