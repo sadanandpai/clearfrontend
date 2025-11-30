@@ -1,5 +1,6 @@
-@use './variables' as *;
-@use './mixins' as *;
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./utilities" as *;
 
 .home-bg {
   background-color: var(--brand-bg-1);

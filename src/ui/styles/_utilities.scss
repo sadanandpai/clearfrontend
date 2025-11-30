@@ -1,0 +1,354 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+// =============================================================================
+// SPACING UTILITIES
+// =============================================================================
+
+// Margin utilities
+.m-0 { margin: 0; }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.ml-0 { margin-left: 0; }
+.mr-0 { margin-right: 0; }
+
+.m-xs { margin: $spacing-xs; }
+.mt-xs { margin-top: $spacing-xs; }
+.mb-xs { margin-bottom: $spacing-xs; }
+.ml-xs { margin-left: $spacing-xs; }
+.mr-xs { margin-right: $spacing-xs; }
+
+.m-sm { margin: $spacing-sm; }
+.mt-sm { margin-top: $spacing-sm; }
+.mb-sm { margin-bottom: $spacing-sm; }
+.ml-sm { margin-left: $spacing-sm; }
+.mr-sm { margin-right: $spacing-sm; }
+
+.m-md { margin: $spacing-md; }
+.mt-md { margin-top: $spacing-md; }
+.mb-md { margin-bottom: $spacing-md; }
+.ml-md { margin-left: $spacing-md; }
+.mr-md { margin-right: $spacing-md; }
+
+.m-lg { margin: $spacing-lg; }
+.mt-lg { margin-top: $spacing-lg; }
+.mb-lg { margin-bottom: $spacing-lg; }
+.ml-lg { margin-left: $spacing-lg; }
+.mr-lg { margin-right: $spacing-lg; }
+
+.m-xl { margin: $spacing-xl; }
+.mt-xl { margin-top: $spacing-xl; }
+.mb-xl { margin-bottom: $spacing-xl; }
+.ml-xl { margin-left: $spacing-xl; }
+.mr-xl { margin-right: $spacing-xl; }
+
+// Padding utilities
+.p-0 { padding: 0; }
+.pt-0 { padding-top: 0; }
+.pb-0 { padding-bottom: 0; }
+.pl-0 { padding-left: 0; }
+.pr-0 { padding-right: 0; }
+
+.p-xs { padding: $spacing-xs; }
+.pt-xs { padding-top: $spacing-xs; }
+.pb-xs { padding-bottom: $spacing-xs; }
+.pl-xs { padding-left: $spacing-xs; }
+.pr-xs { padding-right: $spacing-xs; }
+
+.p-sm { padding: $spacing-sm; }
+.pt-sm { padding-top: $spacing-sm; }
+.pb-sm { padding-bottom: $spacing-sm; }
+.pl-sm { padding-left: $spacing-sm; }
+.pr-sm { padding-right: $spacing-sm; }
+
+.p-md { padding: $spacing-md; }
+.pt-md { padding-top: $spacing-md; }
+.pb-md { padding-bottom: $spacing-md; }
+.pl-md { padding-left: $spacing-md; }
+.pr-md { padding-right: $spacing-md; }
+
+.p-lg { padding: $spacing-lg; }
+.pt-lg { padding-top: $spacing-lg; }
+.pb-lg { padding-bottom: $spacing-lg; }
+.pl-lg { padding-left: $spacing-lg; }
+.pr-lg { padding-right: $spacing-lg; }
+
+.p-xl { padding: $spacing-xl; }
+.pt-xl { padding-top: $spacing-xl; }
+.pb-xl { padding-bottom: $spacing-xl; }
+.pl-xl { padding-left: $spacing-xl; }
+.pr-xl { padding-right: $spacing-xl; }
+
+// =============================================================================
+// DISPLAY UTILITIES
+// =============================================================================
+
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-inline-flex { display: inline-flex; }
+.d-grid { display: grid; }
+
+// =============================================================================
+// FLEX UTILITIES
+// =============================================================================
+
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-center { align-items: center; }
+.items-baseline { align-items: baseline; }
+.items-stretch { align-items: stretch; }
+
+.gap-xs { gap: $spacing-xs; }
+.gap-sm { gap: $spacing-sm; }
+.gap-md { gap: $spacing-md; }
+.gap-lg { gap: $spacing-lg; }
+.gap-xl { gap: $spacing-xl; }
+.gap-2xl { gap: $spacing-2xl; }
+
+// =============================================================================
+// WIDTH/HEIGHT UTILITIES
+// =============================================================================
+
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+.w-screen { width: 100vw; }
+
+.h-full { height: 100%; }
+.h-auto { height: auto; }
+.h-screen { height: 100vh; }
+
+.min-h-screen { min-height: 100vh; }
+.max-w-full { max-width: 100%; }
+
+// =============================================================================
+// POSITION UTILITIES
+// =============================================================================
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+// =============================================================================
+// OVERFLOW UTILITIES
+// =============================================================================
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-y-hidden { overflow-y: hidden; }
+.overflow-x-auto { overflow-x: auto; }
+.overflow-y-auto { overflow-y: auto; }
+
+// =============================================================================
+// CURSOR UTILITIES
+// =============================================================================
+
+.cursor-pointer { cursor: pointer; }
+.cursor-not-allowed { cursor: not-allowed; }
+.cursor-default { cursor: default; }
+
+// =============================================================================
+// USER SELECT UTILITIES
+// =============================================================================
+
+.select-none { user-select: none; }
+.select-text { user-select: text; }
+.select-all { user-select: all; }
+
+// =============================================================================
+// VISIBILITY UTILITIES
+// =============================================================================
+
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+
+.sr-only {
+  @include visually-hidden;
+}
+
+// =============================================================================
+// LAYOUT UTILITIES
+// =============================================================================
+
+.vertical-center {
+  @include flex-center;
+  margin-top: $spacing-lg;
+}
+
+.horizontal-center {
+  @include flex-center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-spacing {
+  margin-top: $spacing-2xl;
+  margin-bottom: $spacing-2xl;
+}
+
+// =============================================================================
+// TEXT UTILITIES
+// =============================================================================
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-ellipsis {
+  @include truncate;
+}
+
+.line-clamp-2 {
+  @include line-clamp(2);
+}
+
+.line-clamp-3 {
+  @include line-clamp(3);
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+// =============================================================================
+// CARD UTILITIES
+// =============================================================================
+
+.card-base {
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  background: var(--gray-1);
+  border: 1px solid var(--gray-3);
+}
+
+.card-shadow {
+  @extend .card-base;
+  box-shadow: var(--shadow-2);
+}
+
+.card-hover {
+  @extend .card-base;
+  @include transition(transform, box-shadow);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-3);
+  }
+}
+
+
+// =============================================================================
+// TABLE UTILITIES
+// =============================================================================
+
+.table-base {
+  border: 1px solid #e0e0e0;
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid #e0e0e0;
+
+    th,
+    td {
+      padding: $spacing-sm;
+    }
+  }
+
+  th {
+    text-align: left;
+  }
+}
+
+.table-striped {
+  @extend .table-base;
+
+  tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+.table-hover {
+  @extend .table-base;
+
+  tbody tr {
+    @include transition(background-color);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
+// Empty state for tables
+.table-empty-cell {
+  text-align: center;
+  padding: $spacing-md 0;
+}
+
+// =============================================================================
+// FORM UTILITIES
+// =============================================================================
+
+.form-base {
+  text-align: center;
+  margin: $spacing-md auto;
+
+  .form {
+    @include flex-column-center;
+    gap: $spacing-lg;
+  }
+
+  .form-links {
+    @include flex-between;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+  }
+}
+
+.form-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.form-field-label {
+  font-weight: 500;
+  text-align: left;
+}
+
+.form-submission-row {
+  @include flex-between;
+
+  > :last-child {
+    margin-left: auto;
+  }
+}
