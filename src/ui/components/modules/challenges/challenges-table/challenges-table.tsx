@@ -32,7 +32,7 @@ export function ChallengesTable({ challenges }: { challenges: Challenge[] }) {
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} style={{ textAlign: "center", padding: "12px 0" }}>
+              <td colSpan={4} className="text-center py-3">
                 No challenges found
               </td>
             </tr>

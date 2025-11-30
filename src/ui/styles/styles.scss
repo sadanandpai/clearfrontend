@@ -1,6 +1,5 @@
 @use "./variables" as *;
 @use "./mixins" as *;
-@use "./utilities" as *;
 
 .home-bg {
   background-color: var(--brand-bg-1);
@@ -24,7 +23,7 @@
   background-color: var(--brand-main-1);
   color: var(--brand-bg-2);
   padding: $spacing-sm $spacing-lg;
-  border-radius: $radius-lg;
+  border-radius: 32px;
   font-weight: bold;
   line-height: 2rem;
   font-size: 1.6rem;
@@ -39,7 +38,7 @@
   border: 1px solid var(--brand-main-1);
   color: var(--brand-main-1);
   padding: $spacing-sm $spacing-lg;
-  border-radius: $radius-lg;
+  border-radius: 32px;
   font-weight: bold;
   font-size: 1.6rem;
   line-height: 2rem;
@@ -67,6 +66,6 @@
 
 .panel-layout {
   height: 100%;
-  border-radius: $radius-md;
+  border-radius: 6px;
   background-color: var(--gray-1);
 }

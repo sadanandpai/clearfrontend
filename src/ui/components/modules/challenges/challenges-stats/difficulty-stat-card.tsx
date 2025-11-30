@@ -12,7 +12,7 @@ interface Props {
 
 export const DifficultyStatCard = ({ difficulty, solved, total, percentage }: Props) => {
   return (
-    <Card style={{ padding: 16, flex: 1 }}>
+    <Card className="p-4 flex-1">
       <Flex direction="column" gap="2">
         <Flex justify="between" align="center">
           <Text

@@ -1,7 +1,7 @@
 @use "src/ui/styles/variables" as *;
 
 .testInput {
-  border-radius: $radius-sm;
+  border-radius: 4px;
   padding: 1rem;
   overflow: auto;
   height: 100%;

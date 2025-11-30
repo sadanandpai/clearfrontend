@@ -7,7 +7,7 @@ export function SandpackEditor() {
       showInlineErrors={true}
       showLineNumbers={true}
       showTabs={true}
-      style={{ height: "100%" }}
+      className="h-full"
     />
   );
 }

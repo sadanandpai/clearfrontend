@@ -19,13 +19,13 @@ export const TagFilter = ({ availableTags, selectedTags, onChange }: Props) => {
 
   return (
     <Flex gap="2" wrap="wrap" align="center">
-      <span style={{ fontWeight: 600, marginRight: 8 }}>Tags:</span>
+      <span className="font-semibold mr-2">Tags:</span>
       {availableTags.map((tag) => (
         <Badge
           key={tag}
           size="2"
           variant={selectedTags.includes(tag) ? "solid" : "soft"}
-          style={{ cursor: "pointer" }}
+          className="cursor-pointer"
           onClick={() => toggleTag(tag)}
         >
           {tag}
