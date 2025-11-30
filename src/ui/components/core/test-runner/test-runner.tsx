@@ -4,7 +4,7 @@ import { SandpackTests } from "@codesandbox/sandpack-react/unstyled";
 export function TestRunner() {
   return (
     <SandpackTests
-      style={{ display: "none" }}
+      className="d-none"
       watchMode={false}
       showWatchButton={false}
       showVerboseButton={false}

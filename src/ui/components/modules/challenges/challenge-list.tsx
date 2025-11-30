@@ -57,7 +57,7 @@ export function ChallengeList({
       <Flex
         direction="column"
         gap="4"
-        style={{ marginTop: "1.5rem", marginBottom: "1.5rem", padding: "0 5%" }}
+        className="mt-6 mb-6 px-[5%]"
       >
         <Flex justify="between" align="center" wrap="wrap" gap="3">
           <DifficultyFilter
@@ -83,7 +83,7 @@ export function ChallengeList({
       </Flex>
 
       {/* Results Count */}
-      <div style={{ padding: "0 5%", marginBottom: "0.75rem", color: "gray" }}>
+      <div className="px-[5%] mb-3 text-gray-500">
         Showing {filteredChallenges.length} of {challenges.length} challenges
       </div>
 
@@ -99,7 +99,7 @@ export function ChallengeList({
         <thead>
           <tr>
             <th>#</th>
-            <th style={{ width: "5rem", textAlign: "center", paddingLeft: "1rem" }}>Status</th>
+            <th className="w-20 text-center pl-4">Status</th>
             <th>Name</th>
             <th>Difficulty</th>
             <th>Tags</th>
@@ -108,22 +108,15 @@ export function ChallengeList({
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} style={{ textAlign: "center", padding: "2.5rem 1.25rem" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                  }}
-                >
-                  <span style={{ fontSize: "3rem" }}>🔍</span>
-                  <span style={{ fontSize: "1.125rem", fontWeight: 600 }}>No challenges found</span>
-                  <span style={{ fontSize: "0.875rem", opacity: 0.7 }}>
+              <td colSpan={4} className="text-center py-10 px-5">
+                <div className="flex flex-col items-center gap-3">
+                  <span className="text-5xl">🔍</span>
+                  <span className="text-lg font-semibold">No challenges found</span>
+                  <span className="text-sm opacity-70">
                     Try adjusting your filters or search terms
                   </span>
                   {hasActiveFilters && (
-                    <Button variant="soft" onClick={resetFilters} style={{ marginTop: "0.5rem" }}>
+                    <Button variant="soft" onClick={resetFilters} className="mt-2">
                       Clear All Filters
                     </Button>
                   )}
@@ -134,11 +127,11 @@ export function ChallengeList({
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
                 <td>{index + 1}</td>
-                <td style={{ textAlign: "center", paddingLeft: "1rem" }}>
+                <td className="text-center pl-4">
                   {solvedChallengeIds.includes(challenge.id) ? (
                     <CheckCircle2 size={20} color="green" />
                   ) : (
-                    <Circle size={20} color="gray" style={{ opacity: 0.3 }} />
+                    <Circle size={20} color="gray" className="opacity-30" />
                   )}
                 </td>
                 <td>

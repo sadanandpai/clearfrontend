@@ -29,15 +29,15 @@ export const ActiveFilters = ({
   if (!hasFilters) return null;
 
   return (
-    <Flex gap="2" wrap="wrap" style={{ padding: "0 5%", marginBottom: "12px" }}>
-      <span style={{ fontSize: "14px", fontWeight: 600, alignSelf: "center" }}>
+    <Flex gap="2" wrap="wrap" className="px-[5%] mb-3">
+      <span className="text-sm font-semibold self-center">
         Active filters:
       </span>
 
       {filters.difficulty !== "All" && (
-        <Badge size="2" variant="solid" style={{ cursor: "pointer" }} onClick={onRemoveDifficulty}>
+        <Badge size="2" variant="solid" className="cursor-pointer" onClick={onRemoveDifficulty}>
           Difficulty: {filters.difficulty}
-          <X size={14} style={{ marginLeft: 4 }} />
+          <X size={14} className="ml-1" />
         </Badge>
       )}
 
@@ -46,25 +46,25 @@ export const ActiveFilters = ({
           key={tag}
           size="2"
           variant="solid"
-          style={{ cursor: "pointer" }}
+          className="cursor-pointer"
           onClick={() => onRemoveTag(tag)}
         >
           Tag: {tag}
-          <X size={14} style={{ marginLeft: 4 }} />
+          <X size={14} className="ml-1" />
         </Badge>
       ))}
 
       {filters.sortBy !== "none" && (
-        <Badge size="2" variant="solid" style={{ cursor: "pointer" }} onClick={onRemoveSort}>
+        <Badge size="2" variant="solid" className="cursor-pointer" onClick={onRemoveSort}>
           Sort: {filters.sortBy}
-          <X size={14} style={{ marginLeft: 4 }} />
+          <X size={14} className="ml-1" />
         </Badge>
       )}
 
       {filters.search.trim() !== "" && (
-        <Badge size="2" variant="solid" style={{ cursor: "pointer" }} onClick={onRemoveSearch}>
+        <Badge size="2" variant="solid" className="cursor-pointer" onClick={onRemoveSearch}>
           Search: &quot;{filters.search}&quot;
-          <X size={14} style={{ marginLeft: 4 }} />
+          <X size={14} className="ml-1" />
         </Badge>
       )}
     </Flex>

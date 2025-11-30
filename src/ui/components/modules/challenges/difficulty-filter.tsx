@@ -27,17 +27,17 @@ const difficulties: DifficultyFilterType[] = [
 export const DifficultyFilter = ({ selected, onChange, counts }: Props) => {
   return (
     <Flex gap="2" wrap="wrap">
-      <span style={{ fontWeight: 600, marginRight: 8 }}>Difficulty:</span>
+      <span className="font-semibold mr-2">Difficulty:</span>
       {difficulties.map((diff) => (
         <Button
           key={diff}
           variant={selected === diff ? "solid" : "soft"}
           size="2"
           onClick={() => onChange(diff)}
-          style={{ cursor: "pointer" }}
+          className="cursor-pointer"
         >
           {diff}
-          {counts && <span style={{ marginLeft: 4, opacity: 0.7 }}>({counts[diff]})</span>}
+          {counts && <span className="ml-1 opacity-70">({counts[diff]})</span>}
         </Button>
       ))}
     </Flex>

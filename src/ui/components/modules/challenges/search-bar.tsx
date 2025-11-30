@@ -36,14 +36,8 @@ const SearchBar: React.FC<Props> = ({
 
   return (
     <div
-      className={className}
-      style={{
-        width: "100%",
-        marginTop: 20,
-        display: "flex",
-        justifyContent: "flex-end",
-        ...style,
-      }}
+      className={`w-full flex justify-end mt-4 md:mt-8 ${className}`}
+      style={style}
     >
       <TextField.Root
         placeholder={placeholder}
@@ -51,7 +45,7 @@ const SearchBar: React.FC<Props> = ({
         value={localValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalValue(e.target.value)}
         aria-label="Search challenges"
-        style={{ width: 400, marginRight: "5%" }}
+        className="w-full mr-0 md:w-[40rem] md:mr-[5%]"
       />
     </div>
   );
