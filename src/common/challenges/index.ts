@@ -19,4 +19,16 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Easy,
     tags: ["Math", "Number"],
   },
+  {
+    id: 4,
+    name: "Palindrome Check",
+    difficulty: Difficulty.Easy,
+    tags: ["String", "Algorithm"],
+  },
+  {
+    id: 5,
+    name: "Valid Parentheses",
+    difficulty: Difficulty.Medium,
+    tags: ["String", "Stack"],
+  },
 ];
