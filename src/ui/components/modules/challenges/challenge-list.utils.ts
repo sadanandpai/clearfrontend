@@ -1,4 +1,4 @@
-import { Challenge, ChallengeFilters } from "@/common/types/challenge.types";
+import { Challenge, ChallengeFilters, Difficulty } from "@/common/types/challenge.types";
 
 export const filterChallenges = (challenges: Challenge[], searchQuery: string) => {
   if (!searchQuery.trim()) return challenges;
@@ -77,11 +77,11 @@ export const filterAndSortChallenges = (
 
 const difficultyWeight = (difficulty: string): number => {
   switch (difficulty) {
-    case "Easy":
+    case Difficulty.Easy:
       return 1;
-    case "Medium":
+    case Difficulty.Medium:
       return 2;
-    case "Hard":
+    case Difficulty.Hard:
       return 3;
     default:
       return 0;
@@ -91,15 +91,15 @@ const difficultyWeight = (difficulty: string): number => {
 export const getDifficultyCounts = (challenges: Challenge[]) => {
   const counts = {
     All: challenges.length,
-    Easy: 0,
-    Medium: 0,
-    Hard: 0,
+    [Difficulty.Easy]: 0,
+    [Difficulty.Medium]: 0,
+    [Difficulty.Hard]: 0,
   };
 
   challenges.forEach((challenge) => {
-    if (challenge.difficulty === "Easy") counts.Easy++;
-    else if (challenge.difficulty === "Medium") counts.Medium++;
-    else if (challenge.difficulty === "Hard") counts.Hard++;
+    if (challenge.difficulty === Difficulty.Easy) counts[Difficulty.Easy]++;
+    else if (challenge.difficulty === Difficulty.Medium) counts[Difficulty.Medium]++;
+    else if (challenge.difficulty === Difficulty.Hard) counts[Difficulty.Hard]++;
   });
 
   return counts;

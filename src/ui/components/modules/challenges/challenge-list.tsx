@@ -17,7 +17,7 @@ import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-l
 import SearchBar from "./search-bar";
 import { SortDropdown } from "./sort-dropdown";
 import { TagFilter } from "./tag-filter";
-import classes from "./challenge-list.module.scss";
+import classes from "./challenges-table/challenges-table.module.scss";
 import { routes } from "@/common/routes";
 import { useChallengeFilters } from "./use-challenge-filters";
 import { useMemo } from "react";

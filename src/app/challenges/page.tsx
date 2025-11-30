@@ -1,4 +1,4 @@
-import { ChallengesUI } from "@/ui/components/modules/challenge-list/challenges-ui";
+import { ChallengesUI } from "@/ui/components/modules/challenges/challenges-ui";
 import { NavBar } from "@/ui/components/common/nav-bar/nav-bar";
 import { challenges } from "@/common/challenges";
 import { getUserSolvedChallenges } from "@/server/actions/user-challenge";

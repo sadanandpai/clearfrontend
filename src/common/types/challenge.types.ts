@@ -6,9 +6,9 @@ export interface Challenge {
 }
 
 export enum Difficulty {
-  Easy = "Easy",
-  Medium = "Medium",
-  Hard = "Hard",
+  Easy = "easy",
+  Medium = "medium",
+  Hard = "hard",
 }
 
 export type DifficultyFilter = "All" | Difficulty.Easy | Difficulty.Medium | Difficulty.Hard;

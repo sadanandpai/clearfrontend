@@ -1,7 +1,7 @@
-@use './mixins' as *;
+@use "./mixins" as *;
 
 .title {
-  font-size: 6rem;  
+  font-size: 6rem;
   line-height: 7.2rem;
   font-family: var(--font-bGr);
 
@@ -32,5 +32,9 @@
   @include respond-to(md) {
     font-size: 6.4rem;
     line-height: 7.8rem;
+  }
+
+  a {
+    font-family: var(--font-dm-sans);
   }
 }

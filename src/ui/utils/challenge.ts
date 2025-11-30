@@ -1,10 +1,12 @@
-export const getDifficultyColor = (difficulty: "Easy" | "Medium" | "Hard") => {
+import { Difficulty } from "@/common/types/challenge.types";
+
+export const getDifficultyColor = (difficulty: Difficulty) => {
   switch (difficulty) {
-    case "Easy":
+    case Difficulty.Easy:
       return "green";
-    case "Medium":
+    case Difficulty.Medium:
       return "yellow";
-    case "Hard":
+    case Difficulty.Hard:
       return "red";
   }
 };

@@ -11,9 +11,9 @@ interface Props {
   onChange: (difficulty: DifficultyFilterType) => void;
   counts?: {
     All: number;
-    Easy: number;
-    Medium: number;
-    Hard: number;
+    [Difficulty.Easy]: number;
+    [Difficulty.Medium]: number;
+    [Difficulty.Hard]: number;
   };
 }
 

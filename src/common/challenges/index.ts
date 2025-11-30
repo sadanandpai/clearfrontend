@@ -16,7 +16,7 @@ export const challenges: Challenge[] = [
   {
     id: 3,
     name: "Random Number",
-    difficulty: Difficulty.Hard,
+    difficulty: Difficulty.Easy,
     tags: ["Math", "Number"],
   },
 ];

@@ -15,7 +15,12 @@ export const DifficultyStatCard = ({ difficulty, solved, total, percentage }: Pr
     <Card style={{ padding: 16, flex: 1 }}>
       <Flex direction="column" gap="2">
         <Flex justify="between" align="center">
-          <Text size="2" weight="medium" color={getDifficultyColor(difficulty)}>
+          <Text
+            size="2"
+            weight="medium"
+            color={getDifficultyColor(difficulty)}
+            className="capitalize"
+          >
             {difficulty}
           </Text>
           <Text size="2" weight="bold">
