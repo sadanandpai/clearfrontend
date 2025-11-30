@@ -1,4 +1,4 @@
-// import { defaultTestCode } from "@/common/test-codes";
+import { defaultTestCode } from "@/common/test-codes";
 
 export const problem = {
   id: 1,
@@ -61,5 +61,5 @@ describe('inputTest', () => {
     expect(userSolution(100, 200)).toEqual(systemSolution(100, 200));
   });  
 });`,
-  // testCode: defaultTestCode,
+  testCode: defaultTestCode,
 };

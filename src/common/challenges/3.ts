@@ -1,4 +1,4 @@
-// import { randomNumberTestCode } from "../test-codes/3";
+import { randomNumberTestCode } from "../test-codes/3";
 
 //  Create a function that returns a random number in the given range of values, both inclusive
 export const problem = {
@@ -86,5 +86,5 @@ describe('inputTest', () => {
     expect(output).toBeLessThanOrEqual(10);
   });
 });`,
-  // testCode: randomNumberTestCode,
+  testCode: randomNumberTestCode,
 };

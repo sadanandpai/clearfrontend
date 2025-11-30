@@ -1,5 +1,4 @@
-import ChallengeUI from "@/ui/components/modules/challenge/challenge-ui";
-import { ProblemProps } from "@/common/types/problem";
+import { ChallengeLoader } from "./challenge-loader";
 import { incrementViews } from "@/server/data-access/activities";
 import { isValidChallengeId } from "@/server/utils/challenge";
 import { notFound } from "next/navigation";
@@ -8,7 +7,7 @@ interface Props {
   params: Promise<{ challengeId: string }>;
 }
 
-export default async function Challenge({ params }: Props) {
+export default async function ChallengePage({ params }: Props) {
   const { challengeId } = await params;
   const challengeIdAsNum = Number(challengeId);
 
@@ -16,12 +15,8 @@ export default async function Challenge({ params }: Props) {
     notFound();
   }
 
-  const problem: ProblemProps = await import(`@/common/challenges/${challengeId}`).then(
-    (module) => module.problem,
-  );
-
-  // don't await to avoid blocking the response
+  // Don't await to avoid blocking the response
   incrementViews(challengeIdAsNum);
 
-  return <ChallengeUI problem={problem} />;
+  return <ChallengeLoader challengeId={challengeId} />;
 }
