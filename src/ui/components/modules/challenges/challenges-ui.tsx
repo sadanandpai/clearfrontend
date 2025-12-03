@@ -12,7 +12,7 @@ export function ChallengesUI({ challenges, solvedChallengeIds }: Props) {
   return (
     <>
       <ChallengeList challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
-      <ChallengesTable challenges={challenges} />
+      <ChallengesTable challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
     </>
   );
 }

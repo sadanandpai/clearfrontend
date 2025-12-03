@@ -10,10 +10,19 @@
     th,
     td {
       padding: 1rem;
+      vertical-align: middle;
     }
   }
 
   th {
     text-align: left;
+
+    &:nth-child(2) {
+      text-align: center;
+    }
+  }
+
+  td:nth-child(2) {
+    text-align: center;
   }
 }
