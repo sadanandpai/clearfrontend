@@ -5,7 +5,8 @@ import { Toaster } from "sonner";
 import { AppProvider } from "@/ui/providers/app.provider";
 import { ThemeProvider } from "@/ui/providers/theme.provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Clarity from '@microsoft/clarity';
+import { usePathname } from "next/navigation";
+import Clarity from "@microsoft/clarity";
 import { FeedbackButton } from "@/ui/components/common/feedback/feedback-button";
 
 const queryClient = new QueryClient({
@@ -18,12 +19,12 @@ const queryClient = new QueryClient({
 });
 
 export function GlobalWrapper({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') {
-      Clarity.init('tytexi8hx4');
+    if (process.env.NODE_ENV !== "development") {
+      Clarity.init("tytexi8hx4");
     }
   }, []);
-
 
   return (
     <>
@@ -34,7 +35,7 @@ export function GlobalWrapper({ children }: { children: React.ReactNode }) {
             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
           </ThemeProvider>
         </AppProvider>
-        <FeedbackButton />
+        {pathname !== "/" && <FeedbackButton />}
       </Suspense>
     </>
   );
