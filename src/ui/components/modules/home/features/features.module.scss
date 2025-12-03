@@ -1,6 +1,6 @@
-@use "src/ui/styles/home";
-@use "src/ui/styles/variables" as *;
-@use "src/ui/styles/mixins" as *;
+@use "../../../../styles/home";
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
 
 .featureCard {
   width: 90%;

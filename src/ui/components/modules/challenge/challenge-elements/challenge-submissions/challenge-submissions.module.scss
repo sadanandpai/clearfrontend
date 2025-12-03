@@ -1,4 +1,4 @@
-@use "src/ui/styles/mixins" as *;
+@use "../../../../../styles/mixins" as *;
 
 .verticalCenter {
   @include flex-center;

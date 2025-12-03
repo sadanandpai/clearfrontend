@@ -1,5 +1,5 @@
-@use "src/ui/styles/variables" as *;
-@use "src/ui/styles/mixins" as *;
+@use "../../../../../styles/variables" as *;
+@use "../../../../../styles/mixins" as *;
 
 .verticalCenter {
   @include flex-center;
