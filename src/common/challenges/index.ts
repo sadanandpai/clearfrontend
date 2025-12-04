@@ -31,4 +31,10 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Medium,
     tags: ["String", "Stack"],
   },
+  {
+    id: 6,
+    name: "Function Call Limiter",
+    difficulty: Difficulty.Medium,
+    tags: ["Function", "Closure"],
+  },
 ];
