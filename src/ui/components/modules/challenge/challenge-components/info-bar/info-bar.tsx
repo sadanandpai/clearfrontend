@@ -1,14 +1,15 @@
+import { DifficultyBadge } from "@/ui/components/core/difficulty-badge/difficulty-badge";
+import { Flex } from "@radix-ui/themes";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import { Badge, Flex } from "@radix-ui/themes";
 import { UserSolutionStatus } from "@/ui/components/modules/challenge/challenge-components/user-solution-status/user-solution-status";
+import dynamic from "next/dynamic";
 
 const UserLikeStatus = dynamic(
   () =>
     import(
       "@/ui/components/modules/challenge/challenge-components/user-like-status/user-like-status"
     ).then((mod) => ({ default: mod.UserLikeStatus })),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface Props {
@@ -17,16 +18,11 @@ interface Props {
 }
 
 export function InfoBar({ difficulty, totalLikes }: Props) {
-  const difficultyColor =
-    difficulty === "easy" ? "green" : difficulty === "medium" ? "yellow" : "red";
-
   return (
     <Flex my="4" justify="between">
       <Flex gap="4" align="center">
         <Image src="/js.svg" height={24} width={24} alt="JavaScript" />
-        <Badge color={difficultyColor} variant="solid" size="3" className="capitalize">
-          {difficulty}
-        </Badge>
+        <DifficultyBadge difficulty={difficulty} />
       </Flex>
 
       <Flex gap="4" align="center" mr={"2"}>

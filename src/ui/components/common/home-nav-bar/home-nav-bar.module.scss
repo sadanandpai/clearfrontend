@@ -1,13 +1,14 @@
+@use "@/ui/styles/variables" as *;
+@use "@/ui/styles/mixins" as *;
+
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 24px;
-  border-radius: 100px;
+  @include flex-between;
+  padding: 1.4rem $spacing-lg;
+  border-radius: 10rem;
   font-size: 2rem;
   background: #00110a80;
-  backdrop-filter: blur(24px);
-  box-shadow: 0px 0px 16px 0px #f2fbf740;
+  backdrop-filter: blur($spacing-lg);
+  box-shadow: 0px 0px $spacing-md 0px #f2fbf740;
   position: relative;
   z-index: 1;
 }
@@ -24,9 +25,9 @@
   top: 120%;
   width: 100%;
   background: #00110a;
-  backdrop-filter: blur(24px);
-  box-shadow: 0px 0px 16px 0px #f2fbf740;
-  padding: 24px;
-  border-radius: 30px;
+  backdrop-filter: blur($spacing-lg);
+  box-shadow: 0px 0px $spacing-md 0px #f2fbf740;
+  padding: $spacing-lg;
+  border-radius: 3rem;
   z-index: 10;
 }

@@ -1,3 +1,5 @@
+@use "@/ui/styles/mixins" as *;
+
 .bodyWrapper {
   display: flex;
   flex-direction: column;

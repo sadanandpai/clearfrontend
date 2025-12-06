@@ -1,12 +1,15 @@
+import { ChallengesUI } from "@/ui/components/modules/challenges/challenges-ui";
 import { NavBar } from "@/ui/components/common/nav-bar/nav-bar";
-import { ChallengeList } from "@/ui/components/modules/challenge-list/challenge-list";
-import { challenges } from "@/data/challenges";
+import { challenges } from "@/common/challenges";
+import { getUserSolvedChallenges } from "@/server/actions/user-challenge";
 
 export default async function Challenge() {
+  const solvedChallengeIds = await getUserSolvedChallenges();
+
   return (
     <>
       <NavBar />
-      <ChallengeList challenges={challenges} />
+      <ChallengesUI challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
     </>
   );
 }

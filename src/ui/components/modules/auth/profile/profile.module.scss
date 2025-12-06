@@ -1,5 +1,7 @@
+@use "@/ui/styles/mixins" as *;
+
 .main {
-  width: min(768px, 90%);
+  width: min(76.8rem, 90%);
   margin: 2rem auto;
 
   .updateForm {
@@ -13,9 +15,7 @@
     }
 
     .submission {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex-between;
 
       > :last-child {
         margin-left: auto;

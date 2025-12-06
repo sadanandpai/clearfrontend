@@ -1,11 +1,21 @@
-@use "src/ui/styles/home";
+@use "@/ui/styles/home";
+@use "@/ui/styles/variables" as *;
+@use "@/ui/styles/mixins" as *;
 
 .background {
-  padding: 64px 32px;
-  background: url("/vibrant.png") no-repeat;
+  padding: $spacing-3xl $spacing-xl;
+  background: url("/vibrant.webp") no-repeat;
   background-size: 100% 100%;
-  margin-left: -32px;
+  margin-left: -$spacing-xl;
   width: 100vw;
+
+  @include respond-to(md) {
+    padding: $spacing-4xl;
+  }
+
+  @include respond-to(xl) {
+    margin-left: calc(($container-max-width - 100vw) / 2);
+  }
 }
 
 .practiceContainer {
@@ -30,28 +40,8 @@
   .infoCard:last-child {
     transform: rotate(5deg);
   }
-}
 
-.links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  margin-top: 32px;
-}
-
-@media (width >= 768px) {
-  .links {
-    flex-direction: row;
-  }
-
-  .background {
-    padding: 80px;
-  }
-}
-
-@media (width >= 992px) {
-  .practiceContainer {
+  @include respond-to(lg) {
     flex-direction: row;
 
     .infoCards {
@@ -66,8 +56,12 @@
   }
 }
 
-@media (width >= 1200px) {
-  .background {
-    margin-left: calc((1200px - 100vw) / 2);
+.links {
+  @include flex-column-center;
+  gap: $spacing-lg;
+  margin-top: $spacing-xl;
+
+  @include respond-to(md) {
+    flex-direction: row;
   }
 }

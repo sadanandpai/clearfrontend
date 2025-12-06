@@ -1,15 +1,16 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { Button, Flex } from "@radix-ui/themes";
-import { useChallengeStore } from "@/ui/store/challenge.store";
-import { useLoadingOverlayState, useSandpack } from "@codesandbox/sandpack-react/unstyled";
 import { getTestResult, getTestResults } from "@/ui/utils/test-results";
-import { incrementChallengeAttempts } from "@/server/actions/challenge";
+import { useLoadingOverlayState, useSandpack } from "@codesandbox/sandpack-react/unstyled";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { setUserChallengeSolve } from "@/server/actions/user-challenge";
-import { useContext } from "react";
+
 import { appContext } from "@/ui/context/app.context";
+import { incrementChallengeAttempts } from "@/server/actions/challenge";
+import { setUserChallengeSolve } from "@/server/actions/user-challenge";
+import { useChallengeStore } from "@/ui/store/challenge.store";
+import { useContext } from "react";
+import { usePathname } from "next/navigation";
 
 export function Executor() {
   const { user } = useContext(appContext);

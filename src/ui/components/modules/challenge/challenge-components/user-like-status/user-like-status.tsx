@@ -2,10 +2,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Heart } from "lucide-react";
 import { Button, Text } from "@radix-ui/themes";
-import { usePathname } from "next/navigation";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { appContext } from "@/ui/context/app.context";
 import { getUserChallengeInfo, setUserChallengeLike } from "@/server/actions/user-challenge";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { appContext } from "@/ui/context/app.context";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { LIKE_DEBOUNCE_TIME } from "./constant";
 
@@ -83,6 +84,7 @@ export function UserLikeStatus({ totalLikes }: Props) {
 
   useEffect(() => {
     if (totalLikes !== undefined) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setChallengeLikes(totalLikes);
     }
   }, [totalLikes]);

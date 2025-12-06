@@ -1,7 +1,8 @@
+@use "@/ui/styles/variables" as *;
+@use "@/ui/styles/mixins" as *;
+
 .verticalCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   margin-top: 2rem;
 }
 
@@ -9,7 +10,7 @@
   .testResults {
     display: flex;
     flex-direction: column;
-    gap: 2.4rem;
-    margin-bottom: 2.4rem;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
   }
 }

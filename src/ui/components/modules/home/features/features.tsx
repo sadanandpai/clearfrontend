@@ -8,10 +8,10 @@ import classes from "./features.module.scss";
 import Image from "next/image";
 
 const listItems = [
-  { title: "Challenge", img: "/challenge.svg" },
-  { title: "Code", img: "/code.svg" },
-  { title: "Run or debug", img: "/run-or-debug.svg" },
-  { title: "Dark or light", img: "/dark-or-light.svg" },
+  { title: "Challenge", img: "/challenge.webp" },
+  { title: "Code", img: "/code.webp" },
+  { title: "Run or debug", img: "/run-or-debug.webp" },
+  { title: "Dark or light", img: "/dark-or-light.webp" },
 ];
 
 export function Features() {

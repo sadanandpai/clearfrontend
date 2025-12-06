@@ -1,7 +1,9 @@
+@use "@/ui/styles/variables" as *;
+
 .codeSnippet {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: $spacing-xs;
 
   .lineNumber {
     margin: 0 2rem 0 1rem;

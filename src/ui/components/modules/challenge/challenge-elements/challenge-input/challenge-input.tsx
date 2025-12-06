@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import ContentEditable from "react-contenteditable";
-import { useSandpack } from "@codesandbox/sandpack-react/unstyled";
-import { testCode } from "@/ui/utils/test-code";
-import classes from "./challenge-input.module.scss";
+
 import { Button } from "@radix-ui/themes";
+import ContentEditable from "react-contenteditable";
 import { RotateCcw } from "lucide-react";
+import classes from "./challenge-input.module.scss";
+import { useSandpack } from "@codesandbox/sandpack-react/unstyled";
 
 interface Props {
   defaultInput: string;
+  testCode: (arg: string) => string;
 }
 
-export function ChallengeInput({ defaultInput }: Props) {
+export function ChallengeInput({ defaultInput, testCode }: Props) {
   const { sandpack } = useSandpack();
   const [userInput, setUserInput] = useState<string>(defaultInput);
 

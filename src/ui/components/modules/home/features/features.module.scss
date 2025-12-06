@@ -1,29 +1,30 @@
-@use "src/ui/styles/home";
+@use "@/ui/styles/home";
+@use "@/ui/styles/variables" as *;
+@use "@/ui/styles/mixins" as *;
 
 .featureCard {
   width: 90%;
   margin: 0 auto;
-  height: 300px;
-  border-radius: 24px;
-  border: 4px solid linear-gradient(180deg, rgba(213, 213, 213, 0.75) 0%, rgba(3, 174, 102, 0.25) 100%);
+  height: 30rem;
+  border-radius: $spacing-lg;
+  border: 4px solid
+    linear-gradient(180deg, rgba(213, 213, 213, 0.75) 0%, rgba(3, 174, 102, 0.25) 100%);
   position: relative; // required for next/image fill
   overflow: hidden;
-}
 
-.featureCard img {
-  border-radius: 24px;
+  img {
+    border-radius: $spacing-lg;
+  }
+
+  @include respond-to(md) {
+    width: 61.8rem;
+    height: 43.2rem;
+  }
 }
 
 .featureTitle {
-  font-size: 24px;
+  font-size: 2.4rem;
   color: var(--brand-bg-2);
-  margin: 16px 0;
+  margin: $spacing-md 0;
   text-align: center;
-}
-
-@media (width >=768px) {
-  .featureCard {
-    width: 618px;
-    height: 432px;
-  }
 }

@@ -1,0 +1,28 @@
+.challengesTable {
+  border: 1px solid #e0e0e0;
+  table-layout: auto;
+  width: 90%;
+  margin: 2rem auto;
+
+  tr {
+    border-bottom: 1px solid #e0e0e0;
+
+    th,
+    td {
+      padding: 1rem;
+      vertical-align: middle;
+    }
+  }
+
+  th {
+    text-align: left;
+
+    &:nth-child(2) {
+      text-align: center;
+    }
+  }
+
+  td:nth-child(2) {
+    text-align: center;
+  }
+}

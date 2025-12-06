@@ -1,5 +1,7 @@
+@use "@/ui/styles/variables" as *;
+
 .testInput {
-  border-radius: 0.25rem;
+  border-radius: 4px;
   padding: 1rem;
   overflow: auto;
   height: 100%;
