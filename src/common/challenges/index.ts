@@ -43,4 +43,10 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Medium,
     tags: ["Array", "Algorithm"],
   },
+  {
+    id: 8,
+    name: "Implement Basic Debounce()",
+    difficulty: Difficulty.Medium,
+    tags: ["Function", "Closure", "Timing"],
+  },
 ];
