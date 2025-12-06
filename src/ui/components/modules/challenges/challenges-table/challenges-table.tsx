@@ -9,8 +9,9 @@ import SearchBar from "../search-bar";
 import classes from "./challenges-table.module.scss";
 import { filterChallenges } from "../challenge-list.utils";
 import { routes } from "@/common/routes";
+import { CheckCircle2, Circle } from "lucide-react";
 
-export function ChallengesTable({ challenges }: { challenges: Challenge[] }) {
+export function ChallengesTable({ challenges, solvedChallengeIds }: { challenges: Challenge[]; solvedChallengeIds: number[] }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredChallenges = useMemo(() => {
@@ -24,6 +25,7 @@ export function ChallengesTable({ challenges }: { challenges: Challenge[] }) {
         <thead>
           <tr>
             <th>#</th>
+            <th>Status</th>
             <th>Name</th>
             <th>Difficulty</th>
             <th>Tags</th>
@@ -40,6 +42,13 @@ export function ChallengesTable({ challenges }: { challenges: Challenge[] }) {
             filteredChallenges.map((challenge, index) => (
               <tr key={challenge.id}>
                 <td>{index + 1}</td>
+                <td>
+                  {solvedChallengeIds.includes(challenge.id) ? (
+                    <CheckCircle2 size={20} className="text-green-500 inline-block" />
+                  ) : (
+                    <Circle size={20} className="text-gray-600 opacity-30 inline-block" />
+                  )}
+                </td>
                 <td>
                   <RadixNextLink href={`${routes.challenges}/${challenge.id}`}>
                     {challenge.name}

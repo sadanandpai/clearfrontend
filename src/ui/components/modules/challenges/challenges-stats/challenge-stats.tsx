@@ -34,7 +34,7 @@ export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) =
   ];
 
   return (
-    <Flex gap="3" className="my-6 px-4">
+    <Flex gap="3" style={{ flex: 1 }}>
       {difficultyStats.map((stat) => (
         <DifficultyStatCard
           key={stat.difficulty}

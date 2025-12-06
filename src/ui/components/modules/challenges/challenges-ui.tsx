@@ -1,6 +1,6 @@
 import { Challenge } from "@/common/types/challenge.types";
-import { ChallengeStats } from "./challenges-stats/challenge-stats";
 import { ChallengesTable } from "./challenges-table/challenges-table";
+import { ChallengeList } from "./challenge-list";
 
 interface Props {
   challenges: Challenge[];
@@ -10,8 +10,8 @@ interface Props {
 export function ChallengesUI({ challenges, solvedChallengeIds }: Props) {
   return (
     <>
-      <ChallengeStats challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
-      <ChallengesTable challenges={challenges} />
+      <ChallengeList challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
+      <ChallengesTable challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
     </>
   );
 }
