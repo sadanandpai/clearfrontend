@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Heart } from "lucide-react";
 import { Button, Text } from "@radix-ui/themes";
@@ -8,7 +8,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { appContext } from "@/ui/context/app.context";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { LIKE_DEBOUNCE_TIME } from "./constant";
 
 interface Props {
   totalLikes?: number;
@@ -19,8 +18,6 @@ export function UserLikeStatus({ totalLikes }: Props) {
   const { user, isLoginChecked } = useContext(appContext);
   const queryClient = useQueryClient();
   const [challengeLikes, setChallengeLikes] = useState<number | undefined>();
-  const [localLike, setLocalLike] = useState<boolean | null>(null);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
   const challengeId = Number(usePathname().split("/").at(-1));
 
   const { data: infoData, isLoading } = useQuery({
@@ -32,7 +29,7 @@ export function UserLikeStatus({ totalLikes }: Props) {
 
   const { mutate, isPending } = useMutation({
     mutationKey: ["userChallengeInfo", "like", challengeId],
-    mutationFn: (nextLike: boolean) => setUserChallengeLike(challengeId, nextLike),
+    mutationFn: () => setUserChallengeLike(challengeId, !infoData?.like),
     onSuccess: (data) => {
       // update the cache of query (this helps to update the UI without invoking the API again)
       queryClient.setQueryData(["userChallengeInfo", challengeId], (oldData: typeof infoData) => ({
@@ -46,16 +43,12 @@ export function UserLikeStatus({ totalLikes }: Props) {
         toast("Challenge is un-liked");
       }
 
-      setLocalLike(null);
-    },
-    onError: (_err, nextLike) => {
-      toast.error("Failed to like challenge");
-      setLocalLike(null);
       if (challengeLikes !== undefined) {
-        const revert = nextLike ? -1 : +1;
-        const next = challengeLikes + revert;
-        setChallengeLikes(next < 0 ? 0 : next);
+        setChallengeLikes(data.like ? challengeLikes + 1 : challengeLikes - 1);
       }
+    },
+    onError: () => {
+      toast.error("Failed to like challenge");
     },
   });
 
@@ -65,21 +58,11 @@ export function UserLikeStatus({ totalLikes }: Props) {
       return;
     }
 
-    const baseLike = localLike ?? infoData?.like ?? false;
-    const nextLike = !baseLike;
-    setLocalLike(nextLike);
-
-    if (challengeLikes !== undefined) {
-      const nextCount = nextLike ? challengeLikes + 1 : challengeLikes - 1;
-      setChallengeLikes(nextCount < 0 ? 0 : nextCount);
+    if (isPending) {
+      return;
     }
 
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-    debounceRef.current = setTimeout(() => {
-      mutate(nextLike);
-    }, LIKE_DEBOUNCE_TIME);
+    mutate();
   }
 
   useEffect(() => {
@@ -105,9 +88,9 @@ export function UserLikeStatus({ totalLikes }: Props) {
       onClick={handleLike}
     >
       <Heart
-        fill={(localLike ?? infoData?.like) ? "red" : "none"}
+        fill={infoData?.like ? "red" : "none"}
         size={24}
-        color={(localLike ?? infoData?.like) ? "red" : resolvedTheme === "dark" ? "white" : "black"}
+        color={infoData?.like ? "red" : resolvedTheme === "dark" ? "white" : "black"}
       />
       <Text size="2">{challengeLikes}</Text>
     </Button>
