@@ -2,12 +2,14 @@ interface Props {
   percentage: number;
   size?: number;
   strokeWidth?: number;
+  rotation?: number;
 }
 
 export const CircularProgressSvg = ({
   percentage,
   size = 140,
-  strokeWidth = 12
+  strokeWidth = 12,
+  rotation = -90
 }: Props) => {
   const center = size / 2;
   const radius = (size - strokeWidth) / 2;
@@ -19,7 +21,7 @@ export const CircularProgressSvg = ({
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      style={{ transform: "rotate(-90deg)", display: "block" }}
+      style={{ transform: `rotate(${rotation}deg)`, display: "block" }}
     >
       {/* Background circle */}
       <circle

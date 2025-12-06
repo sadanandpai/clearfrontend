@@ -23,7 +23,7 @@ export const ProgressCircle = ({ solved, total }: Props) => {
 
           {/* Center text */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-            <Text size="6" weight="bold" className="leading-none">
+            <Text size="5" weight="bold" className="leading-none">
               {percentage}%
             </Text>
           </div>

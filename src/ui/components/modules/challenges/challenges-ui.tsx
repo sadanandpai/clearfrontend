@@ -8,7 +8,6 @@ interface Props {
 }
 
 export function ChallengesUI({ challenges, solvedChallengeIds }: Props) {
-  console.log(solvedChallengeIds)
   return (
     <>
       <ChallengeList challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
