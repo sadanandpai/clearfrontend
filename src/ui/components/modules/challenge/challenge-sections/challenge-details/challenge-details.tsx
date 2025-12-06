@@ -41,7 +41,7 @@ export function ChallengeDetails({ problem, isLoading }: Props) {
       onValueChange={setSelectedTab}
       className="panel-layout flex flex-col"
     >
-      <Tabs.List className="flex-shrink-0">
+      <Tabs.List className="shrink-0">
         <Tabs.Trigger value="question">Question</Tabs.Trigger>
         <Tabs.Trigger value="result" className="hidden md:block">
           Result

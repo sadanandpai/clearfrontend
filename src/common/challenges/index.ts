@@ -37,4 +37,10 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Medium,
     tags: ["Function", "Closure"],
   },
+  {
+    id: 7,
+    name: "Array Chunking",
+    difficulty: Difficulty.Medium,
+    tags: ["Array", "Algorithm"],
+  },
 ];
