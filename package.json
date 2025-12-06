@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint",
     "test": "vitest --watch=false",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
@@ -19,24 +19,24 @@
     "@radix-ui/react-collapsible": "^1.1.11",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/themes": "^3.2.1",
-    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-query": "^5.90.12",
     "embla-carousel-react": "^8.6.0",
-    "immer": "^10.1.1",
+    "immer": "^11.0.1",
     "input-otp": "^1.4.2",
-    "ioredis": "^5.6.1",
+    "ioredis": "^5.8.2",
     "lucide-react": "^0.525.0",
-    "next": "^15.3.5",
+    "next": "^16.0.7",
     "next-themes": "^0.4.6",
     "node-appwrite": "^17.0.0",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.1.0",
+    "react": "^19.2.1",
     "react-contenteditable": "^3.3.7",
-    "react-dom": "^19.1.0",
+    "react-dom": "^19.2.1",
     "react-resizable-panels": "^3.0.3",
     "server-only": "^0.0.1",
-    "sonner": "^2.0.6",
-    "zod": "^4.0.5",
-    "zustand": "^5.0.6"
+    "sonner": "^2.0.7",
+    "zod": "^4.1.13",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
@@ -47,7 +47,7 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
     "eslint": "^9.31.0",
-    "eslint-config-next": "^15.3.5",
+    "eslint-config-next": "^16.0.7",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "postcss": "^8.5.6",
@@ -56,9 +56,12 @@
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.15"
   },
   "volta": {
-    "node": "22.17.0"
+    "node": "24.11.1"
+  },
+  "engines": {
+    "node": ">=24.11.1"
   }
 }

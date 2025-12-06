@@ -18,6 +18,7 @@ export function ChallengeTerminal({ defaultInput, testCode, isLoading }: Props) 
 
   useEffect(() => {
     if (testOutput?.status !== undefined) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedTab("output");
     }
   }, [testOutput]);
@@ -29,7 +30,7 @@ export function ChallengeTerminal({ defaultInput, testCode, isLoading }: Props) 
         onValueChange={setSelectedTab}
         className="panel-layout flex flex-col"
       >
-        <Tabs.List className="flex-shrink-0">
+        <Tabs.List className="shrink-0">
           <Tabs.Trigger value="input">Input</Tabs.Trigger>
           <Tabs.Trigger value="output">Output</Tabs.Trigger>
           <Tabs.Trigger value="console">Console</Tabs.Trigger>

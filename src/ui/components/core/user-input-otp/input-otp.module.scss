@@ -1,4 +1,4 @@
-@use "src/ui/styles/mixins" as *;
+@use "@/ui/styles/mixins" as *;
 
 .slot {
   @include flex-center;

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
-import { Button } from "@radix-ui/themes";
 import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import { Button } from "@radix-ui/themes";
+import { useTheme } from "next-themes";
 
 export const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -11,6 +12,7 @@ export const ThemeSwitch = () => {
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

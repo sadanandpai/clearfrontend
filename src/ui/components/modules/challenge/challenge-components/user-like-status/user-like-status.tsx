@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { toast } from "sonner";
-import { Heart } from "lucide-react";
 import { Button, Text } from "@radix-ui/themes";
-import { usePathname } from "next/navigation";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { appContext } from "@/ui/context/app.context";
 import { getUserChallengeInfo, setUserChallengeLike } from "@/server/actions/user-challenge";
+import { useContext, useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { Heart } from "lucide-react";
+import { appContext } from "@/ui/context/app.context";
+import { toast } from "sonner";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 
 interface Props {
@@ -66,6 +67,7 @@ export function UserLikeStatus({ totalLikes }: Props) {
 
   useEffect(() => {
     if (totalLikes !== undefined) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setChallengeLikes(totalLikes);
     }
   }, [totalLikes]);
