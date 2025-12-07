@@ -43,4 +43,10 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Medium,
     tags: ["Array", "Algorithm"],
   },
+  {
+    id: 8,
+    name: "Build a Queue Using Stack",
+    difficulty: Difficulty.Medium,
+    tags: ["Data Structure", "Stack", "Queue"],
+  },
 ];
