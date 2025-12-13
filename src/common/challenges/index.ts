@@ -49,4 +49,10 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Medium,
     tags: ["Function", "Closure", "Timing"],
   },
+  {
+    id: 9,
+    name: "Rolling transcript buffer",
+    difficulty: Difficulty.Medium,
+    tags: ["Strings", "Subtraction"]
+  }
 ];
