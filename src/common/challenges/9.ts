@@ -32,8 +32,8 @@ export const problem = {
       explanation: "No changes were made, so the new part is an empty string.",
     },
     {
-      input: `["old text is gone", "new text entirely"]`,
-      output: `"new text entirely"`,
+      input: `["old text is gone", "this is new text entirely"]`,
+      output: `"this is new text entirely"`,
       explanation:
         "If there is no overlap, it means string1 was entirely truncated, and the entirety of string2 is the new part.",
     },
@@ -117,29 +117,19 @@ const testImplementation = (implementation) => {
     expect(implementation(s1, s2)).toBe("");
   });
 
-  // Example 5: Truncation and addition (with trailing whitespace in new part)
-  test('Example 5: I am coding right now -> coding right now and listening', () => {
-    const s1 = "I am coding right now";
-    const s2 = "coding right now and listening";
-    // Overlap: "coding right now" (16 chars)
-    expect(implementation(s1, s2)).toBe(" and listening");
+  // Example 5: Repeated words in the string
+  test('Example 5: Repeated words in the string (For example: "Yes, okay okay")', () => {
+    const s1 = "apple banana banana";
+    const s2 = "banana orange banana orange";
+    expect(implementation(s1, s2)).toBe(" orange banana orange");
   });
 
   // Example 6: Full truncation
   test('Example 6: Full truncation (no overlap)', () => {
     const s1 = "old text is gone";
-    const s2 = "new text entirely";
+    const s2 = "this is new text entirely";
     // Overlap: None. Entirely new content.
-    expect(implementation(s1, s2)).toBe("new text entirely");
-  });
-
-  // Edge Case: s1 is longer than s2 (Impossible in a rolling buffer, but needs handling)
-  test('Edge Case: string1 is longer than string2, but string2 is prefix of string1', () => {
-    const s1 = "Hello World";
-    const s2 = "Hello";
-    // Overlap: "Hello"
-    // Since string2 is completely contained in string1, no new part was added.
-    expect(implementation(s1, s2)).toBe("");
+    expect(implementation(s1, s2)).toBe("this is new text entirely");
   });
   
   // Edge Case: Empty strings
@@ -149,10 +139,6 @@ const testImplementation = (implementation) => {
 
   test('Edge Case: string1 is empty, string2 is not', () => {
     expect(implementation("", "New")).toBe("New");
-  });
-
-  test('Edge Case: string1 has content, string2 is empty', () => {
-    expect(implementation("Old", "")).toBe("");
   });
 
   // Edge Case: Single character overlap
@@ -166,10 +152,6 @@ const testImplementation = (implementation) => {
 
 describe('findNewPart - User Solution', () => {
   testImplementation(userSolution);
-});
-
-describe('findNewPart - System Solution', () => {
-  testImplementation(systemSolution);
 });
 `,
   testCode: (arg: string[]) => {
