@@ -1,6 +1,6 @@
 import "server-only";
 import { serviceClient } from "../services/service_client";
-import { countChallengeLikes, countChallengeAttempts, countChallengeSolves } from "./challenge";
+import { countChallengeLikes, countChallengeAttempts, countChallengeSolves, upsertChallengeInfo } from "./challenge";
 
 export async function getViews(challengeId: number) {
   const raw = await serviceClient.cache().get(`views:${challengeId}`);
@@ -45,6 +45,10 @@ export async function incrementViews(challengeId: number) {
     await serviceClient.cache().set(key, current);
   }
   await serviceClient.cache().incr(key);
+  const newCount = current + 1;
+
+  // Write to Appwrite DB
+  await upsertChallengeInfo(challengeId, { views: newCount });
 }
 
 export async function incrementAttempts(challengeId: number) {
@@ -55,6 +59,10 @@ export async function incrementAttempts(challengeId: number) {
     await serviceClient.cache().set(key, current);
   }
   await serviceClient.cache().incr(key);
+  const newCount = current + 1;
+
+  // Write to Appwrite DB
+  await upsertChallengeInfo(challengeId, { attempts: newCount });
 }
 
 export async function incrementSolves(challengeId: number) {
@@ -65,6 +73,10 @@ export async function incrementSolves(challengeId: number) {
     await serviceClient.cache().set(key, current);
   }
   await serviceClient.cache().incr(key);
+  const newCount = current + 1;
+
+  // Write to Appwrite DB
+  await upsertChallengeInfo(challengeId, { solves: newCount });
 }
 
 export async function updateLikes(challengeId: number, isIncrement: boolean) {
@@ -75,14 +87,20 @@ export async function updateLikes(challengeId: number, isIncrement: boolean) {
     await serviceClient.cache().set(key, current);
   }
 
+  let newCount: number;
   if (isIncrement) {
     await serviceClient.cache().incr(key);
-    return;
+    newCount = current + 1;
+  } else {
+    if (current > 0) {
+      await serviceClient.cache().decr(key);
+      newCount = current - 1;
+    } else {
+      await serviceClient.cache().set(key, 0);
+      newCount = 0;
+    }
   }
 
-  if (current > 0) {
-    await serviceClient.cache().decr(key);
-  } else {
-    await serviceClient.cache().set(key, 0);
-  }
+  // Write to Appwrite DB using upsert
+  await upsertChallengeInfo(challengeId, { likes: newCount });
 }

@@ -8,6 +8,14 @@ export const problem = {
   description: "",
   difficulty: "medium",
   languages: ["javascript"],
+  author: {
+    name: "John Doe",
+    link: "https://github.com/john-doe"
+  },
+  contributors: [{
+    name: "Jane Doe",
+    link: "https://github.com/jane-doe"
+  }],
   examples: [
     {
       input: "[1, 2], [3, 4]",
@@ -22,6 +30,7 @@ export const problem = {
       output: "[1, 5, 2, 6, 3, 4]",
     },
   ],
+  createdAt: "",
   sampleInput: "[1, 2], [3, 4]",
   code: `/**
 * @param {number[]} arr1
