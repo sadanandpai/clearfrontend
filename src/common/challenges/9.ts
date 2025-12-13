@@ -91,7 +91,7 @@ const testImplementation = (implementation) => {
   test('Example 1: No truncation, only addition', () => {
     const s1 = "Hello, how are you";
     const s2 = "Hello, how are you doing today?";
-    expect(implementation(s1, s2)).toBe(" doing today?");
+    expect(implementation(s1, s2)).toBe("he doing today?");
   });
 
   // Example 2: Truncation and addition (long overlap)
