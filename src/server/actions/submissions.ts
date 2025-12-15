@@ -5,8 +5,9 @@ import {
   deleteSubmissionsRecord,
   getSubmissionsRecords,
 } from "@/server/data-access/submissions";
-import { isValidChallengeId } from "@/server/utils/challenge";
+
 import { getLoggedInUser } from "./auth";
+import { isValidChallengeId } from "@/server/utils/challenge";
 
 export async function getUserSubmissions(challengeId: number) {
   if (!isValidChallengeId(challengeId)) {
@@ -23,7 +24,7 @@ export async function submitUserSubmission(challengeId: number, code: string, st
 
   const userCode = code.trim();
   if (typeof code !== "string" || userCode === "" || userCode.length > 1000) {
-    throw new Error("Code length exceeds limit");
+    throw new Error("Invalid code length or exceeds the limit");
   }
 
   const user = await getLoggedInUser();

@@ -1,11 +1,14 @@
-import { useContext } from "react";
-import { submitUserSubmission } from "@/server/actions/submissions";
-import { useMutation } from "@tanstack/react-query";
-import { appContext } from "@/ui/context/app.context";
-import { usePathname } from "next/navigation";
-import { routes } from "@/common/routes";
 import { Button } from "@radix-ui/themes";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
+import { appContext } from "@/ui/context/app.context";
+import { collapseWhiteSpace } from "collapse-white-space";
+import { routes } from "@/common/routes";
+import strip from "strip-comments";
+import { submitUserSubmission } from "@/server/actions/submissions";
+import { toast } from "sonner";
+import { useContext } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { usePathname } from "next/navigation";
 
 interface SubmissionMutationProps {
   challengeId: number;
@@ -26,9 +29,12 @@ export function SaveSubmission({ status, onSubmit, disabled, submittedCode }: Pr
 
   const { mutate, isPending } = useMutation({
     mutationFn: ({ challengeId, code, status }: SubmissionMutationProps) =>
-      submitUserSubmission(challengeId, code, status),
+      submitUserSubmission(challengeId, collapseWhiteSpace(strip(code)), status),
     onSuccess: () => {
       onSubmit?.();
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 

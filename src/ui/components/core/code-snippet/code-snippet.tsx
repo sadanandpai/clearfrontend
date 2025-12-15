@@ -1,4 +1,6 @@
 import { Highlight, PrismTheme } from "prism-react-renderer";
+
+import beautify from "js-beautify";
 import classes from "./code-snippet.module.scss";
 
 interface Props {
@@ -7,9 +9,11 @@ interface Props {
 }
 
 export function CodeSnippet({ code, theme }: Props) {
+  const beautifiedCode = beautify(code);
+
   return (
     <div className={classes.codeSnippet}>
-      <Highlight theme={theme} code={code} language="js">
+      <Highlight theme={theme} code={beautifiedCode} language="js">
         {({ style, tokens, getLineProps, getTokenProps }) => (
           <pre style={style}>
             {tokens.map((line, i) => (

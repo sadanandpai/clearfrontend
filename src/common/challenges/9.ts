@@ -58,7 +58,7 @@ export default function findNewPart(string1, string2) {
    * @param {string} string2 The modified string.
    * @returns {string} The new part of the string, or string2 if no common part is found.
    */
-  function findNewPart(string1, string2) {
+  export default function findNewPart(string1, string2) {
     // Scenario 1: string2 has characters added to the end, no truncating has happened in the beginning.
     if (string2.startsWith(string1)) {
       // Chop and return the additional part in string2
