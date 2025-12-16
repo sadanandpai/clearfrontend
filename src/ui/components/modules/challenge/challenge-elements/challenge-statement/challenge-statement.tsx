@@ -53,7 +53,7 @@ export function ProblemStatement({ problem }: Props) {
             <Text weight="bold">Example {idx + 1}</Text>
 
             <pre
-              className="rounded-md p-4 mt-2 text-md flex flex-col gap-4"
+              className="rounded-md p-4 mt-2 text-md flex flex-col gap-4 overflow-x-scroll"
               style={{
                 backgroundColor: "var(--gray-5)",
               }}
