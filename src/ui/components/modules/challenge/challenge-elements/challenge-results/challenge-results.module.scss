@@ -14,3 +14,9 @@
     margin-bottom: $spacing-lg;
   }
 }
+
+.saveSubmission {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: $spacing-lg;
+}
