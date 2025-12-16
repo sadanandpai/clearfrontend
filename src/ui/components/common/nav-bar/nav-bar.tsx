@@ -20,7 +20,6 @@ export function NavBar({ children }: React.PropsWithChildren) {
 
       <Flex gap="4">
         {pathname !== "/" && <FeedbackButton />}
-
         <ThemeSwitch />
         <RadixNextLink href={routes.profile}>
           <CircleUser />
