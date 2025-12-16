@@ -40,7 +40,7 @@ export async function initiateSessionWithEmail(name: string, email: string, pass
 
 export async function sendVerificationEmail() {
   const { account } = await serviceClient.user.authenticated();
-  await account.createVerification(`${HOST_URL}${routes.verifyEmail}`);
+  await account.createEmailVerification(`${HOST_URL}${routes.verifyEmail}`);
 }
 
 export async function destroySession() {

@@ -47,13 +47,14 @@ export function ChallengeResults({ setSelectedTab, testOutputs, submittedCode }:
           <TestResult key={index} {...result} />
         ))}
       </div>
-
-      <SaveSubmission
-        onSubmit={onSubmit}
-        status={testOutputs.status}
-        submittedCode={submittedCode}
-        disabled={submittedExecutionId === testOutputs.executionId}
-      />
+      <div className={classes.saveSubmission}>
+        <SaveSubmission
+          onSubmit={onSubmit}
+          status={testOutputs.status}
+          submittedCode={submittedCode}
+          disabled={submittedExecutionId === testOutputs.executionId}
+        />
+      </div>
     </div>
   );
 }
