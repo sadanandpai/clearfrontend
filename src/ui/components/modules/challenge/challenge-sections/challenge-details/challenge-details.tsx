@@ -1,5 +1,5 @@
 import { Box, ScrollArea, Spinner, Tabs } from "@radix-ui/themes";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ChallengeResults } from "@/ui/components/modules/challenge/challenge-elements/challenge-results/challenge-results";
 import { ChallengeSolution } from "@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution";
@@ -18,15 +18,14 @@ export function ChallengeDetails({ problem, isLoading }: Props) {
   const [selectedTab, setSelectedTab] = useState("question");
   const testOutputs = useChallengeStore((state) => state.testOutputs);
   const { code } = useActiveCode();
-  const submittedCode = useRef<string>("");
+  const [submittedCode, setSubmittedCode] = useState<string>("");
 
   useEffect(() => {
     if (testOutputs?.isLoading) {
       setSelectedTab("result");
     }
-
     if (testOutputs?.outputs?.length) {
-      submittedCode.current = code;
+      setSubmittedCode(code);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testOutputs, setSelectedTab]);
@@ -60,7 +59,7 @@ export function ChallengeDetails({ problem, isLoading }: Props) {
             <ChallengeResults
               setSelectedTab={setSelectedTab}
               testOutputs={testOutputs}
-              submittedCode={submittedCode.current}
+              submittedCode={submittedCode || code}
             />
           </Tabs.Content>
 
