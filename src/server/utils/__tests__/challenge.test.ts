@@ -8,7 +8,7 @@ describe("isValidChallengeId", () => {
   });
 
   it("should return false for invalid challenge ids", () => {
-    expect(isValidChallengeId(12)).toBe(false);
+    expect(isValidChallengeId(16)).toBe(false);
   });
 
   it("should return false for undefined challenge ids", () => {

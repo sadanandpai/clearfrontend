@@ -55,4 +55,40 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Medium,
     tags: ["Strings", "Subtraction"],
   },
+  {
+    id: 10,
+    name: "Reverse Bits (32-bit)",
+    difficulty: Difficulty.Easy,
+    tags: ["Bit Manipulation", "Number"],
+  },
+  {
+    id: 11,
+    name: "Merge Two Sorted Lists",
+    difficulty: Difficulty.Easy,
+    tags: ["Array", "Two Pointers"],
+  },
+  {
+    id: 12,
+    name: "Top K Frequent Elements",
+    difficulty: Difficulty.Medium,
+    tags: ["Array", "Hash Map", "Bucket"],
+  },
+  {
+    id: 13,
+    name: "Remove Duplicates from Sorted Array",
+    difficulty: Difficulty.Easy,
+    tags: ["Array", "Two Pointers"],
+  },
+  {
+    id: 14,
+    name: "Find First Occurrence in a String",
+    difficulty: Difficulty.Easy,
+    tags: ["String", "Search"],
+  },
+  {
+    id: 15,
+    name: "Minimum Window Substring",
+    difficulty: Difficulty.Hard,
+    tags: ["String", "Sliding Window", "Hash Map"],
+  },
 ];
