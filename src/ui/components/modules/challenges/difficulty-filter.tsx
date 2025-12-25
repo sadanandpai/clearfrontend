@@ -36,7 +36,7 @@ export const DifficultyFilter = ({ selected, onChange, counts }: Props) => {
           onClick={() => onChange(diff)}
           className="cursor-pointer"
         >
-          {diff}
+          {diff.toUpperCase()}
           {counts && <span className="ml-1 opacity-70">({counts[diff]})</span>}
         </Button>
       ))}

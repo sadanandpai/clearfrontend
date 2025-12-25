@@ -1,26 +1,87 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import { Challenge } from "@/common/types/challenge.types";
 import { DifficultyBadge } from "@/ui/components/core/difficulty-badge/difficulty-badge";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
 import SearchBar from "../search-bar";
 import classes from "./challenges-table.module.scss";
-import { filterChallenges } from "../challenge-list.utils";
+import { filterAndSortChallenges, getAllUniqueTags, getDifficultyCounts } from "../challenge-list.utils";
 import { routes } from "@/common/routes";
 import { CheckCircle2, Circle } from "lucide-react";
+import { useChallengeFilters } from "../use-challenge-filters";
+import { DifficultyFilter } from "../difficulty-filter";
+import { TagFilter } from "../tag-filter";
+import { SortDropdown } from "../sort-dropdown";
+import { Flex, Button } from "@radix-ui/themes";
+import { ActiveFilters } from "../active-filters";
 
 export function ChallengesTable({ challenges, solvedChallengeIds }: { challenges: Challenge[]; solvedChallengeIds: number[] }) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const { filters, updateFilters, resetFilters } = useChallengeFilters();
+
+  const availableTags = useMemo(() => getAllUniqueTags(challenges), [challenges]);
 
   const filteredChallenges = useMemo(() => {
-    return filterChallenges(challenges, searchQuery);
-  }, [challenges, searchQuery]);
+    return filterAndSortChallenges(challenges, filters);
+  }, [challenges, filters]);
+
+  const difficultyCounts = useMemo(() => getDifficultyCounts(challenges), [challenges]);
+
+  const hasActiveFilters =
+    filters.difficulty !== "All" ||
+    filters.tags.length > 0 ||
+    filters.sortBy !== "none" ||
+    filters.search.trim() !== "";
 
   return (
     <div>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      {/* Search Bar */}
+      <SearchBar
+        searchQuery={filters.search}
+        setSearchQuery={(search: string) => updateFilters({ search })}
+      />
+
+      {/* Filters Section */}
+      <Flex direction="column" gap="4" style={{ marginTop: 24, marginBottom: 24, padding: "0 5%" }}>
+        <Flex justify="between" align="center" wrap="wrap" gap="3">
+          <DifficultyFilter
+            selected={filters.difficulty}
+            onChange={(difficulty) => updateFilters({ difficulty })}
+            counts={difficultyCounts}
+          />
+          <Flex gap="2" align="center">
+            <SortDropdown value={filters.sortBy} onChange={(sortBy) => updateFilters({ sortBy })} />
+            {hasActiveFilters && (
+              <Button variant="soft" onClick={resetFilters} className="cursor-pointer">
+                Clear Filters
+              </Button>
+            )}
+          </Flex>
+        </Flex>
+
+        <TagFilter
+          availableTags={availableTags}
+          selectedTags={filters.tags}
+          onChange={(tags) => updateFilters({ tags })}
+        />
+      </Flex>
+
+      {/* Results Count */}
+      <div style={{ padding: "0 5%", marginBottom: 12, color: "gray" }}>
+        Showing {filteredChallenges.length} of {challenges.length} challenges
+      </div>
+
+      {/* Active Filters */}
+      <ActiveFilters
+        filters={filters}
+        onRemoveDifficulty={() => updateFilters({ difficulty: "All" })}
+        onRemoveTag={(tag) => updateFilters({ tags: filters.tags.filter((t) => t !== tag) })}
+        onRemoveSort={() => updateFilters({ sortBy: "none" })}
+        onRemoveSearch={() => updateFilters({ search: "" })}
+      />
+
+      {/* Table */}
       <table className={classes.challengesTable}>
         <thead>
           <tr>
@@ -34,8 +95,19 @@ export function ChallengesTable({ challenges, solvedChallengeIds }: { challenges
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} className="text-center py-3">
-                No challenges found
+              <td colSpan={5} style={{ textAlign: "center", padding: "40px 20px" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+                  <span style={{ fontSize: "48px" }}>🔍</span>
+                  <span style={{ fontSize: "18px", fontWeight: 600 }}>No challenges found</span>
+                  <span style={{ fontSize: "14px", opacity: 0.7 }}>
+                    Try adjusting your filters or search terms
+                  </span>
+                  {hasActiveFilters && (
+                    <Button variant="soft" onClick={resetFilters} style={{ marginTop: "8px" }}>
+                      Clear All Filters
+                    </Button>
+                  )}
+                </div>
               </td>
             </tr>
           ) : (
