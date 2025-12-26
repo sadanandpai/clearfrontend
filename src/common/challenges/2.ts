@@ -22,6 +22,7 @@ export const problem = {
       output: "[1, 5, 2, 6, 3, 4]",
     },
   ],
+  createdAt: "",
   sampleInput: "[1, 2], [3, 4]",
   code: `/**
 * @param {number[]} arr1

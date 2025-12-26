@@ -6,7 +6,7 @@ import { signOut } from "@/server/actions/auth";
 import { Button, Flex } from "@radix-ui/themes";
 import { NameUpdate } from "./name-update/name-update";
 import { EmailUpdate } from "./email-update/email-update";
-import { PhoneUpdate } from "./phone-update/phone-update";
+// import { PhoneUpdate } from "./phone-update/phone-update";
 import { PasswordUpdate } from "./password-update/password-update";
 import { EmailVerification } from "@/ui/components/modules/auth/profile/email-verification/email-verification";
 import { PhoneVerification } from "@/ui/components/modules/auth/profile/phone-verification/phone-verification";
@@ -26,7 +26,7 @@ export function Profile({ user: serverUser }: Props) {
       <NameUpdate name={user.name} />
       <PasswordUpdate />
       <EmailUpdate email={user.email} emailVerification={user.emailVerification} />
-      <PhoneUpdate phone={user.phone} phoneVerification={user.phoneVerification} />
+      {/* <PhoneUpdate phone={user.phone} phoneVerification={user.phoneVerification} /> */}
 
       <Flex gap="2">
         <EmailVerification emailVerification={user.emailVerification} />
