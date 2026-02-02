@@ -11,7 +11,6 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const CHALLENGES_DIR = path.join(__dirname, '../src/common/challenges');
 const TEMP_DIR = path.join(__dirname, '../.temp-challenge-tests');
 
 // Clean up temp directory
