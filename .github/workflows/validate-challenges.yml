@@ -1,0 +1,61 @@
+name: Validate Challenge Solutions
+
+on:
+  pull_request:
+    branches:
+      - test-ci
+    paths:
+      - 'src/common/challenges/**'
+
+jobs:
+  validate-challenges:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get changed challenge files
+        id: changed-files
+        run: |
+          # For PRs, compare with the base branch (test-ci)
+          # GitHub Actions provides the base ref in the PR context
+          BASE_REF="${{ github.event.pull_request.base.ref || 'test-ci' }}"
+          
+          # Fetch the base branch
+          git fetch origin $BASE_REF:$BASE_REF --depth=1 || true
+          
+          # Get changed files by comparing base branch with current HEAD
+          # Use three-dot notation to get files changed in the PR
+          CHANGED_FILES=$(git diff --name-only $BASE_REF...HEAD | grep '^src/common/challenges/.*\.ts$' | grep -v 'index.ts' || true)
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No challenge files changed"
+            echo "files=[]" >> $GITHUB_OUTPUT
+          else
+            echo "Changed files:"
+            echo "$CHANGED_FILES"
+            echo "files<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate challenge solutions
+        run: |
+          if [ -z "${{ steps.changed-files.outputs.files }}" ]; then
+            echo "No challenge files to validate"
+            exit 0
+          fi
+          
+          node scripts/validate-challenges.js "${{ steps.changed-files.outputs.files }}"
