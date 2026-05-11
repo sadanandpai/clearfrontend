@@ -4,7 +4,7 @@ import { Button } from "@radix-ui/themes";
 import ContentEditable from "react-contenteditable";
 import { RotateCcw } from "lucide-react";
 import classes from "./challenge-input.module.scss";
-import { useSandpack } from "@codesandbox/sandpack-react/unstyled";
+import { useChallengeStore } from "@/ui/store/challenge.store";
 
 interface Props {
   defaultInput: string;
@@ -12,24 +12,30 @@ interface Props {
 }
 
 export function ChallengeInput({ defaultInput, testCode }: Props) {
-  const { sandpack } = useSandpack();
-  const [userInput, setUserInput] = useState<string>(defaultInput);
+  const setUserInput = useChallengeStore((state) => state.setUserInput);
+  const [userInput, setLocalInput] = useState<string>(defaultInput);
 
   function onReset() {
-    setUserInput(defaultInput);
+    setLocalInput(defaultInput);
   }
 
   useEffect(() => {
-    sandpack.updateFile("/add.test.ts", testCode(userInput));
+    setUserInput(userInput);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInput]);
+
+  useEffect(() => {
+    setUserInput(defaultInput);
+    setLocalInput(defaultInput);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultInput]);
 
   return (
     <div className="relative">
       <ContentEditable
         className={classes.testInput}
         html={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
+        onChange={(e) => setLocalInput(e.target.value)}
         tagName="div"
       />
       <Button

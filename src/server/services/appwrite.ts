@@ -83,12 +83,21 @@ export class AdminClientAppwrite extends BaseClientAppWrite {
     }
   }
 
-
   get client() {
     return super.client.setKey(this.apiKey);
   }
 
   get account() {
     return new Account(this.client);
+  }
+}
+
+export class AdminDatabaseClientAppwrite extends AdminClientAppwrite {
+  get databases() {
+    return new Databases(this.client);
+  }
+
+  get Query() {
+    return Query;
   }
 }

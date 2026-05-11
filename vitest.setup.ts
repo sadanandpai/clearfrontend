@@ -9,5 +9,5 @@ import { vi } from "vitest";
   clearAllTimers: vi.clearAllTimers,
   advanceTimersByTime: vi.advanceTimersByTime,
   runAllTimers: vi.runAllTimers,
-  now: vi.now,
+  now: () => Date.now(),
 };

@@ -4,8 +4,14 @@ import { useEffect, useState } from "react";
 
 import ChallengeUI from "@/ui/components/modules/challenge/challenge-ui";
 import { ProblemProps } from "@/common/types/problem";
+import type { CodeShare } from "@/common/types/code-share.types";
 
-export function ChallengeLoader({ challengeId }: { challengeId: string }) {
+interface Props {
+  challengeId: string;
+  share?: CodeShare;
+}
+
+export function ChallengeLoader({ challengeId, share }: Props) {
   const [problem, setProblem] = useState<ProblemProps | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -25,5 +31,5 @@ export function ChallengeLoader({ challengeId }: { challengeId: string }) {
     loadProblem();
   }, [challengeId]);
 
-  return <ChallengeUI problem={problem} error={error} isLoading={isLoading} />;
+  return <ChallengeUI problem={problem} error={error} isLoading={isLoading} share={share} />;
 }

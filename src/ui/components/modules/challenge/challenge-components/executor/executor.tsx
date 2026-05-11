@@ -1,33 +1,42 @@
 "use client";
 
 import { Button, Flex } from "@radix-ui/themes";
-import { getTestResult, getTestResults } from "@/ui/utils/test-results";
-import { useLoadingOverlayState, useSandpack } from "@codesandbox/sandpack-react/unstyled";
+import { useTransition } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { appContext } from "@/ui/context/app.context";
+import { executeTests } from "@/server/actions/execute";
 import { incrementChallengeAttempts } from "@/server/actions/challenge";
 import { setUserChallengeSolve } from "@/server/actions/user-challenge";
 import { useChallengeStore } from "@/ui/store/challenge.store";
 import { useContext } from "react";
 import { usePathname } from "next/navigation";
 
-export function Executor() {
+interface Props {
+  testCode: (arg: string) => string;
+  testCases: string;
+  solution: string;
+}
+
+export function Executor({ testCode, testCases, solution }: Props) {
   const { user } = useContext(appContext);
   const challengeId = Number(usePathname().split("/").at(-1));
-  const { dispatch, listen } = useSandpack();
+
+  const userCode = useChallengeStore((state) => state.userCode);
+  const userInput = useChallengeStore((state) => state.userInput);
   const setOutput = useChallengeStore((state) => state.setOutput);
   const setOutputs = useChallengeStore((state) => state.setOutputs);
-  const testOutput = useChallengeStore((state) => state.testOutput);
-  const testOutputs = useChallengeStore((state) => state.testOutputs);
-  const overlayState = useLoadingOverlayState();
+  const setConsoleLogs = useChallengeStore((state) => state.setConsoleLogs);
+
+  const [isPendingRun, startRun] = useTransition();
+  const [isPendingRunAll, startRunAll] = useTransition();
+
   const queryClient = useQueryClient();
 
   const { mutate: markChallengeComplete, isPending } = useMutation({
     mutationKey: ["userChallengeInfo", "solve", challengeId],
     mutationFn: () => setUserChallengeSolve(challengeId),
     onSuccess: (data) => {
-      // update the cache of query (this helps to update the UI without invoking the API again)
       queryClient.setQueryData(
         ["userChallengeInfo", challengeId],
         (oldData: { $id: string; like: boolean; solve: boolean }) => ({
@@ -39,55 +48,35 @@ export function Executor() {
   });
 
   function runUserTest() {
-    setOutput({ isLoading: true });
-    const unsubscribe = getTestResult(
-      listen,
-      (result) => {
-        setOutput({ isLoading: false, ...result });
-        unsubscribe();
-      },
-      () => {
-        setOutput({ isLoading: false });
-        unsubscribe();
-      },
-    );
-
-    dispatch({
-      type: "run-tests",
-      path: "/add.test.ts",
+    startRun(async () => {
+      setOutput({ isLoading: true });
+      const result = await executeTests(userCode, testCode(userInput), solution);
+      setConsoleLogs(result.consoleLogs);
+      setOutput({
+        isLoading: false,
+        status: result.outputs[0]?.status === "pass",
+        output: result.outputs[0],
+      });
     });
   }
 
-  async function runAllTests() {
-    setOutputs({ isLoading: true });
+  function runAllTests() {
+    startRunAll(async () => {
+      setOutputs({ isLoading: true });
+      const result = await executeTests(userCode, testCases, solution);
 
-    // Safety timeout to avoid infinite loader if no completion is emitted
-    const timeoutId = setTimeout(() => {
-      setOutputs({ isLoading: false, executionId: Date.now() });
-    }, 15000);
+      if (user && result.status && !isPending) {
+        markChallengeComplete();
+      }
 
-    const unsubscribe = getTestResults(
-      listen,
-      (result) => {
-        clearTimeout(timeoutId);
-        if (user && result.status && !isPending) {
-          markChallengeComplete();
-        }
-
-        incrementChallengeAttempts(challengeId);
-        setOutputs({ isLoading: false, ...result, executionId: Date.now() });
-        unsubscribe();
-      },
-      () => {
-        clearTimeout(timeoutId);
-        setOutputs({ isLoading: false, executionId: Date.now() });
-        unsubscribe();
-      },
-    );
-
-    dispatch({
-      type: "run-tests",
-      path: "/test-cases.test.ts",
+      incrementChallengeAttempts(challengeId);
+      setConsoleLogs(result.consoleLogs);
+      setOutputs({
+        isLoading: false,
+        status: result.status,
+        outputs: result.outputs,
+        executionId: Date.now(),
+      });
     });
   }
 
@@ -95,15 +84,15 @@ export function Executor() {
     <Flex justify="end" align="center" gap="1" mt="2" mr="2">
       <Button
         onClick={runUserTest}
-        disabled={overlayState !== "HIDDEN"}
-        loading={testOutput?.isLoading ?? false}
+        disabled={isPendingRun || isPendingRunAll}
+        loading={isPendingRun}
       >
         Run
       </Button>
       <Button
         onClick={runAllTests}
-        disabled={overlayState !== "HIDDEN"}
-        loading={testOutputs?.isLoading ?? false}
+        disabled={isPendingRun || isPendingRunAll}
+        loading={isPendingRunAll}
       >
         Run All
       </Button>

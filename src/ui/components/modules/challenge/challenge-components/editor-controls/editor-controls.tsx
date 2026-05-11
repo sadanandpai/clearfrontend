@@ -1,13 +1,15 @@
 import { Button, Flex, Select, Text } from "@radix-ui/themes";
 import { RotateCcw } from "lucide-react";
+import { ShareButton } from "@/ui/components/modules/challenge/challenge-components/share-button/share-button";
 
 interface Props {
+  challengeId: number;
   fontSize: number;
   setFontSize: (size: number) => void;
   onReset: () => void;
 }
 
-export function EditorControls({ fontSize, setFontSize, onReset }: Props) {
+export function EditorControls({ challengeId, fontSize, setFontSize, onReset }: Props) {
   return (
     <>
       <Flex align="center" className="shadow-md mb-2 p-2" justify="between">
@@ -32,9 +34,12 @@ export function EditorControls({ fontSize, setFontSize, onReset }: Props) {
           </Select.Root>
         </Flex>
 
-        <Button onClick={onReset} aria-label="Reset code" size="1" variant="ghost">
-          <RotateCcw size="20" />
-        </Button>
+        <Flex align="center" gap="1">
+          <ShareButton challengeId={challengeId} />
+          <Button onClick={onReset} aria-label="Reset code" size="1" variant="ghost">
+            <RotateCcw size="20" />
+          </Button>
+        </Flex>
       </Flex>
     </>
   );

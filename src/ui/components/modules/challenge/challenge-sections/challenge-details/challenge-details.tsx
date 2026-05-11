@@ -6,7 +6,6 @@ import { ChallengeSolution } from "@/ui/components/modules/challenge/challenge-e
 import { ChallengeSubmissions } from "@/ui/components/modules/challenge/challenge-elements/challenge-submissions/challenge-submissions";
 import { ProblemProps } from "@/common/types/problem";
 import { ProblemStatement } from "@/ui/components/modules/challenge/challenge-elements/challenge-statement/challenge-statement";
-import { useActiveCode } from "@codesandbox/sandpack-react/unstyled";
 import { useChallengeStore } from "@/ui/store/challenge.store";
 
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
 export function ChallengeDetails({ problem, isLoading }: Props) {
   const [selectedTab, setSelectedTab] = useState("question");
   const testOutputs = useChallengeStore((state) => state.testOutputs);
-  const { code } = useActiveCode();
+  const userCode = useChallengeStore((state) => state.userCode);
   const [submittedCode, setSubmittedCode] = useState<string>("");
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export function ChallengeDetails({ problem, isLoading }: Props) {
       setSelectedTab("result");
     }
     if (testOutputs?.outputs?.length) {
-      setSubmittedCode(code);
+      setSubmittedCode(userCode);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testOutputs, setSelectedTab]);
@@ -59,7 +58,7 @@ export function ChallengeDetails({ problem, isLoading }: Props) {
             <ChallengeResults
               setSelectedTab={setSelectedTab}
               testOutputs={testOutputs}
-              submittedCode={submittedCode || code}
+              submittedCode={submittedCode || userCode}
             />
           </Tabs.Content>
 
