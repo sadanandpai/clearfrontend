@@ -34,7 +34,7 @@ export function EditorControls({ challengeId, fontSize, setFontSize, onReset }: 
           </Select.Root>
         </Flex>
 
-        <Flex align="center" gap="1">
+        <Flex align="center" gap="3">
           <ShareButton challengeId={challengeId} />
           <Button onClick={onReset} aria-label="Reset code" size="1" variant="ghost">
             <RotateCcw size="20" />
