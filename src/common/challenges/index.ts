@@ -91,4 +91,40 @@ export const challenges: Challenge[] = [
     difficulty: Difficulty.Hard,
     tags: ["String", "Sliding Window", "Hash Map"],
   },
+  {
+    id: 16,
+    name: "Promise Delay",
+    difficulty: Difficulty.Easy,
+    tags: ["Async", "Promise", "setTimeout"],
+  },
+  {
+    id: 17,
+    name: "Implement Promise.all",
+    difficulty: Difficulty.Medium,
+    tags: ["Async", "Promise"],
+  },
+  {
+    id: 18,
+    name: "Async Retry",
+    difficulty: Difficulty.Medium,
+    tags: ["Async", "Promise", "Error Handling"],
+  },
+  {
+    id: 19,
+    name: "Implement Throttle",
+    difficulty: Difficulty.Medium,
+    tags: ["Function", "Closure", "setTimeout"],
+  },
+  {
+    id: 20,
+    name: "Auto-Stopping Interval",
+    difficulty: Difficulty.Easy,
+    tags: ["Async", "setInterval", "clearInterval"],
+  },
+  {
+    id: 21,
+    name: "Cancelable Debounce",
+    difficulty: Difficulty.Medium,
+    tags: ["Function", "Closure", "setTimeout", "clearTimeout"],
+  },
 ];

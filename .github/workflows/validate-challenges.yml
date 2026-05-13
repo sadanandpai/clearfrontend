@@ -3,7 +3,7 @@ name: Validate Challenge Solutions
 on:
   pull_request:
     branches:
-      - test-ci
+      - main
     paths:
       - 'src/common/challenges/**'
 

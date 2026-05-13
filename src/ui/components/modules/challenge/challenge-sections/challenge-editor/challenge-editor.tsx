@@ -4,15 +4,18 @@ import { EditorControls } from "@/ui/components/modules/challenge/challenge-comp
 import { Executor } from "@/ui/components/modules/challenge/challenge-components/executor/executor";
 import { MonacoEditor } from "@/ui/components/core/editor/monaco-editor";
 import { Spinner } from "@radix-ui/themes";
-import { TestRunner } from "@/ui/components/core/test-runner/test-runner";
 import { usePathname } from "next/navigation";
 
 interface Props {
   defaultCode: string;
   isLoading: boolean;
+  testCode: (arg: string) => string;
+  testCases: string;
+  solution: string;
+  sharedCode?: string;
 }
 
-export function ChallengeEditor({ defaultCode, isLoading }: Props) {
+export function ChallengeEditor({ defaultCode, isLoading, testCode, testCases, solution, sharedCode }: Props) {
   const challengeId = Number(usePathname().split("/").at(-1));
 
   const [fontSize, setFontSize] = useState(16);
@@ -23,6 +26,7 @@ export function ChallengeEditor({ defaultCode, isLoading }: Props) {
   return (
     <div className="panel-layout">
       <EditorControls
+        challengeId={challengeId}
         fontSize={fontSize}
         setFontSize={setFontSize}
         onReset={() => editorRef.current?.updateCode(defaultCode)}
@@ -30,10 +34,9 @@ export function ChallengeEditor({ defaultCode, isLoading }: Props) {
       {isLoading || defaultCode === "" ? (
         <Spinner />
       ) : (
-        <MonacoEditor fontSize={fontSize} challengeId={challengeId} ref={editorRef} />
+        <MonacoEditor fontSize={fontSize} challengeId={challengeId} defaultCode={defaultCode} sharedCode={sharedCode} ref={editorRef} />
       )}
-      <TestRunner />
-      <Executor />
+      <Executor testCode={testCode} testCases={testCases} solution={solution} />
     </div>
   );
 }

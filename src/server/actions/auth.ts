@@ -52,7 +52,10 @@ export async function signOut() {
 
 export async function getLoggedInUser() {
   try {
-    return await getSession();
+    const user = await getSession();
+    // node-appwrite returns class instances; JSON round-trip produces a plain object
+    // required by React 19 for server action return values and context serialization
+    return JSON.parse(JSON.stringify(user)) as typeof user;
   } catch {
     return null;
   }

@@ -1,12 +1,14 @@
 "use client";
 
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { Panel, Group as PanelGroup, Separator as PanelResizeHandle } from "react-resizable-panels";
+import { Callout } from "@radix-ui/themes";
+import { Info } from "lucide-react";
 
 import { ChallengeDetails } from "@/ui/components/modules/challenge/challenge-sections/challenge-details/challenge-details";
 import { ChallengeEditor } from "./challenge-sections/challenge-editor/challenge-editor";
 import { ChallengeTerminal } from "./challenge-sections/challenge-terminal/challenge-terminal";
 import { ProblemProps } from "@/common/types/problem";
-import { SandpackProvider } from "@codesandbox/sandpack-react/unstyled";
+import type { CodeShare } from "@/common/types/code-share.types";
 import { useChallengeStore } from "@/ui/store/challenge.store";
 import { useEffect } from "react";
 
@@ -14,29 +16,19 @@ interface Props {
   problem: ProblemProps | null;
   error: boolean;
   isLoading: boolean;
+  share?: CodeShare;
 }
 
-export default function ChallengeUI({ problem, error, isLoading }: Props) {
-  const files = problem
-    ? {
-        "/code.ts": problem.code,
-        "/add.test.ts": problem.testCode(problem.sampleInput),
-        "/test-cases.test.ts": problem.testCases,
-        "/solution.ts": problem.solution,
-      }
-    : {
-        "/code.ts": "",
-        "/add.test.ts": "",
-        "/test-cases.test.ts": "",
-        "/solution.ts": "",
-      };
+export default function ChallengeUI({ problem, error, isLoading, share }: Props) {
   const resetOutput = useChallengeStore((state) => state.resetOutput);
   const resetOutputs = useChallengeStore((state) => state.resetOutputs);
+  const resetConsoleLogs = useChallengeStore((state) => state.resetConsoleLogs);
 
   useEffect(() => {
     return () => {
       resetOutput();
       resetOutputs();
+      resetConsoleLogs();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem]);
@@ -46,26 +38,35 @@ export default function ChallengeUI({ problem, error, isLoading }: Props) {
   }
 
   return (
-    <SandpackProvider
-      files={files}
-      template="test-ts"
-      options={{
-        activeFile: "/code.ts",
-        visibleFiles: ["/code.ts"],
-        initMode: "immediate",
-        autorun: true,
-      }}
-      className="h-full"
-    >
-      <PanelGroup direction="horizontal">
+    <div className="flex flex-col h-full">
+      {share && (
+        <Callout.Root size="1" mx="2" mt="2">
+          <Callout.Icon>
+            <Info size={14} />
+          </Callout.Icon>
+          <Callout.Text>
+            Viewing shared code · Shared on{" "}
+            {new Date(share.$createdAt).toLocaleDateString("en-CA")} · Expires{" "}
+            {new Date(share.expiresAt).toLocaleDateString("en-CA")}
+          </Callout.Text>
+        </Callout.Root>
+      )}
+      <PanelGroup orientation="horizontal" className="flex-1 min-h-0">
         <Panel minSize={25} defaultSize={40} className="panel left">
           <ChallengeDetails problem={problem} isLoading={isLoading} />
         </Panel>
         <PanelResizeHandle />
         <Panel minSize={30} defaultSize={60} className="hidden md:block">
-          <PanelGroup direction="vertical">
+          <PanelGroup orientation="vertical">
             <Panel defaultSize={75} minSize={50} className="panel right top">
-              <ChallengeEditor defaultCode={problem?.code || ""} isLoading={isLoading} />
+              <ChallengeEditor
+                defaultCode={problem?.code || ""}
+                isLoading={isLoading}
+                testCode={problem?.testCode ?? (() => "")}
+                testCases={problem?.testCases ?? ""}
+                solution={problem?.solution ?? ""}
+                sharedCode={share?.code}
+              />
             </Panel>
             <PanelResizeHandle />
             <Panel defaultSize={25} minSize={25} className="panel right bottom">
@@ -78,6 +79,6 @@ export default function ChallengeUI({ problem, error, isLoading }: Props) {
           </PanelGroup>
         </Panel>
       </PanelGroup>
-    </SandpackProvider>
+    </div>
   );
 }
