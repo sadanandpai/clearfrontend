@@ -4,7 +4,7 @@
 
 ### Free and open source, Ready to Test your frontend skill and upskill 
 
-<a href="https://e-resume.vercel.app/"><img src="https://user-images.githubusercontent.com/12962887/201484876-75290af9-ccd6-4f6d-be96-6a8fb4f20c4b.png" alt="get started with resume builder" height="200" widdth="330" />
+<a href="https://clearfrontend.vercel.app/"><img height="200" widdth="330" alt="Get Started with ClearFrontend" src="https://github.com/user-attachments/assets/4aea5798-cd44-4010-b73a-8098fec15f75" />
 
 https://clearfrontend.vercel.app/
 
