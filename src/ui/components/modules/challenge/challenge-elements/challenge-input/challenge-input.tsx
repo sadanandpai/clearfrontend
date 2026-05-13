@@ -8,10 +8,9 @@ import { useChallengeStore } from "@/ui/store/challenge.store";
 
 interface Props {
   defaultInput: string;
-  testCode: (arg: string) => string;
 }
 
-export function ChallengeInput({ defaultInput, testCode }: Props) {
+export function ChallengeInput({ defaultInput }: Props) {
   const setUserInput = useChallengeStore((state) => state.setUserInput);
   const [userInput, setLocalInput] = useState<string>(defaultInput);
 

@@ -98,18 +98,15 @@ function runTests(testDir, challengeFile) {
     // are in the same directory as the test file
     const testFile = path.relative(projectRoot, path.join(testDir, 'challenge.test.ts'));
 
-    const result = execSync(
-      `npx vitest run ${testFile} --config vitest.config.mts`,
-      {
-        cwd: projectRoot,
-        stdio: 'inherit',
-        encoding: 'utf-8',
-      }
-    );
+    execSync(`npx vitest run ${testFile} --config vitest.config.mts`, {
+      cwd: projectRoot,
+      stdio: 'inherit',
+      encoding: 'utf-8',
+    });
 
     console.log(`✅ Challenge ${challengeId} passed all tests\n`);
     return true;
-  } catch (error) {
+  } catch {
     console.error(`❌ Challenge ${challengeId} failed tests\n`);
     return false;
   }
