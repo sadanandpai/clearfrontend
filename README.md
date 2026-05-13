@@ -19,19 +19,20 @@ https://clearfrontend.vercel.app/
 
 ## About
 
-[ClearFrontend](https://clearfrontend.vercel.app) is an Open source appliation where developers solve JavaScript challenges and Learn, Upskill their knowledge
+[ClearFrontend](https://clearfrontend.vercel.app) is a free, open-source place to practice JavaScript. You work through short coding puzzles, try your own solution, and see right away whether it passes—so you can learn by doing and sharpen your skills at your own pace.
 
 ## Features
 
-- JS challenges list
-- Code Share
-- Easy to contribute
+- A growing set of challenges you can browse and solve in the browser
+- Quick feedback when you run your code against each challenge’s checks
+- A simple way to share a snippet of your work with others when you want feedback or bragging rights
+- Welcomes ideas and fixes from the community
 
 > Disclaimer: To enhance the vision and usage, we are shadowing our user's interactions. This is solely performed to serve you better
 
 ## Contributing Guide
 
-If you are interested in contributing (fixing bugs, improving features, or creating a resume template), please refer to [Contributing Guide](./CONTRIBUTING.md).
+If you are interested in contributing—bug fixes, improvements, or new challenges—see the [Contributing Guide](./CONTRIBUTING.md).
 
 ## Report Bugs and Feature Requests
 
