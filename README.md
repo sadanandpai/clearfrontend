@@ -14,6 +14,8 @@ https://clearfrontend.vercel.app/
 [![Next.js](https://skillicons.dev/icons?i=nextjs)](https://nextjs.org/)
 [![React](https://skillicons.dev/icons?i=react)](https://react.dev/)
 [![Tailwind CSS](https://skillicons.dev/icons?i=tailwind)](https://tailwindcss.com/)
+[![Appwrite](https://skillicons.dev/icons?i=appwrite)](https://appwrite.io/)
+[![Redis](https://skillicons.dev/icons?i=redis)](https://redis.io/)
 <a href="https://github.com/pmndrs/zustand"><img src="http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/bear-face.png" alt="" height="48" width="48" /></a>
 </div>
 
