@@ -44,7 +44,7 @@ File a [bug report](https://github.com/sadanandpai/clearfrontend/issues/new?assi
 
 - [`docs/architecture.md`](docs/architecture.md) — system design and data flows
 - [`docs/security_ai.md`](docs/security_ai.md) — isolated-vm security model
-- [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) — contributor rules, challenge authoring, server actions
+- [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) — identical **AI assistant** playbooks (Cursor, Claude Code, Codex, and similar): project conventions, challenge authoring, and server-side rules. Human contributors often use them as the authoritative checklist too.
 
 ## License
 
