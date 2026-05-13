@@ -53,6 +53,9 @@ importers:
       lucide-react:
         specifier: ^1.8.0
         version: 1.14.0(react@19.2.6)
+      monaco-editor:
+        specifier: ^0.55.1
+        version: 0.55.1
       next:
         specifier: ^16.2.4
         version: 16.2.6(@babel/core@7.28.5)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.99.0)
