@@ -85,9 +85,9 @@ describe('createTimer', () => {
     expect(cb).toHaveBeenCalledTimes(1);
   });
 
-  test('returns a numeric interval ID', () => {
+  test('returns an interval handle (browser: number; Node: object)', () => {
     const id = userSolution(() => {}, 100, 3);
-    expect(typeof id).toBe('number');
+    expect(['number', 'object']).toContain(typeof id);
   });
 });`,
   testCode: (arg: string) => `import userSolution from './code';
