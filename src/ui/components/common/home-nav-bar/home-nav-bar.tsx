@@ -17,7 +17,7 @@ export async function HomeNavBar() {
   return (
     <nav className={classes.navbar} role="navigation">
       <Flex align="center" gap="5">
-        <Image src="/cfe-logo.svg" alt="Github" width={36} height={36} />
+        <Image src="/cfe-logo.svg" alt="ClearFrontend" width={36} height={36} />
 
         <Link href={routes.challenges} className="text-brand-1 font-bold hidden md:flex">
           Challenges
