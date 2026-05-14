@@ -1,6 +1,7 @@
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import {
   AdminClientAppwrite,
+  AdminDatabaseClientAppwrite,
   BaseClientAppWrite,
   DatabaseClientAppwrite,
   SessionClientAppwrite,
@@ -28,6 +29,10 @@ export class ServiceClient {
   async database() {
     const sessionCookie: RequestCookie | undefined = await getCookie(COOKIE_NAME);
     return new DatabaseClientAppwrite(sessionCookie);
+  }
+
+  adminDatabase() {
+    return new AdminDatabaseClientAppwrite();
   }
 
   cache() {

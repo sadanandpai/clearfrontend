@@ -5,15 +5,21 @@ import {
   deleteSubmissionsRecord,
   getSubmissionsRecords,
 } from "@/server/data-access/submissions";
-import { isValidChallengeId } from "@/server/utils/challenge";
+
 import { getLoggedInUser } from "./auth";
+import { isValidChallengeId } from "@/server/utils/challenge";
 
 export async function getUserSubmissions(challengeId: number) {
   if (!isValidChallengeId(challengeId)) {
     throw new Error("Invalid challenge ID");
   }
 
-  return await getSubmissionsRecords(challengeId);
+  const result = await getSubmissionsRecords(challengeId);
+  // Appwrite models are class instances — server actions must return plain JSON.
+  return JSON.parse(JSON.stringify(result)) as {
+    total: number;
+    documents: Array<Record<string, unknown>>;
+  };
 }
 
 export async function submitUserSubmission(challengeId: number, code: string, status: boolean) {
@@ -23,7 +29,7 @@ export async function submitUserSubmission(challengeId: number, code: string, st
 
   const userCode = code.trim();
   if (typeof code !== "string" || userCode === "" || userCode.length > 1000) {
-    throw new Error("Code length exceeds limit");
+    throw new Error("Invalid code length or exceeds the limit");
   }
 
   const user = await getLoggedInUser();
@@ -31,9 +37,11 @@ export async function submitUserSubmission(challengeId: number, code: string, st
     throw new Error("User not logged in or email not verified");
   }
 
-  return await createSubmissionsRecord(challengeId, code, status);
+  await createSubmissionsRecord(challengeId, userCode, status);
+  return { ok: true as const };
 }
 
 export async function deleteUserSubmission(submissionId: string) {
-  return await deleteSubmissionsRecord(submissionId);
+  await deleteSubmissionsRecord(submissionId);
+  return { ok: true as const };
 }

@@ -25,7 +25,14 @@ const eslintConfig = defineConfig([
         }
       ]
     }
-  }
+  },
+  {
+    files: ["scripts/**/*.js"],
+    rules: {
+      // Node CLI scripts use CommonJS require(); ESM would force .mjs + CI path updates.
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

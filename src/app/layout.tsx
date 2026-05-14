@@ -21,6 +21,11 @@ const _bGr = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: "ClearFrontend",
   description: "Online Coding Platform",
+  icons: {
+    icon: "/cfe-logo.svg",
+    shortcut: "/cfe-logo.svg",
+    apple: "/cfe-logo.svg",
+  },
 };
 
 export default function RootLayout({
