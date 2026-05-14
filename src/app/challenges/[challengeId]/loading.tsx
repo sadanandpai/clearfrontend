@@ -1,5 +1,5 @@
-import { Spinner } from "@radix-ui/themes";
+import { ChallengePageLoader } from "@/ui/components/modules/challenge/challenge-page-loader";
 
 export default function Loading() {
-  return <Spinner size="3" />;
+  return <ChallengePageLoader />;
 }

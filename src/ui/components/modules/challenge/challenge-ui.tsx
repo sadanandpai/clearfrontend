@@ -5,6 +5,7 @@ import { Callout } from "@radix-ui/themes";
 import { Info } from "lucide-react";
 
 import { ChallengeDetails } from "@/ui/components/modules/challenge/challenge-sections/challenge-details/challenge-details";
+import { ChallengePageLoader } from "@/ui/components/modules/challenge/challenge-page-loader";
 import { ChallengeEditor } from "./challenge-sections/challenge-editor/challenge-editor";
 import { ChallengeTerminal } from "./challenge-sections/challenge-terminal/challenge-terminal";
 import { ProblemProps } from "@/common/types/problem";
@@ -37,6 +38,10 @@ export default function ChallengeUI({ problem, error, isLoading, share }: Props)
     return <div>Error loading challenge</div>;
   }
 
+  if (isLoading || !problem) {
+    return <ChallengePageLoader />;
+  }
+
   return (
     <div className="flex flex-col h-full">
       {share && (
@@ -53,27 +58,27 @@ export default function ChallengeUI({ problem, error, isLoading, share }: Props)
       )}
       <PanelGroup orientation="horizontal" className="flex-1 min-h-0">
         <Panel minSize={25} defaultSize={40} className="panel left">
-          <ChallengeDetails problem={problem} isLoading={isLoading} />
+          <ChallengeDetails problem={problem} isLoading={false} />
         </Panel>
         <PanelResizeHandle />
         <Panel minSize={30} defaultSize={60} className="hidden md:block">
           <PanelGroup orientation="vertical">
             <Panel defaultSize={75} minSize={50} className="panel right top">
               <ChallengeEditor
-                defaultCode={problem?.code || ""}
-                isLoading={isLoading}
-                testCode={problem?.testCode ?? (() => "")}
-                testCases={problem?.testCases ?? ""}
-                solution={problem?.solution ?? ""}
+                defaultCode={problem.code}
+                isLoading={false}
+                testCode={problem.testCode}
+                testCases={problem.testCases}
+                solution={problem.solution}
                 sharedCode={share?.code}
               />
             </Panel>
             <PanelResizeHandle />
             <Panel defaultSize={25} minSize={25} className="panel right bottom">
               <ChallengeTerminal
-                defaultInput={problem?.sampleInput}
-                testCode={problem?.testCode}
-                isLoading={isLoading}
+                defaultInput={problem.sampleInput}
+                testCode={problem.testCode}
+                isLoading={false}
               />
             </Panel>
           </PanelGroup>
