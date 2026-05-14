@@ -12,8 +12,7 @@ View [issues tagged _good first issue_](https://github.com/sadanandpai/clearfron
 
 ### Prerequisites
 
-- **Node.js** `>= 24.11.1` (see `package.json` → `engines` and Volta pin)
-- **npm** (this repo ships `package-lock.json`; you can use `pnpm` or `yarn` if you prefer and know how to translate commands)
+- **Node.js** `>= 24.11.1`
 
 ### Clone and install
 
