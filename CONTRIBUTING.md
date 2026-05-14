@@ -78,7 +78,7 @@ Maintainers can confirm scope, difficulty, and fit before you write HTML, starte
 
 ### Implementing the challenge in a PR
 
-1. Choose the next unused numeric **`id`**, add `src/common/challenges/{id}.ts`, and **register** it in [`src/common/challenges/index.ts`](src/common/challenges/index.ts).
+1. Choose the next unused numeric **`id`**, add `src/common/challenges/{id}.ts`, and append a matching row to the **`challenges`** array in [`src/common/challenges/index.ts`](src/common/challenges/index.ts) (`id`, `name`, `difficulty`, `tags`—same shape as the existing entries).
 1. Follow `AGENTS.md` strictly: e.g. no backticks inside `testCases` / `testCode` template literals, reference `solution` must not use `__currentTime`, timer-based tests must activate fake timers in `beforeEach`.
 1. Run validation before opening the PR:  
    `node scripts/validate-challenges.js src/common/challenges/{id}.ts`
