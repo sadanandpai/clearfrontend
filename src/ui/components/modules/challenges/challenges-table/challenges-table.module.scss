@@ -1,3 +1,18 @@
+.toolbar {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.searchSortRow {
+  width: 100%;
+}
+
+.searchFieldColumn {
+  flex: 0 1 auto;
+  width: min(100%, 40rem);
+  min-width: 0;
+}
+
 .challengesTable {
   border: 1px solid #e0e0e0;
   table-layout: auto;

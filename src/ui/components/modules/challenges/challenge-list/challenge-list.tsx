@@ -1,7 +1,7 @@
 "use client";
 
 import { Flex } from "@radix-ui/themes";
-import { ChallengeStats } from "./challenges-stats/challenge-stats";
+import { ChallengeStats } from "../stats/challenge-stats";
 import { ProgressCircle } from "./progress-circle";
 import { Challenge } from "@/common/types/challenge.types";
 

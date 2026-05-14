@@ -20,23 +20,22 @@ export const getAllUniqueTags = (challenges: Challenge[]): string[] => {
   return Array.from(tagsSet).sort();
 };
 
+/** Count of challenges that include each tag (each challenge counts at most once per tag). */
+export const getTagCounts = (challenges: Challenge[]): Record<string, number> => {
+  const counts: Record<string, number> = {};
+  for (const challenge of challenges) {
+    for (const tag of challenge.tags) {
+      counts[tag] = (counts[tag] ?? 0) + 1;
+    }
+  }
+  return counts;
+};
+
 export const filterAndSortChallenges = (
   challenges: Challenge[],
   filters: ChallengeFilters,
 ): Challenge[] => {
-  let result = [...challenges];
-
-  //1. Filter by search query
-  if (filters.search.trim()) {
-    const query = filters.search.trim().toLowerCase();
-    result = result.filter((challenge) => {
-      return (
-        challenge.name.toLowerCase().includes(query) ||
-        challenge.difficulty.toLowerCase().includes(query) ||
-        challenge.tags.some((tag) => tag.toLowerCase().includes(query))
-      );
-    });
-  }
+  let result = [...filterChallenges(challenges, filters.search)];
 
   //2. Filter by difficulty
   if (filters.difficulty != "All") {

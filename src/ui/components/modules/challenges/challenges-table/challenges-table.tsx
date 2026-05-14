@@ -1,26 +1,97 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, type Dispatch, type SetStateAction } from "react";
 
-import { Challenge } from "@/common/types/challenge.types";
+import { Box, Flex } from "@radix-ui/themes";
+import type { Challenge } from "@/common/types/challenge.types";
 import { DifficultyBadge } from "@/ui/components/core/difficulty-badge/difficulty-badge";
 import { RadixNextLink } from "@/ui/components/core/radix-next-link/radix-next-link";
-import SearchBar from "../search-bar";
+import { ActiveFilters } from "../filters/active-filters";
+import { DifficultyFilter } from "../filters/difficulty-filter";
+import SearchBar from "../filters/search-bar";
+import { SortDropdown } from "../filters/sort-dropdown";
+import { TagFilter } from "../filters/tag-filter";
+import { useChallengeFilters } from "../filters/use-challenge-filters";
+import {
+  filterAndSortChallenges,
+  getAllUniqueTags,
+  getDifficultyCounts,
+  getTagCounts,
+} from "./challenge-list.utils";
 import classes from "./challenges-table.module.scss";
-import { filterChallenges } from "../challenge-list.utils";
 import { routes } from "@/common/routes";
 import { CheckCircle2, Circle } from "lucide-react";
 
-export function ChallengesTable({ challenges, solvedChallengeIds }: { challenges: Challenge[]; solvedChallengeIds: number[] }) {
-  const [searchQuery, setSearchQuery] = useState("");
+export function ChallengesTable({
+  challenges,
+  solvedChallengeIds,
+}: {
+  challenges: Challenge[];
+  solvedChallengeIds: number[];
+}) {
+  const { filters, updateFilters, resetFilters } = useChallengeFilters();
 
-  const filteredChallenges = useMemo(() => {
-    return filterChallenges(challenges, searchQuery);
-  }, [challenges, searchQuery]);
+  const filteredChallenges = useMemo(
+    () => filterAndSortChallenges(challenges, filters),
+    [challenges, filters],
+  );
+
+  const difficultyCounts = useMemo(() => getDifficultyCounts(challenges), [challenges]);
+  const availableTags = useMemo(() => getAllUniqueTags(challenges), [challenges]);
+  const tagCounts = useMemo(() => getTagCounts(challenges), [challenges]);
+
+  const setSearchQuery: Dispatch<SetStateAction<string>> = useCallback(
+    (value) => {
+      const next = typeof value === "function" ? value(filters.search) : value;
+      if (next === filters.search) {
+        return;
+      }
+      updateFilters({ search: next });
+    },
+    [filters.search, updateFilters],
+  );
 
   return (
     <div>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Box className={classes.toolbar}>
+        <Flex
+          justify="end"
+          align="center"
+          gap="3"
+          wrap="wrap"
+          className={`${classes.searchSortRow} mt-4 md:mt-8`}
+        >
+          <Box className={classes.searchFieldColumn}>
+            <SearchBar searchQuery={filters.search} setSearchQuery={setSearchQuery} />
+          </Box>
+          <Box className="shrink-0">
+            <SortDropdown value={filters.sortBy} onChange={(s) => updateFilters({ sortBy: s })} />
+          </Box>
+        </Flex>
+        <Flex direction="column" gap="4" className="mt-4">
+          <DifficultyFilter
+            selected={filters.difficulty}
+            onChange={(d) => updateFilters({ difficulty: d })}
+            counts={difficultyCounts}
+          />
+          <TagFilter
+            availableTags={availableTags}
+            selectedTags={filters.tags}
+            tagCounts={tagCounts}
+            onChange={(t) => updateFilters({ tags: t })}
+          />
+        </Flex>
+      </Box>
+      <ActiveFilters
+        filters={filters}
+        onClearAll={resetFilters}
+        onRemoveDifficulty={() => updateFilters({ difficulty: "All" })}
+        onRemoveTag={(tag) =>
+          updateFilters({ tags: filters.tags.filter((t) => t !== tag) })
+        }
+        onRemoveSort={() => updateFilters({ sortBy: "none" })}
+        onRemoveSearch={() => updateFilters({ search: "" })}
+      />
       <table className={classes.challengesTable}>
         <thead>
           <tr>
@@ -34,7 +105,7 @@ export function ChallengesTable({ challenges, solvedChallengeIds }: { challenges
         <tbody>
           {filteredChallenges.length === 0 ? (
             <tr>
-              <td colSpan={4} className="text-center py-3">
+              <td colSpan={5} className="text-center py-3">
                 No challenges found
               </td>
             </tr>

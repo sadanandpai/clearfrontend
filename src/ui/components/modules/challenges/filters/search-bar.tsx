@@ -28,24 +28,22 @@ const SearchBar: React.FC<Props> = ({
 
   useEffect(() => {
     const handle = setTimeout(() => {
+      if (localValue === searchQuery) return;
       setSearchQuery(localValue);
     }, debounceMs);
 
     return () => clearTimeout(handle);
-  }, [localValue, debounceMs, setSearchQuery]);
+  }, [localValue, debounceMs, searchQuery, setSearchQuery]);
 
   return (
-    <div
-      className={`w-full flex justify-end mt-4 md:mt-8 ${className}`}
-      style={style}
-    >
+    <div className={`w-full min-w-0 ${className ?? ""}`.trim()} style={style}>
       <TextField.Root
         placeholder={placeholder}
         size="2"
         value={localValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalValue(e.target.value)}
         aria-label="Search challenges"
-        className="w-full mr-0 md:w-[40rem] md:mr-[5%]"
+        className="w-full"
       />
     </div>
   );
