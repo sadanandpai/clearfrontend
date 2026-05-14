@@ -28,32 +28,9 @@ View [issues tagged _good first issue_](https://github.com/sadanandpai/clearfron
    npm install
    ```
 
-### Appwrite (account, project, database schema, API key)
+### Appwrite
 
-There is no checked-in Appwrite export in this repository. You need a **Cloud** ([cloud.appwrite.io](https://cloud.appwrite.io)) or self-hosted Appwrite instance, then mirror the schema below.
-
-1. **Account & project** — Sign up, create a **Project**, note the **Project ID** (Settings → General).
-1. **API endpoint** — Copy the **API Endpoint** URL (same settings area). Local development usually uses the cloud endpoint, not `localhost`, unless you self-host Appwrite.
-1. **Auth** — In **Auth**, enable **Email/Password** (and optionally **Google** / **GitHub** if you will test OAuth). Under **Auth** → **URLs**, add your app origin (e.g. `http://localhost:3000`) and redirect URLs your code uses (see `src/server/config/server.config.ts` for `HOST_URL` / OAuth callbacks if you change them).
-1. **Database** — Create a database. Copy its **Database ID**.
-1. **Collections & attributes** — Create the collections and attributes in the table below. You may use any **Collection name** you like; copy each collection’s **ID** from the Appwrite console after creation.
-
-   | Collection purpose   | Suggested collection ID | Attributes (key → type) |
-   | -------------------- | ------------------------ | ------------------------- |
-   | Submissions          | (auto or custom)         | `cId` → Integer, `code` → String (size large enough for solutions), `status` → Boolean |
-   | Challenge stats      | (auto or custom)         | `cId` → Integer, `likes` → Integer, `solves` → Integer |
-   | User ↔ challenge     | (auto or custom)         | `cId` → Integer, `like` → Boolean, `solve` → Boolean |
-   | Code shares          | **`code_shares`** (recommended custom ID) | `userId` → String, `cId` → Integer, `code` → String, `expiresAt` → DateTime |
-
-   **Permissions (development):** start permissive so the app can read/write with the session user and the server API key. For example, for **Submissions** and **User challenge info**, allow **Create / Read / Update / Delete** for **Users** (or **Any** for a throwaway dev project only). **Challenge stats** and **Code shares** are accessed with the **server API key** (`adminDatabase`); grant that key access via collection **Permissions** (read/write for relevant roles) as required by your Appwrite version. Tighten permissions before production.
-
-1. **Wire IDs into the repo** — Open `src/server/config/appwrite.config.ts` and set `DB` and each collection constant to the **Database ID** and **Collection IDs** from your project. If you did not use the custom ID `code_shares` for code shares, set `CODE_SHARE_COLLECTION` to whatever ID Appwrite assigned.
-
-### API key
-
-1. In Appwrite: **Overview** → **Integrations** (or **API Keys**), **Create API Key**.
-1. Give it a name (e.g. `clearfrontend-dev`).
-1. Enable scopes needed for server-side use: at minimum **Databases** (read + write), **Users** (read + write), and anything your Appwrite version lists for **Sessions** / **Account** used by `node-appwrite` in `src/server/services/appwrite.ts` and `src/server/data-access/session.ts`. For local development, a **Server**-style key with broad access is acceptable; never commit it or use production keys in a fork.
+There is no checked-in Appwrite backup. Follow **[docs/setup-appwrite.md](docs/setup-appwrite.md)**—it walks through project, auth, database, four collections, permissions, `appwrite.config.ts`, API key, and `.env` in order.
 
 ### Environment variables
 
@@ -107,7 +84,7 @@ Link the PR to the challenge proposal issue when one exists.
 
 ### General setup questions
 
-For local env, Appwrite, or Redis—not challenge design—use [**Question**](https://github.com/sadanandpai/clearfrontend/issues/new?template=question.md) or see the **Development** section above.
+For local env, Appwrite, or Redis—not challenge design—use [**Question**](https://github.com/sadanandpai/clearfrontend/issues/new?template=question.md), **[docs/setup-appwrite.md](docs/setup-appwrite.md)**, or the **Development** section above.
 
 ---
 

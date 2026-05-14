@@ -8,6 +8,7 @@ ClearFrontend is a Next.js 15 coding challenge platform. Users solve JavaScript 
 
 | Document | Description |
 |---|---|
+| [Appwrite setup](setup-appwrite.md) | Local Appwrite project, database, collections, API key, and config IDs |
 | [Architecture](architecture.md) | System design, tech stack, data flows, ASCII diagram |
 | [Folder Structure](rules/folder-structure.md) | Directory conventions and naming rules |
 | [Coding Guidelines](rules/coding-guidelines.md) | TypeScript, React, Next.js standards |
