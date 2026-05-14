@@ -14,7 +14,12 @@ export async function getUserSubmissions(challengeId: number) {
     throw new Error("Invalid challenge ID");
   }
 
-  return await getSubmissionsRecords(challengeId);
+  const result = await getSubmissionsRecords(challengeId);
+  // Appwrite models are class instances — server actions must return plain JSON.
+  return JSON.parse(JSON.stringify(result)) as {
+    total: number;
+    documents: Array<Record<string, unknown>>;
+  };
 }
 
 export async function submitUserSubmission(challengeId: number, code: string, status: boolean) {
@@ -32,9 +37,11 @@ export async function submitUserSubmission(challengeId: number, code: string, st
     throw new Error("User not logged in or email not verified");
   }
 
-  return await createSubmissionsRecord(challengeId, code, status);
+  await createSubmissionsRecord(challengeId, userCode, status);
+  return { ok: true as const };
 }
 
 export async function deleteUserSubmission(submissionId: string) {
-  return await deleteSubmissionsRecord(submissionId);
+  await deleteSubmissionsRecord(submissionId);
+  return { ok: true as const };
 }
