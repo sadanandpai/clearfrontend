@@ -120,6 +120,6 @@ Required knowledge for contributing to ClearFrontend.
 | `src/ui/components/modules/challenge/challenge-ui.tsx` | Module component pattern, state wiring |
 | `src/ui/store/challenge.store.ts` | Zustand store with Immer, partial updates |
 | `src/common/challenges/1.ts` | Minimal challenge authoring example |
-| `src/common/challenges/17.ts` | Timer-based challenge with `jest.useFakeTimers()` |
+| `src/common/challenges/8.ts` | Timer-based challenge with `jest.useFakeTimers()` |
 | `src/common/types/challenge.types.ts` | Challenge and filter type definitions |
 | `src/server/actions/auth.ts` | Server Action pattern with validation |
