@@ -57,16 +57,15 @@ There is no checked-in Appwrite export in this repository. You need a **Cloud** 
 
 ### Environment variables
 
-Create **`.env.local`** in the project root (Next.js loads it automatically). Do not commit secrets.
+From the project root, copy the template and fill in your values:
 
-| Variable | Required | Description |
-| -------- | -------- | ----------- |
-| `NEXT_PUBLIC_APPWRITE_ENDPOINT` | Yes | Appwrite API endpoint URL (exposed to the browser for the client SDK path). |
-| `NEXT_APPWRITE_PROJECT` | Yes | Appwrite project ID. |
-| `NEXT_APPWRITE_KEY` | Yes | Server API key (secret). Used only on the server. |
-| `NEXT_REDIS_PASSWORD` | If your Redis uses auth | Redis password for `ioredis` in `src/server/services/redis.ts`. |
+```bash
+cp .env.example .env
+```
 
-**Redis host and port** are not read from `.env` in this codebase; they live in `src/server/config/redis.config.ts`. Point `REDIS_HOST` / `REDIS_PORT` at your instance (local Docker, Redis Cloud, etc.) and set `NEXT_REDIS_PASSWORD` when a password is required.
+Next.js loads `.env` automatically. Open `.env` and complete any empty values; each variable is described in the comments at the top of [`.env.example`](.env.example). Do not commit `.env` or other files that contain secrets (they stay gitignored).
+
+**Redis:** `REDIS_HOST` and `REDIS_PORT` are not read from `.env`—they live in `src/server/config/redis.config.ts`. Point them at your instance (local Docker, Redis Cloud, etc.). Set `NEXT_REDIS_PASSWORD` in `.env` only when your Redis server requires a password.
 
 ### Run the app
 
