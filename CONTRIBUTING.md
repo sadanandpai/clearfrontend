@@ -13,6 +13,8 @@ View [issues tagged _good first issue_](https://github.com/sadanandpai/clearfron
 ### Prerequisites
 
 - **Node.js** `>= 24.11.1`
+- **Appwrite Setup**
+- **Redis Setup**
 
 ### Clone and install
 
@@ -41,7 +43,9 @@ cp .env.example .env
 
 Next.js loads `.env` automatically. Open `.env` and complete any empty values; each variable is described in the comments at the top of [`.env.example`](.env.example). Do not commit `.env` or other files that contain secrets (they stay gitignored).
 
-**Redis:** `REDIS_HOST` and `REDIS_PORT` are not read from `.env`—they live in `src/server/config/redis.config.ts`. Point them at your instance (local Docker, Redis Cloud, etc.). Set `NEXT_REDIS_PASSWORD` in `.env` only when your Redis server requires a password.
+### Redis
+
+`REDIS_HOST` and `REDIS_PORT` are not read from `.env`—they live in `src/server/config/redis.config.ts`. Point them at your instance (local Docker, another host, or a **free** database from [redis.io](https://redis.io/) such as **Redis Cloud**). Set `NEXT_REDIS_PASSWORD` in `.env` only when your Redis server requires a password.
 
 ### Run the app
 
