@@ -12,70 +12,73 @@ export async function getSession() {
 
 export async function createSessionWithEmail(email: string, password: string) {
   const { account } = await serviceClient.user.admin();
-  const session = await account.createEmailPasswordSession(email, password);
+  const session = await account.createEmailPasswordSession({ email, password });
   return session.secret;
 }
 
 export async function createSessionWithSecret(userId: string, secret: string) {
   const { account } = await serviceClient.user.admin();
-  const session = await account.createSession(userId, secret);
+  const session = await account.createSession({ userId, secret });
   return session.secret;
 }
 
 export async function redirectToOAuth(origin: string | null, provider: oAuthProvidersType) {
   const { account } = await serviceClient.user.admin();
-  return await account.createOAuth2Token(
-    getOAuthProvider(provider),
-    `${origin}/oauth`,
-    `${origin}/signin`,
-  );
+  return await account.createOAuth2Token({
+    provider: getOAuthProvider(provider),
+    success: `${origin}/oauth`,
+    failure: `${origin}/signin`,
+  });
 }
 
 export async function initiateSessionWithEmail(name: string, email: string, password: string) {
   const { account } = await serviceClient.user.admin();
-  await account.create(getUniqueID(), email, password, name);
-  const session = await account.createEmailPasswordSession(email, password);
+  await account.create({ userId: getUniqueID(), email, password, name });
+  const session = await account.createEmailPasswordSession({ email, password });
   return session.secret;
 }
 
 export async function sendVerificationEmail() {
   const { account } = await serviceClient.user.authenticated();
-  await account.createEmailVerification(`${HOST_URL}${routes.verifyEmail}`);
+  await account.createEmailVerification({ url: `${HOST_URL}${routes.verifyEmail}` });
 }
 
 export async function destroySession() {
   const { account } = await serviceClient.user.authenticated();
-  await account.deleteSession("current");
+  await account.deleteSession({ sessionId: "current" });
 }
 
 export async function updateSessionPassword(password: string, oldPassword: string) {
   const { account } = await serviceClient.user.authenticated();
-  await account.updatePassword(password.toString(), oldPassword.toString());
+  await account.updatePassword({
+    password: password.toString(),
+    oldPassword: oldPassword.toString(),
+  });
 }
 
 export async function updateFullName(name: string) {
   const { account } = await serviceClient.user.authenticated();
-  await account.updateName(name);
+  await account.updateName({ name });
 }
 
 export async function updateUserEmail(email: string, password: string) {
   const { account } = await serviceClient.user.authenticated();
-  await account.updateEmail(email, password);
+  await account.updateEmail({ email, password });
 }
 
 export async function sendPasswordRecoveryEmail(email: string) {
   const { account } = await serviceClient.user.authenticated();
-  await account.createRecovery(email, `${HOST_URL}${routes.resetPassword}`);
+  await account.createRecovery({ email, url: `${HOST_URL}${routes.resetPassword}` });
 }
 
 export async function resetPassword(userId: string, secret: string, password: string) {
   const { account } = await serviceClient.user.authenticated();
-  await account.updateRecovery(userId, secret, password);
+  await account.updateRecovery({ userId, secret, password });
 }
 
 export async function updatePhoneNumber(phone: string, password: string) {
   const { account } = await serviceClient.user.authenticated();
-  await account.updatePhone(phone, password);
+  await account.updatePhone({ phone, password });
 }
 
 export async function sendPhoneVerification() {
@@ -85,6 +88,6 @@ export async function sendPhoneVerification() {
 
 export async function verifyPhoneNumber(otp: string) {
   const { account } = await serviceClient.user.authenticated();
-  const session = await getSession();
-  await account.updatePhoneVerification(session.$id, otp);
+  const user = await getSession();
+  await account.updatePhoneVerification({ userId: user.$id, secret: otp });
 }
