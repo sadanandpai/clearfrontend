@@ -4,9 +4,8 @@ import type { Challenge, ChallengeFilters } from "@/common/types/challenge.types
 import { Difficulty } from "@/common/types/challenge.types";
 import {
   filterAndSortChallenges,
-  getAllUniqueTags,
   getDifficultyCounts,
-  getTagCounts,
+  getUniqueTags,
 } from "./challenge-list.utils";
 
 const fixtures: Challenge[] = [
@@ -93,23 +92,6 @@ describe("filterAndSortChallenges", () => {
   });
 });
 
-describe("getAllUniqueTags", () => {
-  it("returns sorted unique tags", () => {
-    expect(getAllUniqueTags(fixtures)).toEqual(["Array", "Loop", "Math", "String"]);
-  });
-});
-
-describe("getTagCounts", () => {
-  it("counts challenges per tag", () => {
-    expect(getTagCounts(fixtures)).toEqual({
-      Array: 2,
-      Loop: 1,
-      Math: 1,
-      String: 1,
-    });
-  });
-});
-
 describe("getDifficultyCounts", () => {
   it("counts totals per difficulty including All", () => {
     expect(getDifficultyCounts(fixtures)).toEqual({
@@ -118,5 +100,19 @@ describe("getDifficultyCounts", () => {
       [Difficulty.Medium]: 1,
       [Difficulty.Hard]: 1,
     });
+  });
+});
+
+describe("getUniqueTags", () => {
+  it("returns sorted unique tags", () => {
+    const tags = getUniqueTags(fixtures, 2);
+    expect(tags).toMatchInlineSnapshot(`
+      [
+        {
+          "count": 2,
+          "tag": "Array",
+        },
+      ]
+    `);
   });
 });

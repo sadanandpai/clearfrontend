@@ -12,23 +12,21 @@ export const filterChallenges = (challenges: Challenge[], searchQuery: string) =
   });
 };
 
-export const getAllUniqueTags = (challenges: Challenge[]): string[] => {
-  const tagsSet = new Set<string>();
+export const getUniqueTags = (
+  challenges: Challenge[],
+  minCount = 3,
+): { tag: string; count: number }[] => {
+  const tagsMap = new Map<string, number>();
   challenges.forEach((challenge) => {
-    challenge.tags.forEach((tag) => tagsSet.add(tag));
+    challenge.tags.forEach((tag) => {
+      tagsMap.set(tag, (tagsMap.get(tag) || 0) + 1);
+    });
   });
-  return Array.from(tagsSet).sort();
-};
 
-/** Count of challenges that include each tag (each challenge counts at most once per tag). */
-export const getTagCounts = (challenges: Challenge[]): Record<string, number> => {
-  const counts: Record<string, number> = {};
-  for (const challenge of challenges) {
-    for (const tag of challenge.tags) {
-      counts[tag] = (counts[tag] ?? 0) + 1;
-    }
-  }
-  return counts;
+  return Array.from(tagsMap.entries())
+    .filter(([_, count]) => count >= minCount)
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => a.tag.localeCompare(b.tag));
 };
 
 export const filterAndSortChallenges = (

@@ -1,15 +1,10 @@
 "use client";
 
-import { useState } from "react";
-
-import { Badge, Button, Flex, ScrollArea } from "@radix-ui/themes";
-
-import classes from "./tag-filter.module.scss";
+import { Badge, Flex } from "@radix-ui/themes";
 
 interface Props {
-  availableTags: string[];
+  availableTags: { tag: string; count: number }[];
   selectedTags: string[];
-  tagCounts: Record<string, number>;
   onChange: (tags: string[]) => void;
 }
 
@@ -37,9 +32,7 @@ function TagBadge({
   );
 }
 
-export const TagFilter = ({ availableTags, selectedTags, tagCounts, onChange }: Props) => {
-  const [expanded, setExpanded] = useState(false);
-
+export const TagFilter = ({ availableTags, selectedTags, onChange }: Props) => {
   const toggleTag = (tag: string) => {
     if (selectedTags.includes(tag)) {
       onChange(selectedTags.filter((t) => t !== tag));
@@ -49,67 +42,17 @@ export const TagFilter = ({ availableTags, selectedTags, tagCounts, onChange }: 
   };
 
   return (
-    <Flex direction="column" gap="2">
-      <Flex
-        align="center"
-        gap="2"
-        wrap="nowrap"
-        justify={expanded ? "between" : "start"}
-        className="w-full"
-      >
-        <span className="font-semibold shrink-0 md:inline">
-          Tags<span className="hidden md:inline">:</span>
-        </span>
-        {!expanded && (
-          <div className={classes.singleLineTrack}>
-            <div className={classes.badgeRowNoWrap}>
-              {availableTags.map((tag) => (
-                <TagBadge
-                  key={tag}
-                  tag={tag}
-                  count={tagCounts[tag] ?? 0}
-                  selected={selectedTags.includes(tag)}
-                  onToggle={() => toggleTag(tag)}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-        <Button
-          type="button"
-          size="1"
-          variant="ghost"
-          className="shrink-0 hidden md:inline-flex"
-          onClick={() => setExpanded((e) => !e)}
-        >
-          {expanded ? "Show fewer" : "Show all tags"}
-        </Button>
-      </Flex>
-      {expanded && (
-        <ScrollArea type="hover" className={classes.expandedPanel}>
-          <Flex gap="2" wrap="wrap" align="center" pb="2">
-            {availableTags.map((tag) => (
-              <TagBadge
-                key={tag}
-                tag={tag}
-                count={tagCounts[tag] ?? 0}
-                selected={selectedTags.includes(tag)}
-                onToggle={() => toggleTag(tag)}
-              />
-            ))}
-          </Flex>
-        </ScrollArea>
-      )}
-      {/* Larger tap-target on mobile only */}
-      <Button
-        type="button"
-        size="2"
-        variant="outline"
-        className="self-stretch md:hidden"
-        onClick={() => setExpanded((e) => !e)}
-      >
-        {expanded ? "Show fewer tags" : "Show all tags"}
-      </Button>
+    <Flex align="center" gap="2" wrap="wrap" justify="start" className="w-full">
+      <span className="font-semibold shrink-0 md:inline">Tags:</span>
+      {availableTags.map(({ tag, count }) => (
+        <TagBadge
+          key={tag}
+          tag={tag}
+          count={count}
+          selected={selectedTags.includes(tag)}
+          onToggle={() => toggleTag(tag)}
+        />
+      ))}
     </Flex>
   );
 };

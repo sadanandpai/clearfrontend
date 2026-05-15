@@ -15,9 +15,8 @@ import { TagFilter } from "../filters/tag-filter";
 import { useChallengeFilters } from "../filters/use-challenge-filters";
 import {
   filterAndSortChallenges,
-  getAllUniqueTags,
   getDifficultyCounts,
-  getTagCounts,
+  getUniqueTags,
 } from "./challenge-list.utils";
 import classes from "./challenges-table.module.scss";
 import { routes } from "@/common/routes";
@@ -38,8 +37,7 @@ export function ChallengesTable({
   );
 
   const difficultyCounts = useMemo(() => getDifficultyCounts(challenges), [challenges]);
-  const availableTags = useMemo(() => getAllUniqueTags(challenges), [challenges]);
-  const tagCounts = useMemo(() => getTagCounts(challenges), [challenges]);
+  const availableTags = useMemo(() => getUniqueTags(challenges, 2), [challenges]);
 
   const setSearchQuery: Dispatch<SetStateAction<string>> = useCallback(
     (value) => {
@@ -78,7 +76,6 @@ export function ChallengesTable({
           <TagFilter
             availableTags={availableTags}
             selectedTags={filters.tags}
-            tagCounts={tagCounts}
             onChange={(t) => updateFilters({ tags: t })}
           />
         </Flex>

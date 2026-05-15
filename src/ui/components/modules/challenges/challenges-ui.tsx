@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
 import { Challenge } from "@/common/types/challenge.types";
-import { ChallengeList } from "./challenge-list/challenge-list";
 import { ChallengesTable } from "./challenges-table/challenges-table";
+// import { ChallengeList } from "./challenge-list/challenge-list";
 
 interface Props {
   challenges: Challenge[];
@@ -21,7 +21,8 @@ function ChallengesTableFallback() {
 export function ChallengesUI({ challenges, solvedChallengeIds }: Props) {
   return (
     <>
-      <ChallengeList challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
+      {/* TODO: Uncomment this with UI changes */}
+      {/* <ChallengeList challenges={challenges} solvedChallengeIds={solvedChallengeIds} /> */}
       <Suspense fallback={<ChallengesTableFallback />}>
         <ChallengesTable challenges={challenges} solvedChallengeIds={solvedChallengeIds} />
       </Suspense>

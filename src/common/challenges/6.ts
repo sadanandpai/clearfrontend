@@ -34,7 +34,12 @@ export default function limit(fn, n) {
   // write your code here and return
   
 }`,
-  solution: `function limit(fn, n) {
+  solution: `/**
+ * @param {Function} fn
+ * @param {number} n
+ * @return {Function}
+ */
+export default function limit(fn, n) {
   let count = 0;
   return function(...args) {
     if (count < n) {
