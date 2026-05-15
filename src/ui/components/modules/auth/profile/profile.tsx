@@ -9,7 +9,7 @@ import { EmailUpdate } from "./email-update/email-update";
 // import { PhoneUpdate } from "./phone-update/phone-update";
 import { PasswordUpdate } from "./password-update/password-update";
 import { EmailVerification } from "@/ui/components/modules/auth/profile/email-verification/email-verification";
-import { PhoneVerification } from "@/ui/components/modules/auth/profile/phone-verification/phone-verification";
+// import { PhoneVerification } from "@/ui/components/modules/auth/profile/phone-verification/phone-verification";
 import { appContext } from "@/ui/context/app.context";
 import classes from "./profile.module.scss";
 
@@ -30,7 +30,7 @@ export function Profile({ user: serverUser }: Props) {
 
       <Flex gap="2">
         <EmailVerification emailVerification={user.emailVerification} />
-        <PhoneVerification phone={user.phone} phoneVerification={user.phoneVerification} />
+        {/* <PhoneVerification phone={user.phone} phoneVerification={user.phoneVerification} /> */}
 
         <form action={signOut}>
           <Button type="submit" color="tomato">
