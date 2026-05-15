@@ -22,6 +22,10 @@ export function EmailUpdate({ email, emailVerification }: Props) {
   const [state, formAction, pending] = useActionState(updateEmail, {});
 
   useEffect(() => {
+    setIsVerified(emailVerification);
+  }, [emailVerification]);
+
+  useEffect(() => {
     if (state.message) {
       setIsVerified(false);
       setUserEmail(inputEmail);

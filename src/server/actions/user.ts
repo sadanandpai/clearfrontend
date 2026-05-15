@@ -96,18 +96,22 @@ export async function resetForgotPassword(_prev: GlobalResponse, formData: FormD
 }
 
 export async function sendVerificationEmailAction() {
-  const user = await getLoggedInUser();
+  try {
+    const user = await getLoggedInUser();
 
-  if (!user) {
-    throw "User not logged in";
+    if (!user) {
+      return respondWithError(new Error("User not logged in"));
+    }
+
+    if (user.emailVerification) {
+      return respondWithSuccess("Email already verified");
+    }
+
+    await sendVerificationEmail();
+    return respondWithSuccess("Verification email sent");
+  } catch (error) {
+    return respondWithError(error);
   }
-
-  if (user.emailVerification) {
-    throw "Email already verified. Please refresh the page";
-  }
-
-  await sendVerificationEmail();
-  return respondWithSuccess("Verification email sent");
 }
 
 export async function sendPhoneVerificationAction() {

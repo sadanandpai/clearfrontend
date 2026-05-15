@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Models } from "node-appwrite";
 import { useSearchParams } from "next/navigation";
 import { appContext } from "@/ui/context/app.context";
@@ -16,7 +16,7 @@ export function AppProvider({ children }: Props) {
   const searchParams = useSearchParams();
   const authParam = searchParams.get("auth");
 
-  async function resetLoggedInUser() {
+  const resetLoggedInUser = useCallback(async () => {
     setUserDataLoading(true);
     return getLoggedInUser()
       .then((user) => {
@@ -31,11 +31,11 @@ export function AppProvider({ children }: Props) {
         setUserDataLoading(false);
         setIsLoginChecked(true);
       });
-  }
+  }, []);
 
   useEffect(() => {
-    resetLoggedInUser();
-  }, []);
+    void resetLoggedInUser();
+  }, [resetLoggedInUser]);
 
   useEffect(() => {
     if (authParam === "true" && user === null) {
