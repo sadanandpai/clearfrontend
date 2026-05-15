@@ -41,14 +41,12 @@ export function ChallengeDetails({ problem, isLoading }: Props) {
     >
       <Tabs.List className="shrink-0">
         <Tabs.Trigger value="question">Question</Tabs.Trigger>
-        <Tabs.Trigger value="result" className="hidden md:block">
-          Result
-        </Tabs.Trigger>
+        <Tabs.Trigger value="result">Result</Tabs.Trigger>
         <Tabs.Trigger value="solution">Solution</Tabs.Trigger>
         <Tabs.Trigger value="submissions">Submissions</Tabs.Trigger>
       </Tabs.List>
 
-      <ScrollArea type="auto">
+      <ScrollArea type="auto" className="flex-1 min-h-0">
         <Box p="3">
           <Tabs.Content value="question">
             <ProblemStatement problem={problem} />

@@ -37,12 +37,7 @@ function TagBadge({
   );
 }
 
-export const TagFilter = ({
-  availableTags,
-  selectedTags,
-  tagCounts,
-  onChange,
-}: Props) => {
+export const TagFilter = ({ availableTags, selectedTags, tagCounts, onChange }: Props) => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleTag = (tag: string) => {
@@ -62,7 +57,9 @@ export const TagFilter = ({
         justify={expanded ? "between" : "start"}
         className="w-full"
       >
-        <span className="font-semibold shrink-0">Tags:</span>
+        <span className="font-semibold shrink-0 md:inline">
+          Tags<span className="hidden md:inline">:</span>
+        </span>
         {!expanded && (
           <div className={classes.singleLineTrack}>
             <div className={classes.badgeRowNoWrap}>
@@ -82,7 +79,7 @@ export const TagFilter = ({
           type="button"
           size="1"
           variant="ghost"
-          className="shrink-0"
+          className="shrink-0 hidden md:inline-flex"
           onClick={() => setExpanded((e) => !e)}
         >
           {expanded ? "Show fewer" : "Show all tags"}
@@ -103,6 +100,16 @@ export const TagFilter = ({
           </Flex>
         </ScrollArea>
       )}
+      {/* Larger tap-target on mobile only */}
+      <Button
+        type="button"
+        size="2"
+        variant="outline"
+        className="self-stretch md:hidden"
+        onClick={() => setExpanded((e) => !e)}
+      >
+        {expanded ? "Show fewer tags" : "Show all tags"}
+      </Button>
     </Flex>
   );
 };

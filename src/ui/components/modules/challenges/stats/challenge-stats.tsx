@@ -3,7 +3,6 @@
 import { Challenge, Difficulty } from "@/common/types/challenge.types";
 
 import { DifficultyStatCard } from "./difficulty-stat-card";
-import { Flex } from "@radix-ui/themes";
 
 interface Props {
   challenges: Challenge[];
@@ -34,7 +33,7 @@ export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) =
   ];
 
   return (
-    <Flex gap="3" style={{ flex: 1 }}>
+    <div className="flex flex-col md:flex-row gap-3 flex-1">
       {difficultyStats.map((stat) => (
         <DifficultyStatCard
           key={stat.difficulty}
@@ -44,6 +43,6 @@ export const ChallengeStats = ({ challenges, solvedChallengeIds = [] }: Props) =
           percentage={stat.percentage}
         />
       ))}
-    </Flex>
+    </div>
   );
 };

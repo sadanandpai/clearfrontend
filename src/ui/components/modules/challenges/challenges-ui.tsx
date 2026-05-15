@@ -12,7 +12,7 @@ interface Props {
 function ChallengesTableFallback() {
   return (
     <div
-      className="w-[90%] mx-auto min-h-48 rounded-md border border-(--gray-a6)"
+      className="w-full md:w-[90%] mx-auto px-4 md:px-0 min-h-48 rounded-md border border-(--gray-a6)"
       aria-hidden
     />
   );

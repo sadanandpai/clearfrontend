@@ -1,0 +1,31 @@
+@use "@/ui/styles/mixins" as *;
+
+// Mobile layout: each section has a fixed, usable height with internal scrolling
+// and the page scrolls vertically between them. This matches the user-supplied mock-up
+// where Question, Editor and Terminal are stacked on a single mobile page.
+
+.mobileLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  min-height: 100%;
+}
+
+.mobileSection {
+  background-color: var(--gray-1);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  height: 60dvh;
+
+  > * {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+}
+
+.mobileEditorSection {
+  // Code editor needs enough room for ~12 lines of code + controls + run buttons.
+  height: 65dvh;
+}

@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, type Dispatch, type SetStateAction } from "react";
 
+import Link from "next/link";
 import { Box, Flex } from "@radix-ui/themes";
 import type { Challenge } from "@/common/types/challenge.types";
 import { DifficultyBadge } from "@/ui/components/core/difficulty-badge/difficulty-badge";
@@ -86,12 +87,12 @@ export function ChallengesTable({
         filters={filters}
         onClearAll={resetFilters}
         onRemoveDifficulty={() => updateFilters({ difficulty: "All" })}
-        onRemoveTag={(tag) =>
-          updateFilters({ tags: filters.tags.filter((t) => t !== tag) })
-        }
+        onRemoveTag={(tag) => updateFilters({ tags: filters.tags.filter((t) => t !== tag) })}
         onRemoveSort={() => updateFilters({ sortBy: "none" })}
         onRemoveSearch={() => updateFilters({ search: "" })}
       />
+
+      {/* Desktop / tablet: data table */}
       <table className={classes.challengesTable}>
         <thead>
           <tr>
@@ -134,6 +135,40 @@ export function ChallengesTable({
           )}
         </tbody>
       </table>
+
+      {/* Mobile: tap-friendly card list */}
+      <div className={classes.mobileCardList}>
+        {filteredChallenges.length === 0 ? (
+          <div className={classes.mobileEmpty}>No challenges found</div>
+        ) : (
+          filteredChallenges.map((challenge, index) => {
+            const solved = solvedChallengeIds.includes(challenge.id);
+            return (
+              <Link
+                key={challenge.id}
+                href={`${routes.challenges}/${challenge.id}`}
+                className={classes.mobileCard}
+                aria-label={`Open challenge ${challenge.name}`}
+              >
+                <div className={classes.mobileCardHeader}>
+                  <span className={classes.mobileCardIndex}>{index + 1}</span>
+                  {solved ? (
+                    <CheckCircle2 size={20} className="text-green-500 shrink-0" />
+                  ) : (
+                    <Circle size={20} className="text-gray-600 opacity-30 shrink-0" />
+                  )}
+                  <span className={classes.mobileCardName}>{challenge.name}</span>
+                </div>
+                <div className={classes.mobileCardDivider} />
+                <div className={classes.mobileCardFooter}>
+                  <DifficultyBadge difficulty={challenge.difficulty} />
+                  <span className={classes.mobileCardTags}>{challenge.tags.join(", ")}</span>
+                </div>
+              </Link>
+            );
+          })
+        )}
+      </div>
     </div>
   );
 }

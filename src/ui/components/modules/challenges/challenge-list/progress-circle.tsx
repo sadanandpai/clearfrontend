@@ -12,7 +12,7 @@ export const ProgressCircle = ({ solved, total }: Props) => {
   const percentage = total > 0 ? Math.round((solved / total) * 100) : 0;
 
   return (
-    <Card className="p-4 min-w-[12.5rem]">
+    <Card className="p-4 w-full md:w-auto md:min-w-50">
       <Flex direction="column" align="center" justify="center" gap="2">
         <Text size="2" weight="medium" color="gray">
           Overall Progress

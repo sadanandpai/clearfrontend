@@ -32,7 +32,12 @@ export const ActiveFilters = ({
   if (!hasFilters) return null;
 
   return (
-    <Flex gap="3" wrap="wrap" align="center" className="w-[90%] mx-auto mb-3 mt-8">
+    <Flex
+      gap="3"
+      wrap="wrap"
+      align="center"
+      className="w-full md:w-[90%] mx-auto px-4 md:px-0 mb-3 mt-8"
+    >
       <Text size="3" weight="bold" className="self-center">
         Active filters:
       </Text>
