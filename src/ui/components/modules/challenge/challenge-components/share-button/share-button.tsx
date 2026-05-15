@@ -95,7 +95,7 @@ export function ShareButton({ challengeId }: Props) {
             <Flex gap="2" align="center">
               <TextField.Root
                 readOnly
-                value={shareUrl ?? "Click Share to generate a link"}
+                value={shareUrl ?? "Click below to generate a share link"}
                 onChange={() => {}}
                 size="2"
                 className={styles.urlInput}
@@ -112,7 +112,7 @@ export function ShareButton({ challengeId }: Props) {
               )}
             </Flex>
             <Button onClick={handleShare} loading={isSharing} size="2">
-              {shareUrl ? "Reshare" : "Share"}
+              {shareUrl ? "Regenerate share link" : "Generate share link"}
             </Button>
           </Flex>
         </Popover.Content>
