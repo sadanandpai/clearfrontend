@@ -6,9 +6,9 @@ import {
   DatabaseClientAppwrite,
   SessionClientAppwrite,
 } from "./appwrite";
-import { RedisClient } from "./redis";
-import { COOKIE_NAME } from "../config/server.config";
-import { getCookie } from "../utils/cookies";
+import { COOKIE_NAME } from "@/server/config/server.config";
+import { getCookie } from "@/server/utils/cookies";
+import { Redis } from "@upstash/redis";
 
 export class ServiceClient {
   get user() {
@@ -36,7 +36,7 @@ export class ServiceClient {
   }
 
   cache() {
-    return RedisClient.getInstance().redisInstance;
+    return Redis.fromEnv();
   }
 }
 

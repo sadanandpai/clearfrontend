@@ -1,12 +1,6 @@
 "use server";
 
-import {
-  getAttempts,
-  getSolves,
-  getLikes,
-  getViews,
-  incrementAttempts,
-} from "@/server/data-access/activities";
+import { incrementAttempts, getStats } from "@/server/data-access/activities";
 import { isValidChallengeId } from "@/server/utils/challenge";
 
 export async function incrementChallengeAttempts(challengeId: number) {
@@ -22,10 +16,5 @@ export async function getChallengeActivity(challengeId: number) {
     throw new Error("Invalid challenge ID");
   }
 
-  return {
-    views: await getViews(challengeId),
-    likes: await getLikes(challengeId),
-    attempts: await getAttempts(challengeId),
-    solves: await getSolves(challengeId),
-  };
+  return getStats(challengeId);
 }

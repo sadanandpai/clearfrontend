@@ -42,10 +42,6 @@ export function UserLikeStatus({ totalLikes }: Props) {
       } else {
         toast("Challenge is un-liked");
       }
-
-      if (challengeLikes !== undefined) {
-        setChallengeLikes(data.like ? challengeLikes + 1 : challengeLikes - 1);
-      }
     },
     onError: () => {
       toast.error("Failed to like challenge");

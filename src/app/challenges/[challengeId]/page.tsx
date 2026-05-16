@@ -21,6 +21,5 @@ export default async function ChallengePage({ params, searchParams }: Props) {
   incrementViews(challengeIdAsNum);
 
   const share = shareId ? await getShare(shareId) : null;
-
   return <ChallengeLoader challengeId={challengeId} share={share ?? undefined} />;
 }

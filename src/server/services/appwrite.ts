@@ -23,7 +23,7 @@ export class BaseClientAppWrite {
   project: string = "";
 
   constructor() {
-    this.endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ?? "";
+    this.endpoint = "https://cloud.appwrite.io/v1";
     this.project = process.env.NEXT_APPWRITE_PROJECT ?? "";
 
     if (!this.endpoint || !this.project) {
@@ -38,7 +38,6 @@ export class BaseClientAppWrite {
   get account() {
     return new Account(this.client);
   }
-
 }
 
 export class SessionClientAppwrite extends BaseClientAppWrite {
@@ -62,7 +61,6 @@ export class SessionClientAppwrite extends BaseClientAppWrite {
 }
 
 export class DatabaseClientAppwrite extends SessionClientAppwrite {
-
   get databases() {
     return new Databases(super.client);
   }

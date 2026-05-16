@@ -1,5 +1,6 @@
 "use server";
 
+import { after } from "next/server";
 import {
   createUserChallengeInfo,
   readUserChallengeInfo,
@@ -33,12 +34,12 @@ export async function setUserChallengeLike(challengeId: number, like: boolean) {
     updatedDoc = await createUserChallengeInfo(challengeId, {
       like,
     });
-    updateLikes(challengeId, like);
+    after(updateLikes(challengeId, like));
   } else if (document.like !== like) {
     updatedDoc = await updateUserChallengeInfo(document.$id, challengeId, {
       like,
     });
-    updateLikes(challengeId, like);
+    after(updateLikes(challengeId, like));
   } else {
     updatedDoc = document;
   }
@@ -61,12 +62,12 @@ export async function setUserChallengeSolve(challengeId: number) {
     updatedDoc = await createUserChallengeInfo(challengeId, {
       solve: true,
     });
-    incrementSolves(challengeId);
+    after(incrementSolves(challengeId));
   } else if (document.solve !== true) {
     updatedDoc = await updateUserChallengeInfo(document.$id, challengeId, {
       solve: true,
     });
-    incrementSolves(challengeId);
+    after(incrementSolves(challengeId));
   } else {
     updatedDoc = document;
   }
@@ -79,11 +80,11 @@ export async function setUserChallengeSolve(challengeId: number) {
 
 export async function getUserSolvedChallenges(): Promise<number[]> {
   const user = await getLoggedInUser();
-  if(!user) {
-    return[];
+  if (!user) {
+    return [];
   }
 
-  try{
+  try {
     const { getAllUserSolvedChallenges } = await import("@/server/data-access/user-challenge");
     const solvedChallengeIds = await getAllUserSolvedChallenges();
     return solvedChallengeIds;

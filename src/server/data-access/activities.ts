@@ -1,15 +1,24 @@
 import "server-only";
 
-import { serviceClient } from "../services/service_client";
-import { getStatsFromDB, incrementStatInDB, decrementStatInDB } from "./challenge-stats";
-import { safeCount, getFromCacheOrDB, ensureCacheSeeded } from "@/server/utils/cache";
+import { serviceClient } from "@/server/services/service_client";
+import { safeCount } from "@/server/utils/challenge";
 
-export async function getViews(challengeId: number) {
-  return safeCount(await serviceClient.cache().get(`views:${challengeId}`));
-}
+export async function getStats(challengeId: number) {
+  const keys = [
+    `views:${challengeId}`,
+    `likes:${challengeId}`,
+    `attempts:${challengeId}`,
+    `solves:${challengeId}`,
+  ];
 
-export async function getAttempts(challengeId: number) {
-  return safeCount(await serviceClient.cache().get(`attempts:${challengeId}`));
+  const [views, likes, attempts, solves] = await serviceClient.cache().mget(keys);
+
+  return {
+    views: safeCount(views),
+    likes: safeCount(likes),
+    attempts: safeCount(attempts),
+    solves: safeCount(solves),
+  };
 }
 
 export async function incrementViews(challengeId: number) {
@@ -20,37 +29,20 @@ export async function incrementAttempts(challengeId: number) {
   await serviceClient.cache().incr(`attempts:${challengeId}`);
 }
 
-export async function getLikes(challengeId: number) {
-  return getFromCacheOrDB(`likes:${challengeId}`, () =>
-    getStatsFromDB(challengeId).then((s) => s.likes),
-  );
-}
-
-export async function getSolves(challengeId: number) {
-  return getFromCacheOrDB(`solves:${challengeId}`, () =>
-    getStatsFromDB(challengeId).then((s) => s.solves),
-  );
-}
-
 export async function incrementSolves(challengeId: number) {
-  const key = `solves:${challengeId}`;
-  await ensureCacheSeeded(key, () => getStatsFromDB(challengeId).then((s) => s.solves));
-  await serviceClient.cache().incr(key);
-  incrementStatInDB(challengeId, "solves").catch(() => { });
+  await serviceClient.cache().incr(`solves:${challengeId}`);
 }
 
 export async function updateLikes(challengeId: number, isIncrement: boolean) {
-  const redis = serviceClient.cache();
   const key = `likes:${challengeId}`;
 
-  await ensureCacheSeeded(key, () => getStatsFromDB(challengeId).then((s) => s.likes));
-
   if (isIncrement) {
-    await redis.incr(key);
-    incrementStatInDB(challengeId, "likes").catch(() => { });
+    return await serviceClient.cache().incr(key);
   } else {
-    const newVal = await redis.decr(key);
-    if (newVal < 0) await redis.set(key, 0);
-    decrementStatInDB(challengeId, "likes").catch(() => { });
+    const current = (await serviceClient.cache().get<number>(key)) || 0;
+    if (current > 0) {
+      return await serviceClient.cache().decr(key);
+    }
+    return 0;
   }
 }
