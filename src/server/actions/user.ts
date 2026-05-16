@@ -10,6 +10,7 @@ import {
   updatePhoneNumber,
   verifyPhoneNumber,
   sendPhoneVerification,
+  verifyEmail,
 } from "@/server/data-access/session";
 import {
   validateEmail,
@@ -112,6 +113,15 @@ export async function sendVerificationEmailAction() {
   } catch (error) {
     return respondWithError(error);
   }
+}
+
+export async function verifyEmailAction(userId: string, secret: string) {
+  if (!userId || !secret) {
+    throw new Error("Invalid url parameters");
+  }
+
+  await verifyEmail(userId, secret);
+  return respondWithSuccess("Email verified successfully");
 }
 
 export async function sendPhoneVerificationAction() {

@@ -43,6 +43,11 @@ export async function sendVerificationEmail() {
   await account.createEmailVerification({ url: `${HOST_URL}${routes.verifyEmail}` });
 }
 
+export async function verifyEmail(userId: string, secret: string) {
+  const { account } = await serviceClient.user.guest();
+  await account.updateEmailVerification({ userId, secret });
+}
+
 export async function destroySession() {
   const { account } = await serviceClient.user.authenticated();
   await account.deleteSession({ sessionId: "current" });
