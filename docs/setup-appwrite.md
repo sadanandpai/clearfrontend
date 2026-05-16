@@ -45,12 +45,12 @@ The app does **not** ship an Appwrite export. You create a small project in [App
 
 Create **four collections** inside that database. Display names can be anything; what matters is each collection’s **ID** and its **attributes**.
 
-| # | What it is for (in the app) | Attributes to add (name → type) |
-| - | --------------------------- | -------------------------------- |
-| 1 | User code submissions | `cId` → Integer, `code` → String (large size limit), `status` → Boolean |
-| 2 | Challenge stats (likes / solves) | `cId` → Integer, `likes` → Integer, `solves` → Integer |
-| 3 | Per-user challenge flags (liked / solved) | `cId` → Integer, `like` → Boolean, `solve` → Boolean |
-| 4 | Shared code links (expiring) | `userId` → String, `cId` → Integer, `code` → String, `expiresAt` → DateTime |
+| #   | What it is for (in the app)               | Attributes to add (name → type)                                             |
+| --- | ----------------------------------------- | --------------------------------------------------------------------------- |
+| 1   | User code submissions                     | `cId` → Integer, `code` → String (large size limit), `status` → Boolean     |
+| 2   | Challenge stats (likes / solves)          | `cId` → Integer, `likes` → Integer, `solves` → Integer                      |
+| 3   | Per-user challenge flags (liked / solved) | `cId` → Integer, `like` → Boolean, `solve` → Boolean                        |
+| 4   | Shared code links (expiring)              | `userId` → String, `cId` → Integer, `code` → String, `expiresAt` → DateTime |
 
 **Collection 4 — easy path:** When you create the fourth collection, set its **Collection ID** to exactly `code_shares`. Then you can leave `CODE_SHARE_COLLECTION` as `"code_shares"` in config. If you let Appwrite auto-generate an ID instead, copy that ID into `CODE_SHARE_COLLECTION` in step 6.
 
@@ -73,13 +73,12 @@ Tighten permissions before any real deployment.
 
 Edit [`src/server/config/appwrite.config.ts`](../src/server/config/appwrite.config.ts):
 
-| Constant | Paste here |
-| -------- | ----------- |
-| `DB` | Your **database** ID |
-| `SUBMISSIONS_COLLECTION` | Collection **1** ID |
-| `CHALLENGE_INFO_COLLECTION` | Collection **2** ID |
-| `USER_CHALLENGE_INFO_COLLECTION` | Collection **3** ID |
-| `CODE_SHARE_COLLECTION` | Collection **4** ID (or the string `code_shares` if you used that custom ID) |
+| Constant                    | Paste here                                                                   |
+| --------------------------- | ---------------------------------------------------------------------------- |
+| `DB`                        | Your **database** ID                                                         |
+| `SUBMISSIONS_COLLECTION`    | Collection **1** ID                                                          |
+| `CHALLENGE_INFO_COLLECTION` | Collection **2** ID                                                          |
+| `CODE_SHARE_COLLECTION`     | Collection **4** ID (or the string `code_shares` if you used that custom ID) |
 
 ---
 

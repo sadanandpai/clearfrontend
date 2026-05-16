@@ -19,12 +19,12 @@ View [issues tagged _good first issue_](https://github.com/sadanandpai/clearfron
 ### Clone and install
 
 1. Open a terminal in the directory where you keep projects.
-1. Clone the repo  
+1. Clone the repo
    ```bash
    git clone https://github.com/sadanandpai/clearfrontend.git
    cd clearfrontend
    ```
-1. Install dependencies  
+1. Install dependencies
    ```bash
    npm install
    ```
@@ -43,9 +43,21 @@ cp .env.example .env
 
 Next.js loads `.env` automatically. Open `.env` and complete any empty values; each variable is described in the comments at the top of [`.env.example`](.env.example). Do not commit `.env` or other files that contain secrets (they stay gitignored).
 
-### Redis
+### Redis via Upstash
 
-`REDIS_HOST` and `REDIS_PORT` are not read from `.env`—they live in `src/server/config/redis.config.ts`. Point them at your instance (local Docker, another host, or a **free** database from [redis.io](https://redis.io/) such as **Redis Cloud**). Set `NEXT_REDIS_PASSWORD` in `.env` only when your Redis server requires a password.
+This project uses Upstash Redis for caching. To set it up:
+
+1. Create a free account at [upstash.com](https://upstash.com)
+2. Create a new Redis database
+3. Copy the **REST URL** and **REST Token** from your database dashboard
+4. Add them to your `.env` file:
+
+```
+UPSTASH_REDIS_REST_URL=your_rest_url_here
+UPSTASH_REDIS_REST_TOKEN=your_rest_token_here
+```
+
+For Vercel deployments, these variables are automatically read from the environment using `Redis.fromEnv()`.
 
 ### Run the app
 
@@ -94,22 +106,22 @@ For local env, Appwrite, or Redis—not challenge design—use [**Question**](ht
 ## Submit a change
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the repo.
-1. Clone your fork and add `upstream` if you plan to sync often.  
+1. Clone your fork and add `upstream` if you plan to sync often.
    ```bash
    git clone https://github.com/YOUR_USERNAME/clearfrontend.git
    cd clearfrontend
    ```
 1. Install dependencies: `npm install`
-1. Create a branch:  
+1. Create a branch:
    ```bash
    git switch -c your-branch-name
    ```
 1. Make changes, then `npm run lint` / `npm run test` as appropriate.
-1. Commit with a message that explains the change.  
+1. Commit with a message that explains the change.
    ```bash
    git commit -am "Add concise description of the change"
    ```
-1. Push and open a **Pull Request** against the `main` branch of the upstream repo.  
+1. Push and open a **Pull Request** against the `main` branch of the upstream repo.
    ```bash
    git push origin your-branch-name
    ```
