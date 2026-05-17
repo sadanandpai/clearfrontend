@@ -72,12 +72,12 @@ export async function updateUserEmail(email: string, password: string) {
 }
 
 export async function sendPasswordRecoveryEmail(email: string) {
-  const { account } = await serviceClient.user.authenticated();
+  const { account } = await serviceClient.user.guest();
   await account.createRecovery({ email, url: `${HOST_URL}${routes.resetPassword}` });
 }
 
 export async function resetPassword(userId: string, secret: string, password: string) {
-  const { account } = await serviceClient.user.authenticated();
+  const { account } = await serviceClient.user.guest();
   await account.updateRecovery({ userId, secret, password });
 }
 

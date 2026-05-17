@@ -3,19 +3,20 @@ import { getUniqueID } from "@/server/services/appwrite";
 import { serviceClient } from "../services/service_client";
 
 export async function readUserChallengeInfo(challengeId: number) {
-  const { databases, Query } = await serviceClient.database();
+  const { tables, Query } = await serviceClient.database();
 
-  const result = await databases.listDocuments(DB, USER_CHALLENGE_INFO_COLLECTION, [
-    Query.equal("cId", challengeId),
-    Query.limit(1),
-  ]);
+  const result = await tables.listRows({
+    databaseId: DB,
+    tableId: USER_CHALLENGE_INFO_COLLECTION,
+    queries: [Query.equal("cId", challengeId), Query.limit(1)],
+  });
 
-  const document = result.documents[0];
-  return document
+  const row = result.rows[0];
+  return row
     ? {
-        $id: document.$id,
-        like: document.like,
-        solve: document.solve,
+        $id: row.$id,
+        like: row.like,
+        solve: row.solve,
       }
     : null;
 }
@@ -24,17 +25,22 @@ export async function createUserChallengeInfo(
   challengeId: number,
   data: Partial<{ like: boolean; solve: boolean }>,
 ) {
-  const { databases } = await serviceClient.database();
+  const { tables } = await serviceClient.database();
 
-  const doc = await databases.createDocument(DB, USER_CHALLENGE_INFO_COLLECTION, getUniqueID(), {
-    cId: challengeId,
-    ...data,
+  const row = await tables.createRow({
+    databaseId: DB,
+    tableId: USER_CHALLENGE_INFO_COLLECTION,
+    rowId: getUniqueID(),
+    data: {
+      cId: challengeId,
+      ...data,
+    },
   });
 
   return {
-    $id: doc.$id,
-    like: doc.like,
-    solve: doc.solve,
+    $id: row.$id,
+    like: row.like,
+    solve: row.solve,
   };
 }
 
@@ -43,29 +49,36 @@ export async function updateUserChallengeInfo(
   challengeId: number,
   data: Partial<{ like: boolean; solve: boolean }>,
 ) {
-  const { databases } = await serviceClient.database();
+  const { tables } = await serviceClient.database();
 
-  const doc = await databases.updateDocument(DB, USER_CHALLENGE_INFO_COLLECTION, documentId, {
-    cId: challengeId,
-    ...data,
+  const row = await tables.updateRow({
+    databaseId: DB,
+    tableId: USER_CHALLENGE_INFO_COLLECTION,
+    rowId: documentId,
+    data: {
+      cId: challengeId,
+      ...data,
+    },
   });
 
   return {
-    $id: doc.$id,
-    like: doc.like,
-    solve: doc.solve,
+    $id: row.$id,
+    like: row.like,
+    solve: row.solve,
   };
 }
 
 export async function getAllUserSolvedChallenges(): Promise<number[]> {
-  const { databases, Query } = await serviceClient.database();
+  const { tables, Query } = await serviceClient.database();
 
   try {
-    const result = await databases.listDocuments(DB, USER_CHALLENGE_INFO_COLLECTION, [
-      Query.equal("solve", true),
-    ]);
+    const result = await tables.listRows({
+      databaseId: DB,
+      tableId: USER_CHALLENGE_INFO_COLLECTION,
+      queries: [Query.equal("solve", true)],
+    });
 
-    return result.documents.map((doc) => (doc as unknown as { cId: number }).cId);
+    return result.rows.map((row) => (row as unknown as { cId: number }).cId);
   
   } catch {
     return [];

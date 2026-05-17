@@ -1,6 +1,6 @@
 import "server-only";
 
-import { Client, Account, ID, OAuthProvider, Databases, Query } from "node-appwrite";
+import { Client, Account, ID, OAuthProvider, Query, TablesDB } from "node-appwrite";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 export const OAuthProviders = {
@@ -61,8 +61,8 @@ export class SessionClientAppwrite extends BaseClientAppWrite {
 }
 
 export class DatabaseClientAppwrite extends SessionClientAppwrite {
-  get databases() {
-    return new Databases(super.client);
+  get tables() {
+    return new TablesDB(super.client);
   }
 
   get Query() {
@@ -91,8 +91,8 @@ export class AdminClientAppwrite extends BaseClientAppWrite {
 }
 
 export class AdminDatabaseClientAppwrite extends AdminClientAppwrite {
-  get databases() {
-    return new Databases(this.client);
+  get tables() {
+    return new TablesDB(this.client);
   }
 
   get Query() {

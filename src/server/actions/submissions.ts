@@ -16,9 +16,14 @@ export async function getUserSubmissions(challengeId: number) {
 
   const result = await getSubmissionsRecords(challengeId);
   // Appwrite models are class instances — server actions must return plain JSON.
-  return JSON.parse(JSON.stringify(result)) as {
+  const plainResult = JSON.parse(JSON.stringify(result)) as {
     total: number;
-    documents: Array<Record<string, unknown>>;
+    rows: Array<Record<string, unknown>>;
+  };
+
+  return {
+    total: plainResult.total,
+    documents: plainResult.rows,
   };
 }
 
