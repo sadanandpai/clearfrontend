@@ -56,19 +56,26 @@
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.6",
     "husky": "^9.1.7",
-    "jsdom": "^26.1.0",
-    "postcss": "^8.5.14",
+    "jsdom": "^29.1.1",
     "prettier": "^3.8.3",
-    "sass": "^1.99.0",
+    "sass": "^1.100.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.1.6"
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.7"
   },
   "volta": {
     "node": "24.11.1"
   },
   "engines": {
     "node": ">=24.11.1"
+  },
+  "overrides": {
+    "js-cookie": "3.0.7",
+    "dompurify": "3.4.5",
+    "monaco-editor": {
+      "dompurify": "3.4.5"
+    },
+    "postcss": "8.5.14"
   }
 }
