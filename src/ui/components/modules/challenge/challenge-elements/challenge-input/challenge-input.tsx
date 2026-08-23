@@ -20,13 +20,13 @@ export function ChallengeInput({ defaultInput }: Props) {
 
   useEffect(() => {
     setUserInput(userInput);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps
   }, [userInput]);
 
   useEffect(() => {
     setUserInput(defaultInput);
     setLocalInput(defaultInput);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps
   }, [defaultInput]);
 
   return (

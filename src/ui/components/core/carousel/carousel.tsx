@@ -24,7 +24,7 @@ export function EmblaCarousel({ children, activeIndex, setActiveIndex }: Props) 
     }
 
     // cleanup is not necessary as carousel unmount will remove the event listener
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps
   }, [emblaApi]);
 
   return (

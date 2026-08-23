@@ -26,7 +26,7 @@ export function ChallengeDetails({ problem, isLoading }: Props) {
     if (testOutputs?.outputs?.length) {
       setSubmittedCode(userCode);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps
   }, [testOutputs, setSelectedTab]);
 
   if (!problem || isLoading) {

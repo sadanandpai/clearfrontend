@@ -14,7 +14,7 @@ clearfrontend/
 ├── tsconfig.json
 ├── vitest.config.mts
 ├── package.json
-├── .nvmrc                      Node version (24.11.1)
+├── .nvmrc                      Node version (24.19.0)
 ├── .github/
 │   └── workflows/
 │       └── validate-challenges.yml
@@ -56,6 +56,7 @@ src/app/
 ```
 
 Rules:
+
 - Async server components fetch data directly (no client-side useEffect).
 - Route groups `(group)` share a layout without affecting the URL.
 - No business logic or direct DB calls — delegate to Server Actions and data-access layer.
@@ -119,6 +120,7 @@ src/server/
 ```
 
 Sub-layer rules:
+
 - `actions/` — orchestrates: validate → authorize → call data-access → return.
 - `data-access/` — only DB/Redis calls; no auth logic, no HTTP context.
 - `services/` — initializes and exports clients (singleton pattern). `adminDatabase()` uses API key (no session required — for public data reads).
@@ -179,6 +181,7 @@ component-name/
 ```
 
 Rules:
+
 - Folder name = kebab-case version of the component name.
 - No barrel `index.ts` files inside component folders.
 - Import directly: `import { MonacoEditor } from "@/ui/components/core/editor/monaco-editor"`.
@@ -195,11 +198,11 @@ Rules:
 
 ## Naming Rules Summary
 
-| Item | Convention |
-|---|---|
-| Files | `kebab-case.tsx` / `kebab-case.ts` |
-| Directories | `kebab-case/` |
-| React components | `PascalCase` named export |
-| CSS Module classes | `camelCase` |
+| Item                | Convention                                  |
+| ------------------- | ------------------------------------------- |
+| Files               | `kebab-case.tsx` / `kebab-case.ts`          |
+| Directories         | `kebab-case/`                               |
+| React components    | `PascalCase` named export                   |
+| CSS Module classes  | `camelCase`                                 |
 | Server Action files | noun (`auth.ts`, `challenge.ts`, `user.ts`) |
-| Challenge files | numeric ID (`17.ts`) |
+| Challenge files     | numeric ID (`17.ts`)                        |

@@ -18,7 +18,7 @@ export function ChallengeTerminal({ defaultInput, testCode, isLoading }: Props) 
 
   useEffect(() => {
     if (testOutput?.status !== undefined) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      // oxlint-disable-next-line react/set-state-in-effect
       setSelectedTab("output");
     }
   }, [testOutput]);

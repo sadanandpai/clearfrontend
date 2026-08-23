@@ -21,10 +21,12 @@ const SearchBar: React.FC<Props> = ({
   debounceMs = 300,
 }) => {
   const [localValue, setLocalValue] = useState(searchQuery);
+  const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
 
-  useEffect(() => {
+  if (searchQuery !== prevSearchQuery) {
+    setPrevSearchQuery(searchQuery);
     setLocalValue(searchQuery);
-  }, [searchQuery]);
+  }
 
   useEffect(() => {
     const handle = setTimeout(() => {

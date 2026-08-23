@@ -18,7 +18,7 @@ Required knowledge for contributing to ClearFrontend.
 - Server Component composition patterns
 - Docs: https://react.dev
 
-### TypeScript 5 (strict mode)
+### TypeScript 7 (strict mode)
 - `strict: true` — all strictness flags enabled
 - Interfaces for object shapes, enums for string unions, `unknown` over `any`
 - Generic constraints, utility types (`Partial`, `Pick`, `Omit`, `ReturnType`)

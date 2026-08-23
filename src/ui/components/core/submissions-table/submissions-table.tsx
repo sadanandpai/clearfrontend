@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* oxlint-disable typescript/no-explicit-any */
 import { ChallengeSolution } from "@/ui/components/modules/challenge/challenge-elements/challenge-solution/challenge-solution";
 import classes from "./submissions-table.module.scss";
 import { Trash } from "lucide-react";

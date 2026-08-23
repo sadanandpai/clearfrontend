@@ -12,7 +12,7 @@ View [issues tagged _good first issue_](https://github.com/sadanandpai/clearfron
 
 ### Prerequisites
 
-- **Node.js** `>= 24.11.1`
+- **Node.js** `>= 24.19.0`
 - **Appwrite Setup**
 - **Redis Setup**
 

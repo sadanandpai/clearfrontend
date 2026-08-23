@@ -43,7 +43,7 @@ export function AppProvider({ children }: Props) {
     } else if (authParam === "false" && user !== null) {
       setUser(null);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps
   }, [authParam]);
 
   return (

@@ -11,7 +11,7 @@ ClearFrontend is a Next.js 15 coding challenge platform where users solve JavaSc
 | Layer | Technology |
 |---|---|
 | Framework | Next.js 15 (App Router), React 19 |
-| Language | TypeScript 5 (strict) |
+| Language | TypeScript 7 (strict) |
 | Styling | Tailwind CSS v4 + SCSS Modules + Radix UI Themes |
 | State | Zustand 5 (Immer), React Query 5 |
 | Editor | Monaco Editor (`@monaco-editor/react`) |
@@ -91,7 +91,7 @@ File: `src/server/actions/execute.ts`
 
 ## Forbidden Patterns
 
-- No `any` without a `// eslint-disable-next-line @typescript-eslint/no-explicit-any` comment and a reason.
+- No `any` without a `// oxlint-disable-next-line typescript/no-explicit-any` comment and a reason.
 - No `console.log` in committed server-side code.
 - No `vm` module — use `isolated-vm` for true V8 isolation (see `docs/security_ai.md`).
 - No mutation of Zustand state outside of store setter functions.

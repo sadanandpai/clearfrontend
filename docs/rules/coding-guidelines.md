@@ -17,7 +17,7 @@ TypeScript, React, and Next.js standards for ClearFrontend.
   ```
 - No `any` without an explicit disable comment plus a reason:
   ```ts
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // oxlint-disable-next-line typescript/no-explicit-any
   const result = value as any; // reason: third-party type gap
   ```
 

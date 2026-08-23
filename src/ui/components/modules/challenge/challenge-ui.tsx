@@ -34,7 +34,7 @@ export default function ChallengeUI({ problem, error, isLoading, share }: Props)
       resetOutputs();
       resetConsoleLogs();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps
   }, [problem]);
 
   if (error) {
